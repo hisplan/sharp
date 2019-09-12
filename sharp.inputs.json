@@ -1,0 +1,11 @@
+{
+    "Sharp.uriFastqR1": [
+        "s3://dp-lab-home/chunj/temp/IL10neg_HTO_IGO_10034_23_S2_L001_R1_001.fastq.gz",
+        "s3://dp-lab-home/chunj/temp/IL10neg_HTO_IGO_10034_23_S2_L002_R1_001.fastq.gz"
+    ],
+    "Sharp.uriFastqR2": [
+        "s3://dp-lab-home/chunj/temp/IL10neg_HTO_IGO_10034_23_S2_L001_R2_001.fastq.gz",
+        "s3://dp-lab-home/chunj/temp/IL10neg_HTO_IGO_10034_23_S2_L002_R2_001.fastq.gz"
+    ],
+    "Sharp.sampleName": "IL10neg_HTO_IGO_10034_23_S2"
+}
