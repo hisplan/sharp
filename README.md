@@ -2,4 +2,4 @@
 
 A hashtag pipeline.
 
-sharp (♯) similar to hash (#)
+the sharp (♯) from musical notation similar to the hash (#) in hashtag.
