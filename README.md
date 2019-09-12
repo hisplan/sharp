@@ -59,8 +59,8 @@ Update `secrets.json` with the new Cromwell Server address:
 $ cat ~/secrets.json
 {
     "url": "http://ec2-100-26-170-43.compute-1.amazonaws.com",
-    "username": "user1",
-    "password": "123"
+    "username": "****",
+    "password": "****"
 }
 ```
 
