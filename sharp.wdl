@@ -34,7 +34,7 @@ task MergeFastq {
     }
 
     String docker_image = "ubuntu:18.04"
-    Int numCores = 11
+    Int numCores = 2
     # Float input_size = size(input_fastq1, "GiB") + size(input_fastq2, "GiB") + size(input_reference, "GiB")
 
     command <<<
