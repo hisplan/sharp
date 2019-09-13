@@ -27,8 +27,7 @@ task RunFastQC {
     command <<<
         set -euo pipefail
 
-        /usr/local/bin/fastqc \
-            -o . ~{fastqFile}
+        fastqc -o . ~{fastqFile}
     >>>
 
     output {
