@@ -33,9 +33,9 @@ task MergeFastq {
         String readName
     }
 
-    String docker_image = "ubuntu:18.04"
+    String dockerImage = "ubuntu:18.04"
     Int numCores = 2
-    # Float input_size = size(input_fastq1, "GiB") + size(input_fastq2, "GiB") + size(input_reference, "GiB")
+    # Float inputSize = size(input_fastq1, "GiB") + size(input_fastq2, "GiB") + size(input_reference, "GiB")
 
     command <<<
         set -euo pipefail
@@ -64,9 +64,9 @@ task MergeFastq {
     }
 
     runtime {
-        docker: docker_image
+        docker: dockerImage
         # disks: "local-disk 500 HDD"
-        # disks: "local-disk " + ceil(5 * (if input_size < 1 then 1 else input_size )) + " HDD"
+        # disks: "local-disk " + ceil(5 * (if inputSize < 1 then 1 else inputSize )) + " HDD"
         cpu: numCores
         memory: "8 GB"
     }

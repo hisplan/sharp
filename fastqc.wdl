@@ -22,7 +22,7 @@ task RunFastQC {
     }
 
     Int numCores = 4
-    String docker_image = "hisplan/cromwell-fastqc:0.11.8"
+    String dockerImage = "hisplan/cromwell-fastqc:0.11.8"
 
     command <<<
         set -euo pipefail
@@ -36,9 +36,9 @@ task RunFastQC {
     }
 
     runtime {
-        docker: docker_image
+        docker: dockerImage
         disks: "local-disk 500 HDD"
-        # disks: "local-disk " + ceil(5 * (if input_size < 1 then 1 else input_size )) + " HDD"
+        # disks: "local-disk " + ceil(5 * (if inputSize < 1 then 1 else inputSize )) + " HDD"
         cpu: numCores
         memory: "16 GB"
     }
