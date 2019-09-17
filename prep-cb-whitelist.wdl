@@ -128,4 +128,11 @@ task NotImplemented {
 
         exit 1
     >>>
+
+    runtime {
+        docker: "ubuntu:18.04"
+        disks: "local-disk 100 HDD"
+        cpu: 1
+        memory: "1 GB"
+    }
 }
