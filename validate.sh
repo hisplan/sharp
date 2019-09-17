@@ -14,3 +14,8 @@ java -jar ~/Applications/womtool-45.1.jar \
     validate \
     cutadapt.wdl \
     --inputs cutadapt.inputs.json
+
+java -jar ~/Applications/womtool-45.1.jar \
+    validate \
+    prep-cb-whitelist.wdl \
+    --inputs prep-cb-whitelist.inputs.json
