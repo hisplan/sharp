@@ -19,3 +19,8 @@ java -jar ~/Applications/womtool-45.1.jar \
     validate \
     prep-cb-whitelist.wdl \
     --inputs prep-cb-whitelist.inputs.json
+
+java -jar ~/Applications/womtool-45.1.jar \
+    validate \
+    count.wdl \
+    --inputs count.inputs.json
