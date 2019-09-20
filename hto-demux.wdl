@@ -7,43 +7,12 @@ workflow HtoDemux {
         Float quantile
     }
 
-    # call DownloadMatrix {
-    #     input:
-    #         uriUmiCountMatrix = uriUmiCountMatrix
-    # }
-
     call RunDemux {
         input:
             umiCountFiles = umiCountFiles,
             quantile = quantile
     }
 }
-
-# task DownloadMatrix {
-
-#     input {
-#         String uriUmiCountMatrix
-#     }
-
-#     command <<<
-#         set -euo pipefail
-
-#         #fixme: GCP vs. AWS?
-#         # gsutil sync ~{uriUmiCountMatrix} ./umit-count
-#         which gsutil
-#     >>>
-
-#     output {
-#         String out = read_string(stdout())
-#     }
-
-#     runtime {
-#         docker: "ubuntu:18.04"
-#         disks: "local-disk 100 HDD"
-#         cpu: 1
-#         memory: "1 GB"
-#     }
-# }
 
 task RunDemux {
 
