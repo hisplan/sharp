@@ -24,3 +24,8 @@ java -jar ~/Applications/womtool-45.1.jar \
     validate \
     count.wdl \
     --inputs count.inputs.json
+
+java -jar ~/Applications/womtool-45.1.jar \
+    validate \
+    hto-demux.wdl \
+    --inputs hto-demux.inputs.json
