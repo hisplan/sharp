@@ -36,7 +36,7 @@ task TranslateFromSeqcSparseBarcodes {
         File csvFile
     }
 
-    String dockerImage = "hisplan/cromwell-seqc:0.2.3-alpha.5"
+    String dockerImage = "hisplan/cromwell-seqc:0.2.4"
     Int numCores = 1
     Float inputSize = size(csvFile, "GiB")
 
@@ -81,7 +81,7 @@ task TranslateFromSeqcDenseMatrix {
         File csvFile
     }
 
-    String dockerImage = "hisplan/cromwell-seqc:0.2.3-alpha.5"
+    String dockerImage = "hisplan/cromwell-seqc:0.2.4"
     Int numCores = 1
     Float inputSize = size(csvFile, "GiB")
 
