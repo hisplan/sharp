@@ -29,3 +29,8 @@ java -jar ~/Applications/womtool.jar \
     validate \
     hto-demux.wdl \
     --inputs hto-demux.inputs.json
+
+java -jar ~/Applications/womtool.jar \
+    validate \
+    combine.wdl \
+    --inputs combine.inputs.json
