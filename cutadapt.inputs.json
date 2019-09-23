@@ -1,6 +1,0 @@
-{
-    "Cutadapt.uriFastqR1": "gs://chunj-cromwell/cromwell-execution/Sharp/658b18b3-a403-4640-ba45-6514a0b31c11/call-MergeFastqR1/IL10neg_HTO_IGO_10034_23_S2_R1.fastq.gz",
-    "Cutadapt.uriFastqR2": "gs://chunj-cromwell/cromwell-execution/Sharp/658b18b3-a403-4640-ba45-6514a0b31c11/call-MergeFastqR2/IL10neg_HTO_IGO_10034_23_S2_R2.fastq.gz",
-    "Cutadapt.lengthR1": 28,
-    "Cutadapt.lengthR2": 15
-}

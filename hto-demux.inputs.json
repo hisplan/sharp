@@ -1,8 +1,0 @@
-{
-    "HtoDemux.umiCountFiles": [
-        "gs://chunj-cromwell/cromwell-execution/Count/2c96da3d-0496-4e17-8cea-2cbd1d280ebc/call-RunCiteSeqCount/glob-5b2373ebac80816456a7726e786fc4d4/matrix.mtx.gz",
-        "gs://chunj-cromwell/cromwell-execution/Count/2c96da3d-0496-4e17-8cea-2cbd1d280ebc/call-RunCiteSeqCount/glob-5b2373ebac80816456a7726e786fc4d4/barcodes.tsv.gz",
-        "gs://chunj-cromwell/cromwell-execution/Count/2c96da3d-0496-4e17-8cea-2cbd1d280ebc/call-RunCiteSeqCount/glob-5b2373ebac80816456a7726e786fc4d4/features.tsv.gz"
-    ],
-    "HtoDemux.quantile": 0.99
-}

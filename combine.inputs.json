@@ -1,5 +1,0 @@
-{
-    "Combine.denseCountMatrix": "gs://chunj-cromwell/1187_IL10neg_P163_IGO_09902_8_dense.csv",
-    "Combine.htoDemuxMatrix": "gs://chunj-cromwell/cromwell-execution/HtoDemux/f7cb35f7-cd61-45f3-8376-c5242591e5ac/call-RunDemux/outputs/classification.csv",
-    "Combine.htoDemuxUnmapped": "gs://chunj-cromwell/cromwell-execution/Count/2c96da3d-0496-4e17-8cea-2cbd1d280ebc/call-RunCiteSeqCount/results/unmapped.csv"
-}
