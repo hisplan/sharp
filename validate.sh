@@ -2,8 +2,8 @@
 
 java -jar ~/Applications/womtool.jar \
     validate \
-    sharp.wdl \
-    --inputs sharp.inputs.json
+    Sharp.wdl \
+    --inputs Sharp.inputs.json
 
 java -jar ~/Applications/womtool.jar \
     validate \

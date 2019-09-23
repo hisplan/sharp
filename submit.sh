@@ -23,8 +23,22 @@ then
     exit 1
 fi
 
+# $ unzip -l Sharp.deps.zip
+# Archive:  Sharp.deps.zip
+#   Length      Date    Time    Name
+# ---------  ---------- -----   ----
+#         0  09-23-2019 18:05   modules/
+#      1064  09-23-2019 18:05   modules/MergeFastq.wdl
+#       669  09-23-2019 14:50   modules/hello.wdl
+# ---------                     -------
+#      1733                     3 files
+
+rm -rf Sharp.deps.zip
+zip Sharp.deps.zip modules modules/*
+
 cromwell-tools submit \
     --secrets-file ${service_account_key} \
-    --wdl sharp.wdl \
-    --inputs-files sharp.inputs.json \
-    --label-file sharp.labels.json
+    --wdl Sharp.wdl \
+    --inputs-files Sharp.inputs.json \
+    --deps-file Sharp.deps.zip \
+    --label-file Sharp.labels.json
