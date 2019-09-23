@@ -1,6 +1,6 @@
 version 1.0
 
-task say {
+task Say {
 
     input {
         String name
@@ -24,7 +24,7 @@ task say {
     }
 }
 
-task repeat {
+task Repeat {
 
     input {
         String message
