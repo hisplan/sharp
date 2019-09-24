@@ -4,6 +4,7 @@ import "modules/MergeFastq.wdl" as MergeFastq
 import "modules/FastQC.wdl" as FastQC
 import "modules/Cutadapt.wdl" as Cutadapt
 import "modules/PrepCBWhitelist.wdl" as PrepCBWhitelist
+import "modules/Count.wdl" as Count
 
 workflow Sharp {
 
@@ -18,6 +19,24 @@ workflow Sharp {
 
         File cellBarcodeWhitelistUri
         String cellBarcodeWhiteListMethod
+
+        File hashTagList
+
+        # cellular barcode start/end positions
+        Int cbStartPos
+        Int cbEndPos
+
+        # UMI start/end positions
+        Int umiStartPos
+        Int umiEndPos
+
+        # correction
+        Int cbCollapsingDistance
+        Int umiCollapsingDistance
+
+        Int numExpectedCells
+
+        Int numCoresForCount
     }
 
     # merge FASTQ R1
@@ -65,26 +84,44 @@ workflow Sharp {
     }
 
     # prepare cell barcode whitelist
-
-    # *_sparse_counts_barcodes.csv
     if (cellBarcodeWhiteListMethod == "SeqcSparseCountsBarcodesCsv") {
+        # *_sparse_counts_barcodes.csv
         call PrepCBWhitelist.TranslateFromSeqcSparseBarcodes {
             input:
                 csvFile = cellBarcodeWhitelistUri
         }
     }
 
-    # *_dense.csv
     if (cellBarcodeWhiteListMethod == "SeqcDenseCountsMatrixCsv") {
+        # *_dense.csv
         call PrepCBWhitelist.TranslateFromSeqcDenseMatrix {
             input:
                 csvFile = cellBarcodeWhitelistUri
         }
     }
 
-    # one barcode per line
     if (cellBarcodeWhiteListMethod == "BarcodeWhitelistCsv") {
+        # one barcode per line
         call PrepCBWhitelist.NotImplemented
+    }
+
+    File cbWhitelist = select_first([TranslateFromSeqcSparseBarcodes.out, TranslateFromSeqcDenseMatrix.out])
+
+    # run CITE-seq-Count
+    call Count.RunCiteSeqCount {
+        input:
+            fastqR1 = TrimR1.outFile,
+            fastqR2 = TrimR2.outFile,
+            cbWhiteList = cbWhitelist,
+            hashTagList = hashTagList,
+            cbStartPos = cbStartPos,
+            cbEndPos = cbEndPos,
+            umiStartPos = umiStartPos,
+            umiEndPos = umiEndPos,
+            cbCollapsingDistance = cbCollapsingDistance,
+            umiCollapsingDistance = umiCollapsingDistance,
+            numExpectedCells = numExpectedCells,
+            numCores = numCoresForCount
     }
 
     output {

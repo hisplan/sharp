@@ -11,5 +11,14 @@
     "Sharp.lengthR1": 28,
     "Sharp.lengthR2": 15,
     "Sharp.cellBarcodeWhitelistUri": "gs://chunj-cromwell/1187_IL10neg_P163_IGO_09902_8_dense.csv",
-    "Sharp.cellBarcodeWhiteListMethod": "SeqcDenseCountsMatrixCsv"
+    "Sharp.cellBarcodeWhiteListMethod": "SeqcDenseCountsMatrixCsv",
+    "Sharp.hashTagList": "gs://chunj-cromwell/tag-list.csv",
+    "Sharp.cbStartPos": 1,
+    "Sharp.cbEndPos": 16,
+    "Sharp.umiStartPos": 17,
+    "Sharp.umiEndPos": 28,
+    "Sharp.cbCollapsingDistance": 1,
+    "Sharp.umiCollapsingDistance": 1,
+    "Sharp.numExpectedCells": 100,
+    "Sharp.numCoresForCount": 4
 }
