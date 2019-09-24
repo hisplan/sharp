@@ -2,12 +2,17 @@ version 1.0
 
 import "modules/MergeFastq.wdl" as MergeFastq
 import "modules/FastQC.wdl" as FastQC
+import "modules/Cutadapt.wdl" as Cutadapt
 
 workflow Sharp {
 
     input {
         Array[File] uriFastqR1
         Array[File] uriFastqR2
+
+        Int lengthR1
+        Int lengthR2
+
         String sampleName
     }
 
@@ -37,6 +42,22 @@ workflow Sharp {
     call FastQC.RunFastQC as FastQCR2 {
         input:
             fastqFile = MergeFastqR2.out
+    }
+
+    # trim R1
+    call Cutadapt.Trim as TrimR1 {
+        input:
+            fastq = MergeFastqR1.out,
+            length = lengthR1,
+            outFileName = "R1.fastq.gz"
+    }
+
+    # trim R2
+    call Cutadapt.Trim as TrimR2 {
+        input:
+            fastq = MergeFastqR2.out,
+            length = lengthR2,
+            outFileName = "R2.fastq.gz"
     }
 
     output {

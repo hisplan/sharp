@@ -7,5 +7,7 @@
         "gs://chunj-cromwell/fastq-raw/IL10neg_HTO_IGO_10034_23_S2_L001_R2_001.fastq.gz",
         "gs://chunj-cromwell/fastq-raw/IL10neg_HTO_IGO_10034_23_S2_L002_R2_001.fastq.gz"
     ],
-    "Sharp.sampleName": "IL10neg_HTO_IGO_10034_23_S2"
+    "Sharp.sampleName": "IL10neg_HTO_IGO_10034_23_S2",
+    "Sharp.lengthR1": 28,
+    "Sharp.lengthR2": 15
 }
