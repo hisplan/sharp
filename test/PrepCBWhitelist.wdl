@@ -30,4 +30,8 @@ workflow PrepCBWhitelist {
         call modules.NotImplemented
     }
 
+    output {
+        String out = select_first([TranslateFromSeqcSparseBarcodes.out, TranslateFromSeqcDenseMatrix.out])
+    }
+
 }
