@@ -3,6 +3,7 @@ version 1.0
 import "modules/MergeFastq.wdl" as MergeFastq
 import "modules/FastQC.wdl" as FastQC
 import "modules/Cutadapt.wdl" as Cutadapt
+import "modules/PrepCBWhitelist.wdl" as PrepCBWhitelist
 
 workflow Sharp {
 
@@ -14,6 +15,9 @@ workflow Sharp {
         Int lengthR2
 
         String sampleName
+
+        File cellBarcodeWhitelistUri
+        String cellBarcodeWhiteListMethod
     }
 
     # merge FASTQ R1
@@ -58,6 +62,29 @@ workflow Sharp {
             fastq = MergeFastqR2.out,
             length = lengthR2,
             outFileName = "R2.fastq.gz"
+    }
+
+    # prepare cell barcode whitelist
+
+    # *_sparse_counts_barcodes.csv
+    if (cellBarcodeWhiteListMethod == "SeqcSparseCountsBarcodesCsv") {
+        call PrepCBWhitelist.TranslateFromSeqcSparseBarcodes {
+            input:
+                csvFile = cellBarcodeWhitelistUri
+        }
+    }
+
+    # *_dense.csv
+    if (cellBarcodeWhiteListMethod == "SeqcDenseCountsMatrixCsv") {
+        call PrepCBWhitelist.TranslateFromSeqcDenseMatrix {
+            input:
+                csvFile = cellBarcodeWhitelistUri
+        }
+    }
+
+    # one barcode per line
+    if (cellBarcodeWhiteListMethod == "BarcodeWhitelistCsv") {
+        call PrepCBWhitelist.NotImplemented
     }
 
     output {
