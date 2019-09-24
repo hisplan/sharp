@@ -1,0 +1,14 @@
+{
+    "Count.fastqR1": "gs://chunj-cromwell/cromwell-execution/Cutadapt/48de9aa0-eb44-44c4-80a1-be6b37320110/call-TrimR1/R1.fastq.gz",
+    "Count.fastqR2": "gs://chunj-cromwell/cromwell-execution/Cutadapt/48de9aa0-eb44-44c4-80a1-be6b37320110/call-TrimR2/R2.fastq.gz",
+    "Count.cbWhiteList": "gs://chunj-cromwell/cromwell-execution/PrepCBWhitelist/8c29a760-fbab-42ce-a3f7-d86fc546c308/call-TranslateFromSeqcDenseMatrix/cb-whitelist.txt",
+    "Count.hashTagList": "gs://chunj-cromwell/tag-list.csv",
+    "Count.cbStartPos": 1,
+    "Count.cbEndPos": 16,
+    "Count.umiStartPos": 17,
+    "Count.umiEndPos": 28,
+    "Count.cbCollapsingDistance": 1,
+    "Count.umiCollapsingDistance": 1,
+    "Count.numExpectedCells": 100,
+    "Count.RunCiteSeqCount.numCores": 4
+}

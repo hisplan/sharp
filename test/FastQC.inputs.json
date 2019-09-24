@@ -1,0 +1,6 @@
+{
+    "FastQC.fastqFiles": [
+        "gs://chunj-cromwell/cromwell-execution/Sharp/bdaf5442-0c57-4ad0-9e57-be3f45a6d944/call-MergeFastqR1/IL10neg_HTO_IGO_10034_23_S2_R1.fastq.gz",
+        "gs://chunj-cromwell/cromwell-execution/Sharp/bdaf5442-0c57-4ad0-9e57-be3f45a6d944/call-MergeFastqR2/IL10neg_HTO_IGO_10034_23_S2_R2.fastq.gz"
+    ]
+}
