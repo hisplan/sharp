@@ -3,7 +3,7 @@ version 1.0
 task Trim {
 
     input {
-        File uriFastq
+        File fastq
         Int length
         String outFileName
     }
@@ -20,7 +20,7 @@ task Trim {
             --too-short-output too-short.~{outFileName} \
             --too-long-output too-long.~{outFileName} \
             -o ~{outFileName} \
-            ~{uriFastq}
+            ~{fastq}
 
     >>>
 
