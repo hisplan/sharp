@@ -1,6 +1,6 @@
 version 1.0
 
-task RunFastQC {
+task FastQC {
 
     input {
         File fastqFile

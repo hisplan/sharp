@@ -1,6 +1,6 @@
 version 1.0
 
-task TranslateFromSeqcSparseBarcodes {
+task WhitelistFromSeqcSparseBarcodes {
 
     input {
         File csvFile
@@ -45,7 +45,7 @@ task TranslateFromSeqcSparseBarcodes {
     }
 }
 
-task TranslateFromSeqcDenseMatrix {
+task WhitelistFromSeqcDenseMatrix {
 
     input {
         File csvFile

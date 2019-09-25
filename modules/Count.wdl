@@ -1,6 +1,6 @@
 version 1.0
 
-task RunCiteSeqCount {
+task CiteSeqCount {
 
     input {
         File fastqR1

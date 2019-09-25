@@ -1,6 +1,6 @@
 version 1.0
 
-task GenerateHashedCountMatrix {
+task HashedCountMatrix {
 
     input {
         File denseCountMatrix

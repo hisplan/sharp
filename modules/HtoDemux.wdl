@@ -1,6 +1,6 @@
 version 1.0
 
-task RunHtoDemux {
+task HtoDemux {
 
     input {
         Array[File] umiCountFiles
