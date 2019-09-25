@@ -10,6 +10,11 @@ ln -s ../modules/ modules
 
 java -jar ~/Applications/womtool.jar \
     validate \
+    MergeFastq.wdl \
+    --inputs MergeFastq.inputs.json
+
+java -jar ~/Applications/womtool.jar \
+    validate \
     FastQC.wdl \
     --inputs FastQC.inputs.json
 
