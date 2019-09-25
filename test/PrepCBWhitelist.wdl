@@ -1,6 +1,6 @@
 version 1.0
 
-import "modules/PrepCBWhitelist.wdl" as modules
+import "modules/PrepCBWhitelist.wdl" as module
 
 workflow PrepCBWhitelist {
 
@@ -11,7 +11,7 @@ workflow PrepCBWhitelist {
 
     # *_sparse_counts_barcodes.csv
     if (method == "SeqcSparseCountsBarcodesCsv") {
-        call modules.WhitelistFromSeqcSparseBarcodes {
+        call module.WhitelistFromSeqcSparseBarcodes {
             input:
                 csvFile = inputFile
         }
@@ -19,7 +19,7 @@ workflow PrepCBWhitelist {
 
     # *_dense.csv
     if (method == "SeqcDenseCountsMatrixCsv") {
-        call modules.WhitelistFromSeqcDenseMatrix {
+        call module.WhitelistFromSeqcDenseMatrix {
             input:
                 csvFile = inputFile
         }
@@ -27,7 +27,7 @@ workflow PrepCBWhitelist {
 
     # one barcode per line
     if (method == "BarcodeWhitelistCsv") {
-        call modules.NotImplemented
+        call module.NotImplemented
     }
 
     output {

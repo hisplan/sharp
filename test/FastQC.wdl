@@ -1,6 +1,6 @@
 version 1.0
 
-import "modules/FastQC.wdl" as modules
+import "modules/FastQC.wdl" as module
 
 workflow FastQC {
 
@@ -10,7 +10,7 @@ workflow FastQC {
 
     scatter (fastqFile in fastqFiles) {
 
-        call modules.FastQC {
+        call module.FastQC {
             input:
                 fastqFile = fastqFile
         }

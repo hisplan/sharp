@@ -1,6 +1,6 @@
 version 1.0
 
-import "modules/Count.wdl" as modules
+import "modules/Count.wdl" as module
 
 workflow Count {
 
@@ -24,7 +24,7 @@ workflow Count {
         Int numExpectedCells
     }
 
-    call modules.CiteSeqCount {
+    call module.CiteSeqCount {
         input:
             fastqR1 = fastqR1,
             fastqR2 = fastqR2,

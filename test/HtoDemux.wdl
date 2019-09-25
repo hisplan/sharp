@@ -1,6 +1,6 @@
 version 1.0
 
-import "modules/HtoDemux.wdl" as modules
+import "modules/HtoDemux.wdl" as module
 
 workflow HtoDemux {
 
@@ -9,7 +9,7 @@ workflow HtoDemux {
         Float quantile
     }
 
-    call modules.HtoDemux {
+    call module.HtoDemux {
         input:
             umiCountFiles = umiCountFiles,
             quantile = quantile
