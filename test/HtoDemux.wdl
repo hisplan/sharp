@@ -9,7 +9,7 @@ workflow HtoDemux {
         Float quantile
     }
 
-    call modules.RunHtoDemux {
+    call modules.HtoDemux {
         input:
             umiCountFiles = umiCountFiles,
             quantile = quantile

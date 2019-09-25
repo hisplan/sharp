@@ -11,7 +11,7 @@ workflow PrepCBWhitelist {
 
     # *_sparse_counts_barcodes.csv
     if (method == "SeqcSparseCountsBarcodesCsv") {
-        call modules.TranslateFromSeqcSparseBarcodes {
+        call modules.WhitelistFromSeqcSparseBarcodes {
             input:
                 csvFile = inputFile
         }
@@ -19,7 +19,7 @@ workflow PrepCBWhitelist {
 
     # *_dense.csv
     if (method == "SeqcDenseCountsMatrixCsv") {
-        call modules.TranslateFromSeqcDenseMatrix {
+        call modules.WhitelistFromSeqcDenseMatrix {
             input:
                 csvFile = inputFile
         }
@@ -31,7 +31,7 @@ workflow PrepCBWhitelist {
     }
 
     output {
-        String out = select_first([TranslateFromSeqcSparseBarcodes.out, TranslateFromSeqcDenseMatrix.out])
+        String out = select_first([WhitelistFromSeqcSparseBarcodes.out, WhitelistFromSeqcDenseMatrix.out])
     }
 
 }

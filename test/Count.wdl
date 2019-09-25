@@ -24,7 +24,7 @@ workflow Count {
         Int numExpectedCells
     }
 
-    call modules.RunCiteSeqCount {
+    call modules.CiteSeqCount {
         input:
             fastqR1 = fastqR1,
             fastqR2 = fastqR2,
@@ -40,12 +40,12 @@ workflow Count {
     }
 
     output {
-        File outUmiDenseCount = RunCiteSeqCount.outUmiDenseCount
-        File outUnmapped = RunCiteSeqCount.outUnmapped
-        File outReport = RunCiteSeqCount.outReport
-        File outUncorrected = RunCiteSeqCount.outUncorrected
+        File outUmiDenseCount = CiteSeqCount.outUmiDenseCount
+        File outUnmapped = CiteSeqCount.outUnmapped
+        File outReport = CiteSeqCount.outReport
+        File outUncorrected = CiteSeqCount.outUncorrected
 
-        Array[File] outUmiCount = RunCiteSeqCount.outUmiCount
-        Array[File] outReadCount = RunCiteSeqCount.outReadCount
+        Array[File] outUmiCount = CiteSeqCount.outUmiCount
+        Array[File] outReadCount = CiteSeqCount.outReadCount
     }
 }

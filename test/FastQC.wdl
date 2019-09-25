@@ -10,7 +10,7 @@ workflow FastQC {
 
     scatter (fastqFile in fastqFiles) {
 
-        call modules.RunFastQC {
+        call modules.FastQC {
             input:
                 fastqFile = fastqFile
         }

@@ -10,7 +10,7 @@ workflow Combine {
         File htoDemuxUnmapped
     }
 
-    call modules.GenerateHashedCountMatrix {
+    call modules.HashedCountMatrix {
         input:
             denseCountMatrix = denseCountMatrix,
             htoDemuxMatrix = htoDemuxMatrix,
@@ -18,7 +18,7 @@ workflow Combine {
     }
 
     output {
-        File outClass = GenerateHashedCountMatrix.outClass
-        File outCountMatrix = GenerateHashedCountMatrix.outCountMatrix
+        File outClass = HashedCountMatrix.outClass
+        File outCountMatrix = HashedCountMatrix.outCountMatrix
     }
 }
