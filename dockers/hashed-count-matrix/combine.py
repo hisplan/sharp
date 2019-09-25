@@ -16,10 +16,11 @@ class DNA3Bit(object):
 
 # TODO: The sam reader needs to be fixed so text files are read as text not binary
     str2bindict = {65: 0b100, 67: 0b110, 71: 0b101, 84: 0b011, 78: 0b111,
-                97: 0b100, 99: 0b110, 103: 0b101, 116: 0b011, 110: 0b111,
-                'A': 0b100, 'C': 0b110, 'G': 0b101, 'T': 0b011, 'N': 0b111,
-                'a': 0b100, 'c': 0b110, 'g': 0b101, 't': 0b011, 'n': 0b111}
-    bin2strdict = {0b100: b'A', 0b110: b'C', 0b101: b'G', 0b011: b'T', 0b111: b'N'}
+                   97: 0b100, 99: 0b110, 103: 0b101, 116: 0b011, 110: 0b111,
+                   'A': 0b100, 'C': 0b110, 'G': 0b101, 'T': 0b011, 'N': 0b111,
+                   'a': 0b100, 'c': 0b110, 'g': 0b101, 't': 0b011, 'n': 0b111}
+    bin2strdict = {0b100: b'A', 0b110: b'C',
+                   0b101: b'G', 0b011: b'T', 0b111: b'N'}
 
     @staticmethod
     def encode(b) -> int:
@@ -43,7 +44,8 @@ class DNA3Bit(object):
         :param i: int, encoded sequence to be converted back to nucleotides
         """
         if i < 0:
-            message = 'i must be an unsigned (positive) integer, not {0!s}'.format(i)
+            message = 'i must be an unsigned (positive) integer, not {0!s}'.format(
+                i)
             raise ValueError(message)
         r = b''
         while i > 0:
@@ -110,7 +112,7 @@ class DNA3Bit(object):
         """
         if char_bin not in DNA3Bit.bin2strdict.keys():
             raise ValueError("DNA3Bit.count was called with an invalid char code - "
-                            "{}".format(char_bin))
+                             "{}".format(char_bin))
         res = 0
         while seq > 0:
             if seq & 0b111 == char_bin:
@@ -149,16 +151,18 @@ def main(path_dense_count_matrix, path_hto_demux_matrix, path_hto_demux_unmapped
 
     df_hto_demux.groupby(by="HTO_classification.global").size()
 
-    df_hash = df_hto_demux.loc[:,"hash.ID"].to_frame()
+    df_hash = df_hto_demux.loc[:, "hash.ID"].to_frame()
     df_hash.columns = ["hashID"]
 
     df_hash.groupby(by="hashID").size()
 
     df_hash.groupby(by="hashID").size() / len(df_hash) * 100.0
 
-    df_hash[ df_hash.hashID.isin(["HTO-301", "HTO-302", "HTO-303", "HTO-304"]) ].shape[0]
+    df_hash[df_hash.hashID.isin(
+        ["HTO-301", "HTO-302", "HTO-303", "HTO-304"])].shape[0]
 
-    df_hash[ df_hash.hashID.isin(["HTO-301", "HTO-302", "HTO-303", "HTO-304"]) ].shape[0] / len(df_hash) * 100.0
+    df_hash[df_hash.hashID.isin(
+        ["HTO-301", "HTO-302", "HTO-303", "HTO-304"])].shape[0] / len(df_hash) * 100.0
 
     df_merged = pd.merge(
         df_gene, df_hash,
@@ -168,21 +172,23 @@ def main(path_dense_count_matrix, path_hto_demux_matrix, path_hto_demux_unmapped
 
     len(df_merged)
 
-    df_merged.groupby(by="hashID").size()
+    print(df_merged.groupby(by="hashID").size())
 
     df_merged.groupby(by="hashID").size() / len(df_merged) * 100.0
 
-    df_merged[ df_merged.hashID.isin(["HTO-301", "HTO-302", "HTO-303", "HTO-304"]) ].shape[0]
+    df_merged[df_merged.hashID.isin(
+        ["HTO-301", "HTO-302", "HTO-303", "HTO-304"])].shape[0]
 
-    df_merged[ df_merged.hashID.isin(["HTO-301", "HTO-302", "HTO-303", "HTO-304"]) ].shape[0] / len(df_merged) * 100.0
+    df_merged[df_merged.hashID.isin(
+        ["HTO-301", "HTO-302", "HTO-303", "HTO-304"])].shape[0] / len(df_merged) * 100.0
 
     df_merged.to_csv(
         "final-matrix.tsv",
         sep="\t"
     )
 
-    df_merged.iloc[:,-1].to_frame().to_csv(
-        "final-classifiation.tsv",
+    df_merged.iloc[:, -1].to_frame().to_csv(
+        "final-classification.tsv",
         sep="\t"
     )
 
