@@ -5,6 +5,8 @@ import "modules/FastQC.wdl" as FastQC
 import "modules/Cutadapt.wdl" as Cutadapt
 import "modules/PrepCBWhitelist.wdl" as PrepCBWhitelist
 import "modules/Count.wdl" as Count
+import "modules/HtoDemux.wdl" as HtoDemux
+import "modules/Combine.wdl" as Combine
 
 workflow Sharp {
 
@@ -37,6 +39,10 @@ workflow Sharp {
         Int numExpectedCells
 
         Int numCoresForCount
+
+        Float htoDemuxQuantile
+
+        File denseCountMatrix
     }
 
     # merge FASTQ R1
@@ -56,13 +62,13 @@ workflow Sharp {
     }
 
     # run FastQC R1
-    call FastQC.RunFastQC as FastQCR1 {
+    call FastQC.FastQC as FastQCR1 {
         input:
             fastqFile = MergeFastqR1.out
     }
 
     # run FastQC R2
-    call FastQC.RunFastQC as FastQCR2 {
+    call FastQC.FastQC as FastQCR2 {
         input:
             fastqFile = MergeFastqR2.out
     }
@@ -86,7 +92,7 @@ workflow Sharp {
     # prepare cell barcode whitelist
     if (cellBarcodeWhiteListMethod == "SeqcSparseCountsBarcodesCsv") {
         # *_sparse_counts_barcodes.csv
-        call PrepCBWhitelist.TranslateFromSeqcSparseBarcodes {
+        call PrepCBWhitelist.WhitelistFromSeqcSparseBarcodes {
             input:
                 csvFile = cellBarcodeWhitelistUri
         }
@@ -94,7 +100,7 @@ workflow Sharp {
 
     if (cellBarcodeWhiteListMethod == "SeqcDenseCountsMatrixCsv") {
         # *_dense.csv
-        call PrepCBWhitelist.TranslateFromSeqcDenseMatrix {
+        call PrepCBWhitelist.WhitelistFromSeqcDenseMatrix {
             input:
                 csvFile = cellBarcodeWhitelistUri
         }
@@ -105,10 +111,10 @@ workflow Sharp {
         call PrepCBWhitelist.NotImplemented
     }
 
-    File cbWhitelist = select_first([TranslateFromSeqcSparseBarcodes.out, TranslateFromSeqcDenseMatrix.out])
+    File cbWhitelist = select_first([WhitelistFromSeqcSparseBarcodes.out, WhitelistFromSeqcDenseMatrix.out])
 
     # run CITE-seq-Count
-    call Count.RunCiteSeqCount {
+    call Count.CiteSeqCount {
         input:
             fastqR1 = TrimR1.outFile,
             fastqR2 = TrimR2.outFile,
@@ -124,8 +130,31 @@ workflow Sharp {
             numCores = numCoresForCount
     }
 
+    # HTO demux
+    call HtoDemux.HtoDemux {
+        input:
+            umiCountFiles = CiteSeqCount.outUmiCount,
+            quantile = htoDemuxQuantile
+    }
+
+    # combine count matrix with hashtag
+    call Combine.HashedCountMatrix {
+        input:
+            denseCountMatrix = denseCountMatrix,
+            htoDemuxMatrix = HtoDemux.outClassCsv,
+            htoDemuxUnmapped = CiteSeqCount.outUnmapped
+    }
+
+
+
+
     output {
-        File outFastQCR1Html = FastQCR1.outHtml
-        File outFastQCR2Html = FastQCR2.outHtml
+        File fastQCR1Html = FastQCR1.outHtml
+        File fastQCR2Html = FastQCR2.outHtml
+
+        File countReport = CiteSeqCount.outReport
+
+        File htoClassification = HashedCountMatrix.outClass
+        File hashedCountMatrix = HashedCountMatrix.outCountMatrix
     }
 }
