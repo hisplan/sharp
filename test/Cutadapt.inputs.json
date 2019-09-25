@@ -1,6 +1,6 @@
 {
-    "Cutadapt.fastqR1": "gs://chunj-cromwell/cromwell-execution/Sharp/bdaf5442-0c57-4ad0-9e57-be3f45a6d944/call-MergeFastqR1/IL10neg_HTO_IGO_10034_23_S2_R1.fastq.gz",
-    "Cutadapt.fastqR2": "gs://chunj-cromwell/cromwell-execution/Sharp/bdaf5442-0c57-4ad0-9e57-be3f45a6d944/call-MergeFastqR2/IL10neg_HTO_IGO_10034_23_S2_R2.fastq.gz",
+    "Cutadapt.fastqR1": "gs://chunj-cromwell/cromwell-execution/MergeFastq/2361732a-b663-4089-9471-d18556db2435/call-MergeFastqR1/IL10neg_HTO_IGO_10034_23_S2_R1.fastq.gz",
+    "Cutadapt.fastqR2": "gs://chunj-cromwell/cromwell-execution/MergeFastq/2361732a-b663-4089-9471-d18556db2435/call-MergeFastqR2/IL10neg_HTO_IGO_10034_23_S2_R2.fastq.gz",
     "Cutadapt.lengthR1": 28,
     "Cutadapt.lengthR2": 15
 }

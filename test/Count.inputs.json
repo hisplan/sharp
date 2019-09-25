@@ -1,7 +1,7 @@
 {
-    "Count.fastqR1": "gs://chunj-cromwell/cromwell-execution/Cutadapt/48de9aa0-eb44-44c4-80a1-be6b37320110/call-TrimR1/R1.fastq.gz",
-    "Count.fastqR2": "gs://chunj-cromwell/cromwell-execution/Cutadapt/48de9aa0-eb44-44c4-80a1-be6b37320110/call-TrimR2/R2.fastq.gz",
-    "Count.cbWhiteList": "gs://chunj-cromwell/cromwell-execution/PrepCBWhitelist/ea0b8fae-6dec-48f3-adf3-74b328e412b4/call-WhitelistFromSeqcDenseMatrix/cb-whitelist.txt",
+    "Count.fastqR1": "gs://chunj-cromwell/cromwell-execution/Cutadapt/4f822e46-981b-4454-94de-50bcf29ab4dd/call-TrimR1/R1.fastq.gz",
+    "Count.fastqR2": "gs://chunj-cromwell/cromwell-execution/Cutadapt/4f822e46-981b-4454-94de-50bcf29ab4dd/call-TrimR2/R2.fastq.gz",
+    "Count.cbWhiteList": "gs://chunj-cromwell/cromwell-execution/PrepCBWhitelist/c04ce438-b36f-4999-bfd7-fc24559ddacb/call-WhitelistFromSeqcDenseMatrix/cb-whitelist.txt",
     "Count.hashTagList": "gs://chunj-cromwell/tag-list.csv",
     "Count.cbStartPos": 1,
     "Count.cbEndPos": 16,
@@ -9,6 +9,6 @@
     "Count.umiEndPos": 28,
     "Count.cbCollapsingDistance": 1,
     "Count.umiCollapsingDistance": 1,
-    "Count.numExpectedCells": 100,
-    "Count.CiteSeqCount.numCores": 4
+    "Count.numExpectedCells": 0,
+    "Count.CiteSeqCount.numCores": 8
 }
