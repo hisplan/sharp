@@ -19,8 +19,8 @@
     "Sharp.umiEndPos": 28,
     "Sharp.cbCollapsingDistance": 1,
     "Sharp.umiCollapsingDistance": 1,
-    "Sharp.numExpectedCells": 100,
-    "Sharp.numCoresForCount": 4,
+    "Sharp.numExpectedCells": 0,
+    "Sharp.numCoresForCount": 8,
     "Sharp.htoDemuxQuantile": 0.99,
     "Sharp.denseCountMatrix": "gs://chunj-cromwell/1187_IL10neg_P163_IGO_09902_8_dense.csv"
 }
