@@ -61,7 +61,7 @@ task CiteSeqCount {
         docker: dockerImage
         disks: "local-disk " + ceil(5 * (if inputSize < 1 then 1 else inputSize )) + " HDD"
         cpu: numCores
-        memory: "16 GB"
+        memory: "32 GB"
         preemptible: 0
     }
 
