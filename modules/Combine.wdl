@@ -32,8 +32,9 @@ task HashedCountMatrix {
     >>>
 
     output {
-        File outClass = "final-classification.tsv"
-        File outCountMatrix = "final-matrix.tsv"
+        File outClass = "final-classification.tsv.gz"
+        File outCountMatrix = "final-matrix.tsv.gz"
+        File outStats = "stats.yml"
     }
 
     runtime {
@@ -80,8 +81,9 @@ task CorrectFalsePositiveDoublets {
     >>>
 
     output {
-        File outClass = "final-classification.tsv"
-        File outCountMatrix = "final-matrix.tsv"
+        File outClass = "final-classification.tsv.gz"
+        File outCountMatrix = "final-matrix.tsv.gz"
+        File outStats = "stats.yml"
     }
 
     runtime {
