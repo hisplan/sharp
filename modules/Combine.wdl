@@ -5,12 +5,11 @@ task HashedCountMatrix {
     input {
         File denseCountMatrix
         File htoDemuxMatrix
-        File htoDemuxUnmapped
     }
 
     String dockerImage = "hisplan/cromwell-hashed-count-matrix:0.1"
     Int numCores = 1
-    Float inputSize = size(denseCountMatrix, "GiB") + size(htoDemuxMatrix, "GiB") + size(htoDemuxUnmapped, "GiB")
+    Float inputSize = size(denseCountMatrix, "GiB") + size(htoDemuxMatrix, "GiB")
 
     command <<<
         set -euo pipefail
@@ -26,8 +25,7 @@ task HashedCountMatrix {
 
         python3 /opt/combine.py \
             --dense-count-matrix ~{denseCountMatrix} \
-            --hto-demux-matrix ~{htoDemuxMatrix} \
-            --hto-demux-unmapped ~{htoDemuxUnmapped}
+            --hto-demux-matrix ~{htoDemuxMatrix}
 
     >>>
 
@@ -35,6 +33,7 @@ task HashedCountMatrix {
         File outClass = "final-classification.tsv.gz"
         File outCountMatrix = "final-matrix.tsv.gz"
         File outStats = "stats.yml"
+        File outLog = "combine.log"
     }
 
     runtime {
@@ -55,7 +54,7 @@ task CorrectFalsePositiveDoublets {
 
     String dockerImage = "hisplan/cromwell-hashed-count-matrix:0.1"
     Int numCores = 1
-    # Float inputSize = size(htoClassification, "GiB") + size(denseCountMatrix, "GiB") + size(htoDemuxUnmapped, "GiB")
+    # Float inputSize = size(htoClassification, "GiB") + size(denseCountMatrix, "GiB")
 
     command <<<
         set -euo pipefail
@@ -84,6 +83,7 @@ task CorrectFalsePositiveDoublets {
         File outClass = "final-classification.tsv.gz"
         File outCountMatrix = "final-matrix.tsv.gz"
         File outStats = "stats.yml"
+        File outLog = "correct_fp_doublets.log"
     }
 
     runtime {

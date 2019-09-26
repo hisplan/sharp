@@ -1,15 +1,29 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+import sys
 import os
 import argparse
 import pandas as pd
 import numpy as np
 import yaml
+import logging
 import scipy.io
 import scipy.stats
 from sklearn.cluster import KMeans
 from dna3bit import DNA3Bit
+
+
+logger = logging.getLogger("correct_fp_doublets")
+
+logging.basicConfig(
+    level=logging.DEBUG,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    handlers=[
+        logging.FileHandler("correct_fp_doublets.log"),
+        logging.StreamHandler(sys.stdout)
+    ]
+)
 
 
 def correct_false_positives(path_dense_count_matrix, path_hto_classification, path_hto_umi_count_dir):
@@ -35,8 +49,8 @@ def correct_false_positives(path_dense_count_matrix, path_hto_classification, pa
         header=None
     )[0]
 
+    # convert to numeric cell barcode
     dna3bit = DNA3Bit()
-
     numeric_barcodes = barcodes.apply(lambda cb: dna3bit.encode(cb))
 
     df_umi = pd.DataFrame(
@@ -44,6 +58,12 @@ def correct_false_positives(path_dense_count_matrix, path_hto_classification, pa
         columns=numeric_barcodes,
         index=features
     ).T
+
+    logger.info(
+        "Loaded HTO UMI count matrix ({} x {})".format(
+            df_umi.shape[0], df_umi.shape[1]
+        )
+    )
 
     # index = numeric cellular barcode (e.g. 120703409573286, ...)
     # column 1 = hashID (e.g. HTO-301, Doublet, ...)
@@ -61,6 +81,7 @@ def correct_false_positives(path_dense_count_matrix, path_hto_classification, pa
     # remove the column `unmapped`
     df_fp = df_doublets_umi.iloc[:, 1:5]
 
+    logger.info("Computing centered log-ratio (CLR)...")
     # centered log-ratio (CLR) transformation
     #     	            HTO_301-ACCCACCAGTAAGAC	HTO_302-GGTCGAGAGCATTCA	HTO_303-CTTGCCGCATGTCAT	HTO_304-AAAGCATTCTTCACG
     # 227929296066909	2.609550	0.076485	2.049975	0.137688
@@ -83,6 +104,7 @@ def correct_false_positives(path_dense_count_matrix, path_hto_classification, pa
         y_predict = kmeans.predict(x)
         return y_predict
 
+    logger.info("Running K-means...")
     # 227922838763364    [0, 1, 1, 1]
     # 239596337850148    [0, 0, 1, 0]
     # 164759051090203    [0, 1, 1, 1]
@@ -120,9 +142,7 @@ def correct_false_positives(path_dense_count_matrix, path_hto_classification, pa
     df_pass2 = df_pass2.assign(
         rescue=df_kmeans_hotencoded.index.map(lambda cb: demux_pass2(cb)))
 
-    print(df_pass2.groupby("rescue").size())
-
-    df_pass2[df_pass2.rescue != "Doublet"]
+    logger.debug(df_pass2.groupby("rescue").size())
 
     fp_corrected = df_pass2.rescue.to_dict()
 
@@ -133,7 +153,7 @@ def correct_false_positives(path_dense_count_matrix, path_hto_classification, pa
     )
     df_class.hashID = new_class
 
-    print(df_class.groupby(by="hashID").size())
+    logger.debug(df_class.groupby(by="hashID").size())
 
     df_class.to_csv(
         "final-classification.tsv.gz",
@@ -146,11 +166,25 @@ def correct_false_positives(path_dense_count_matrix, path_hto_classification, pa
         index_col=0
     )
 
+    logger.info(
+        "Loaded transcript count matrix ({} x {})".format(
+            df_gene.shape[0], df_gene.shape[1]
+        )
+    )
+
     df_merged = pd.merge(
         df_gene, df_class,
         left_index=True, right_index=True,
         how="inner"
     )
+
+    logger.info(
+        "Merged transcript count matrix with hashtag ({} x {})".format(
+            df_merged.shape[0], df_merged.shape[1]
+        )
+    )
+
+    logger.info("Writing the full dense count matrix with hashtag...")
 
     df_merged.to_csv(
         "final-matrix.tsv.gz",
@@ -159,6 +193,15 @@ def correct_false_positives(path_dense_count_matrix, path_hto_classification, pa
     )
 
     return df_class
+
+
+def write_stats(df_class):
+
+    stats = df_class.groupby(by="hashID").size().to_dict()
+    stats["Total"] = len(df_class)
+
+    with open("stats.yml", "wt") as fout:
+        fout.write(yaml.dump(stats))
 
 
 def parse_arguments():
@@ -195,18 +238,11 @@ def parse_arguments():
     return params
 
 
-def write_stats(df_class):
-
-    stats = df_class.groupby(by="hashID").size().to_dict()
-    stats["Total"] = len(df_class)
-
-    with open("stats.yml", "wt") as fout:
-        fout.write(yaml.dump(stats))
-
-
 if __name__ == "__main__":
 
     params = parse_arguments()
+
+    logger.info("Starting...")
 
     df_class = correct_false_positives(
         params.path_dense_count_matrix,
@@ -214,4 +250,7 @@ if __name__ == "__main__":
         params.path_hto_umi_count_dir
     )
 
+    logger.info("Writing statistics...")
     write_stats(df_class)
+
+    logger.info("DONE.")

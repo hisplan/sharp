@@ -141,8 +141,7 @@ workflow Sharp {
     call Combine.HashedCountMatrix {
         input:
             denseCountMatrix = denseCountMatrix,
-            htoDemuxMatrix = HtoDemux.outClassCsv,
-            htoDemuxUnmapped = CiteSeqCount.outUnmapped
+            htoDemuxMatrix = HtoDemux.outClassCsv
     }
 
     # correct false positive doublets
@@ -163,9 +162,11 @@ workflow Sharp {
         File htoClassification = HashedCountMatrix.outClass
         File hashedCountMatrix = HashedCountMatrix.outCountMatrix
         File statsClassification = HashedCountMatrix.outStats
+        File logCombine = HashedCountMatrix.outLog
 
         File htoCorrectedClassification = CorrectFalsePositiveDoublets.outClass
         File hashedCorrectedCountMatrix = CorrectFalsePositiveDoublets.outCountMatrix
         File statsCorrectedClassification = CorrectFalsePositiveDoublets.outStats
+        File logFPDoubletCorrection = CorrectFalsePositiveDoublets.outLog
     }
 }

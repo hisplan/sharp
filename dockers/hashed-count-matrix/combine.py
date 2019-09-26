@@ -1,29 +1,38 @@
 #!/usr/bin/env python
 
+import sys
 import argparse
 import pandas as pd
 import numpy as np
 import yaml
+import logging
 from dna3bit import DNA3Bit
 
 
-def combine(path_dense_count_matrix, path_hto_demux_matrix, path_hto_demux_unmapped):
+logger = logging.getLogger("combine")
 
-    df_unmapped = pd.read_csv(
-        path_hto_demux_unmapped,
-        index_col=0
-    )
+logging.basicConfig(
+    level=logging.DEBUG,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    handlers=[
+        logging.FileHandler("combine.log"),
+        logging.StreamHandler(sys.stdout)
+    ]
+)
 
-    df_unmapped["count"].sum()
+
+def combine(path_dense_count_matrix, path_hto_demux_matrix):
 
     df_gene = pd.read_csv(
         path_dense_count_matrix,
         index_col=0
     )
 
-    df_gene.shape
-
-    dna3bit = DNA3Bit()
+    logger.info(
+        "Loaded transcript count matrix ({} x {})".format(
+            df_gene.shape[0], df_gene.shape[1]
+        )
+    )
 
     df_hto_demux = pd.read_csv(
         path_hto_demux_matrix,
@@ -31,8 +40,15 @@ def combine(path_dense_count_matrix, path_hto_demux_matrix, path_hto_demux_unmap
         index_col=0
     )
 
-    new_index = df_hto_demux.index.map(lambda x: dna3bit.encode(x))
+    logger.info(
+        "Loaded HTO demux matrix ({} x {})".format(
+            df_hto_demux.shape[0], df_hto_demux.shape[1]
+        )
+    )
 
+    # convert to numeric cell barcode
+    dna3bit = DNA3Bit()
+    new_index = df_hto_demux.index.map(lambda x: dna3bit.encode(x))
     df_hto_demux.index = new_index
 
     df_hto_demux.groupby(by="HTO_classification.global").size()
@@ -40,7 +56,7 @@ def combine(path_dense_count_matrix, path_hto_demux_matrix, path_hto_demux_unmap
     df_hash = df_hto_demux.loc[:, "hash.ID"].to_frame()
     df_hash.columns = ["hashID"]
 
-    print(df_hash.groupby(by="hashID").size())
+    logger.debug(df_hash.groupby(by="hashID").size())
 
     df_hash.groupby(by="hashID").size() / len(df_hash) * 100.0
 
@@ -56,24 +72,23 @@ def combine(path_dense_count_matrix, path_hto_demux_matrix, path_hto_demux_unmap
         how="inner"
     )
 
-    len(df_merged)
+    logger.info(
+        "Merged transcript count matrix with hashtag ({} x {})".format(
+            df_merged.shape[0], df_merged.shape[1]
+        )
+    )
 
-    print(df_merged.groupby(by="hashID").size())
+    logger.debug(df_merged.groupby(by="hashID").size())
 
-    df_merged.groupby(by="hashID").size() / len(df_merged) * 100.0
-
-    df_merged[df_merged.hashID.isin(
-        ["HTO-301", "HTO-302", "HTO-303", "HTO-304"])].shape[0]
-
-    df_merged[df_merged.hashID.isin(
-        ["HTO-301", "HTO-302", "HTO-303", "HTO-304"])].shape[0] / len(df_merged) * 100.0
-
+    logger.info("Writing the full dense count matrix with hashtag...")
+    
     df_merged.to_csv(
         "final-matrix.tsv.gz",
         sep="\t",
         compression="gzip"
     )
 
+    # the last column has the hashID
     df_class = df_merged.iloc[:, -1].to_frame()
 
     df_class.to_csv(
@@ -96,7 +111,7 @@ def write_stats(df_class):
 
 def parse_arguments():
 
-    # python combine.py --dense-count-matrix 1187_IL10neg_P163_IGO_09902_8_dense.csv --hto-demux-matrix classification.csv --hto-demux-unmapped IL10neg_HTO.unmapped.csv
+    # python combine.py --dense-count-matrix 1187_IL10neg_P163_IGO_09902_8_dense.csv --hto-demux-matrix classification.csv
 
     parser = argparse.ArgumentParser()
 
@@ -116,14 +131,6 @@ def parse_arguments():
         required=True
     )
 
-    parser.add_argument(
-        "--hto-demux-unmapped",
-        action="store",
-        dest="path_hto_demux_unmapped",
-        help="path to HTO demux unmapped file (*.csv)",
-        required=True
-    )
-
     # parse arguments
     params = parser.parse_args()
 
@@ -134,10 +141,14 @@ if __name__ == "__main__":
 
     params = parse_arguments()
 
+    logger.info("Starting...")
+
     df_class = combine(
         params.path_dense_count_matrix,
-        params.path_hto_demux_matrix,
-        params.path_hto_demux_unmapped
+        params.path_hto_demux_matrix
     )
 
+    logger.info("Writing statistics...")
     write_stats(df_class)
+
+    logger.info("DONE.")
