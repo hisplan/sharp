@@ -145,7 +145,13 @@ workflow Sharp {
             htoDemuxUnmapped = CiteSeqCount.outUnmapped
     }
 
-
+    # correct false positive doublets
+    call Combine.CorrectFalsePositiveDoublets {
+        input:
+            htoClassification = HashedCountMatrix.outClass,
+            denseCountMatrix = denseCountMatrix,
+            umiCountFiles = CiteSeqCount.outUmiCount
+    }
 
 
     output {
@@ -156,5 +162,10 @@ workflow Sharp {
 
         File htoClassification = HashedCountMatrix.outClass
         File hashedCountMatrix = HashedCountMatrix.outCountMatrix
+        File statsClassification = HashedCountMatrix.outStats
+
+        File htoCorrectedClassification = CorrectFalsePositiveDoublets.outClass
+        File hashedCorrectedCountMatrix = CorrectFalsePositiveDoublets.outCountMatrix
+        File statsCorrectedClassification = CorrectFalsePositiveDoublets.outStats
     }
 }
