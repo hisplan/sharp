@@ -3,45 +3,20 @@
 #hack: get dependency set up
 ln -s ../modules/ modules
 
-# java -jar ~/Applications/womtool.jar \
-#     validate \
-#     HelloWorld.wdl \
-#     --inputs HelloWorld.inputs.json
+modules="MergeFastq FastQC Cutadapt PrepCBWhitelist Count HtoDemux Combine"
 
-java -jar ~/Applications/womtool.jar \
-    validate \
-    MergeFastq.wdl \
-    --inputs MergeFastq.inputs.json
+for module_name in $modules
+do
 
-java -jar ~/Applications/womtool.jar \
-    validate \
-    FastQC.wdl \
-    --inputs FastQC.inputs.json
+    echo "Validating ${module_name}..."
 
-java -jar ~/Applications/womtool.jar \
-    validate \
-    Cutadapt.wdl \
-    --inputs Cutadapt.inputs.json
+    java -jar ~/Applications/womtool.jar \
+        validate \
+        test.${module_name}.wdl \
+        --inputs test.${module_name}.inputs.json
 
-java -jar ~/Applications/womtool.jar \
-    validate \
-    PrepCBWhitelist.wdl \
-    --inputs PrepCBWhitelist.inputs.json
 
-java -jar ~/Applications/womtool.jar \
-    validate \
-    Count.wdl \
-    --inputs Count.inputs.json
-
-java -jar ~/Applications/womtool.jar \
-    validate \
-    HtoDemux.wdl \
-    --inputs HtoDemux.inputs.json
-
-java -jar ~/Applications/womtool.jar \
-    validate \
-    Combine.wdl \
-    --inputs Combine.inputs.json
+done
 
 #hack: remove symblock link to dependency
 unlink modules
