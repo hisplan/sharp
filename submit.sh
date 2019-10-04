@@ -17,7 +17,7 @@ do
     esac
 done
 
-if [ -z "$service_account_key" ] || [ ! -r "$service_account_key" ]
+if [ -z "$service_account_key" ]
 then
     usage
     exit 1
