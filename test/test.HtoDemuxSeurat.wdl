@@ -14,4 +14,11 @@ workflow HtoDemuxSeurat {
             umiCountFiles = umiCountFiles,
             quantile = quantile
     }
+
+    call module.CorrectFalsePositiveDoublets {
+        input:
+            htoClassification = HtoDemuxSeurat.outClassCsv,
+            umiCountFiles = umiCountFiles
+    }
+
 }
