@@ -2,10 +2,10 @@
 
 java -jar ~/Applications/womtool.jar \
     validate \
-    HelloWorld.wdl \
-    --inputs HelloWorld.inputs.json
+    Sharp.wdl \
+    --inputs ./config/IL10neg.inputs.json
 
 java -jar ~/Applications/womtool.jar \
     validate \
     Sharp.wdl \
-    --inputs Sharp.inputs.json
+    --inputs ./config/IL10pos.inputs.json
