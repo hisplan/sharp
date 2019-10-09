@@ -1,5 +1,4 @@
 {
-    "HtoDemuxKMeans.denseCountMatrix": "gs://chunj-cromwell/1187_IL10neg_P163_IGO_09902_8_dense.csv",
     "HtoDemuxKMeans.umiCountFiles": [
         "gs://chunj-cromwell/cromwell-execution/Count/fae92864-6f89-4c57-8a2f-62d69f4ac2db/call-CiteSeqCount/glob-5b2373ebac80816456a7726e786fc4d4/barcodes.tsv.gz",
         "gs://chunj-cromwell/cromwell-execution/Count/fae92864-6f89-4c57-8a2f-62d69f4ac2db/call-CiteSeqCount/glob-5b2373ebac80816456a7726e786fc4d4/features.tsv.gz",
