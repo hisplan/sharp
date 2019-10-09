@@ -10,6 +10,5 @@ $ docker run -it --rm \
 
 ```bash
 $ python3 demux_kmeans.py \
-    --hto-umi-count-dir /data/umi_count \
-    --dense-count-matrix /data/1187_IL10neg_P163_IGO_09902_8_dense.csv
+    --hto-umi-count-dir /data/umi_count
 ```
