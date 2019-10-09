@@ -1,13 +1,13 @@
 version 1.0
 
-task HtoDemux {
+task HtoDemuxSeurat {
 
     input {
         Array[File] umiCountFiles
         Float quantile
     }
 
-    String dockerImage = "hisplan/cromwell-hto-demux:0.1"
+    String dockerImage = "hisplan/cromwell-hto-demux-seurat:0.1"
     Int numCores = 2
     # Float inputSize = size(input_fastq1, "GiB") + size(input_fastq2, "GiB") + size(input_reference, "GiB")
 

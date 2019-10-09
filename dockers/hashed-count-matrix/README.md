@@ -15,7 +15,6 @@ $ python3 combine.py \
 ```
 
 ```bash
-$ cd /opt
 $ python3 correct_fp_doublets.py \
     --hto-classification /data/final-classifiation.tsv.gz \
     --hto-umi-count-dir /data/umi_count \
