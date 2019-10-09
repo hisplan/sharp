@@ -5,7 +5,8 @@ import "modules/FastQC.wdl" as FastQC
 import "modules/Cutadapt.wdl" as Cutadapt
 import "modules/PrepCBWhitelist.wdl" as PrepCBWhitelist
 import "modules/Count.wdl" as Count
-import "modules/HtoDemux.wdl" as HtoDemux
+import "modules/HtoDemuxSeurat.wdl" as HtoDemuxSeurat
+import "modules/HtoDemuxKMeans.wdl" as HtoDemuxKMeans
 import "modules/Combine.wdl" as Combine
 
 workflow Sharp {
@@ -39,8 +40,6 @@ workflow Sharp {
         Int numExpectedCells
 
         Int numCoresForCount
-
-        Float htoDemuxQuantile
 
         File denseCountMatrix
     }
@@ -130,21 +129,28 @@ workflow Sharp {
             numCores = numCoresForCount
     }
 
-    # HTO demux
-    call HtoDemux.HtoDemux {
+    # HTO demux using KMeans
+    call HtoDemuxKMeans.HtoDemuxKMeans {
         input:
-            umiCountFiles = CiteSeqCount.outUmiCount,
-            quantile = htoDemuxQuantile
+            denseCountMatrix = denseCountMatrix,
+            umiCountFiles = CiteSeqCount.outUmiCount
     }
 
-    # combine count matrix with hashtag
+    # HTO demux using Seurat
+    call HtoDemuxSeurat.HtoDemuxSeurat {
+        input:
+            umiCountFiles = CiteSeqCount.outUmiCount,
+            quantile = 0.99
+    }
+
+    # combine count matrix with hashtag (Seurat)
     call Combine.HashedCountMatrix {
         input:
             denseCountMatrix = denseCountMatrix,
-            htoDemuxMatrix = HtoDemux.outClassCsv
+            htoDemuxMatrix = HtoDemuxSeurat.outClassCsv
     }
 
-    # correct false positive doublets
+    # correct false positive doublets (Seurat)
     call Combine.CorrectFalsePositiveDoublets {
         input:
             htoClassification = HashedCountMatrix.outClass,
@@ -152,21 +158,25 @@ workflow Sharp {
             umiCountFiles = CiteSeqCount.outUmiCount
     }
 
-
     output {
         File fastQCR1Html = FastQCR1.outHtml
         File fastQCR2Html = FastQCR2.outHtml
 
         File countReport = CiteSeqCount.outReport
 
-        File htoClassification = HashedCountMatrix.outClass
-        File hashedCountMatrix = HashedCountMatrix.outCountMatrix
-        File statsClassification = HashedCountMatrix.outStats
-        File logCombine = HashedCountMatrix.outLog
+        File htoClassification = HtoDemuxKMeans.outClass
+        File hashedCountMatrix = HtoDemuxKMeans.outCountMatrix
+        File statsHtoDemux = HtoDemuxKMeans.outStats
+        File logHtoDemux = HtoDemuxKMeans.outLog
 
-        File htoCorrectedClassification = CorrectFalsePositiveDoublets.outClass
-        File hashedCorrectedCountMatrix = CorrectFalsePositiveDoublets.outCountMatrix
-        File statsCorrectedClassification = CorrectFalsePositiveDoublets.outStats
-        File logFPDoubletCorrection = CorrectFalsePositiveDoublets.outLog
+        File htoClassification_1 = HashedCountMatrix.outClass
+        File hashedCountMatrix_1 = HashedCountMatrix.outCountMatrix
+        File statsHtoDemux_1 = HashedCountMatrix.outStats
+        File logHtoDemux_1 = HashedCountMatrix.outLog
+
+        File htoClassification_2 = CorrectFalsePositiveDoublets.outClass
+        File hashedCountMatrix_2 = CorrectFalsePositiveDoublets.outCountMatrix
+        File statsHtoDemux_2 = CorrectFalsePositiveDoublets.outStats
+        File logHtoDemux_2 = CorrectFalsePositiveDoublets.outLog
     }
 }
