@@ -21,7 +21,7 @@ logging.basicConfig(
 )
 
 
-def combine(path_dense_count_matrix, path_hto_demux_matrix):
+def combine(path_dense_count_matrix, path_hto_classification):
 
     df_gene = pd.read_csv(
         path_dense_count_matrix,
@@ -34,40 +34,31 @@ def combine(path_dense_count_matrix, path_hto_demux_matrix):
         )
     )
 
-    df_hto_demux = pd.read_csv(
-        path_hto_demux_matrix,
-        sep=",",
-        index_col=0
+    df_class = pd.read_csv(
+        path_hto_classification,
+        sep="\t",
+        index_col=0,
+        compression="gzip"
     )
 
     logger.info(
-        "Loaded HTO demux matrix ({} x {})".format(
-            df_hto_demux.shape[0], df_hto_demux.shape[1]
+        "Loaded HTO classification ({} x {})".format(
+            df_class.shape[0], df_class.shape[1]
         )
     )
 
-    # convert to numeric cell barcode
-    dna3bit = DNA3Bit()
-    new_index = df_hto_demux.index.map(lambda x: dna3bit.encode(x))
-    df_hto_demux.index = new_index
+    logger.debug(df_class.groupby(by="hashID").size())
 
-    df_hto_demux.groupby(by="HTO_classification.global").size()
+    # df_class.groupby(by="hashID").size() / len(df_class) * 100.0
 
-    df_hash = df_hto_demux.loc[:, "hash.ID"].to_frame()
-    df_hash.columns = ["hashID"]
+    # df_class[df_class.hashID.isin(
+    #     ["HTO-301", "HTO-302", "HTO-303", "HTO-304"])].shape[0]
 
-    logger.debug(df_hash.groupby(by="hashID").size())
-
-    df_hash.groupby(by="hashID").size() / len(df_hash) * 100.0
-
-    df_hash[df_hash.hashID.isin(
-        ["HTO-301", "HTO-302", "HTO-303", "HTO-304"])].shape[0]
-
-    df_hash[df_hash.hashID.isin(
-        ["HTO-301", "HTO-302", "HTO-303", "HTO-304"])].shape[0] / len(df_hash) * 100.0
+    # df_class[df_class.hashID.isin(
+    #     ["HTO-301", "HTO-302", "HTO-303", "HTO-304"])].shape[0] / len(df_class) * 100.0
 
     df_merged = pd.merge(
-        df_gene, df_hash,
+        df_gene, df_class,
         left_index=True, right_index=True,
         how="inner"
     )
@@ -81,7 +72,7 @@ def combine(path_dense_count_matrix, path_hto_demux_matrix):
     logger.debug(df_merged.groupby(by="hashID").size())
 
     logger.info("Writing the full dense count matrix with hashtag...")
-    
+
     df_merged.to_csv(
         "final-matrix.tsv.gz",
         sep="\t",
@@ -124,10 +115,10 @@ def parse_arguments():
     )
 
     parser.add_argument(
-        "--hto-demux-matrix",
+        "--hto-classification",
         action="store",
-        dest="path_hto_demux_matrix",
-        help="path to HTO demux matrix file (*.csv)",
+        dest="path_hto_classification",
+        help="path to HTO classification file (*.tsv.gz)",
         required=True
     )
 
@@ -145,7 +136,7 @@ if __name__ == "__main__":
 
     df_class = combine(
         params.path_dense_count_matrix,
-        params.path_hto_demux_matrix
+        params.path_hto_classification
     )
 
     logger.info("Writing statistics...")
