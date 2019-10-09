@@ -93,4 +93,9 @@ my_data.singlet <- subset(my_data.hashtag, idents = "Singlet")
 library(data.table)
 data_to_write_out <- as.data.frame(as.matrix(my_data.hashtag@meta.data))
 data_to_write_out <- data_to_write_out[4:11]
+fwrite(x = data_to_write_out, row.names = TRUE, file = file.path(path_output, "full-output.csv"))
+
+# write to disk only CB and hashID
+data_to_write_out <- data_to_write_out[8]
+names(data_to_write_out) <- c("hashID")
 fwrite(x = data_to_write_out, row.names = TRUE, file = file.path(path_output, "classification.csv"))
