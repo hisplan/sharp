@@ -28,8 +28,9 @@ task HtoDemuxSeurat {
     >>>
 
     output {
-        File outClassCsv = "./outputs/classification.csv"
-        File outFullCsv = "./outputs/full-output.csv"
+        # use `outputs/` not `./outputs/` (AWS S3 issue)
+        File outClassCsv = "outputs/classification.csv"
+        File outFullCsv = "outputs/full-output.csv"
     }
 
     runtime {
