@@ -1,0 +1,9 @@
+{
+    "pipelineType": "Sharp",
+    "project": "Project 10034",
+    "sample": "IL10neg",
+    "owner": "chunj",
+    "destination": "gs://chunj-cromwell/outputs/Project_10034/IL10neg/Sharp",
+    "transfer": "-",
+    "comment": "Hashtag Pipeline"    
+}

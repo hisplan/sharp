@@ -1,0 +1,9 @@
+{
+    "pipelineType": "Sharp",
+    "project": "Project 10034",
+    "sample": "IL10pos",
+    "owner": "chunj",
+    "destination": "s3://dp-lab-batch/outputs/Project_10034/IL10pos/Sharp",
+    "transfer": "-",
+    "comment": "Hashtag Pipeline"    
+}
