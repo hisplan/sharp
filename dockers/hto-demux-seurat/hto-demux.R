@@ -16,9 +16,6 @@ my_data.htos = Read10X(path_umi_count_matrix_directory, gene.column=1)
 
 rownames(my_data.htos)
 
-#fixme:
-num_of_hashtags = 4
-
 # shorten the hashtag names
 # HTO_301-ACCCACCAGTAAGAC --> HTO-301
 # H1_DMSO-ACCCACCAGTAAGAC --> H1-DMSO
@@ -27,7 +24,10 @@ library(stringr)
 shortened_hashtag_names <- head(str_replace(rownames(my_data.htos), "-.*$", ""), -1)
 shortened_hashtag_names <- str_replace(shortened_hashtag_names, "_", "-")
 
-my_data.htos <- my_data.htos[1:4, ]
+# get the number of hashtags
+num_of_hashtags = length(shortened_hashtag_names)
+
+my_data.htos <- my_data.htos[1:num_of_hashtags, ]
 rownames(my_data.htos) <- shortened_hashtag_names
 
 rownames(my_data.htos)
@@ -54,6 +54,7 @@ table(my_data.hashtag$HTO_classification.global)
 # Group cells based on the max HTO signal
 Idents(my_data.hashtag) <- "HTO_maxID"
 
+# comparing only the first four hashtags against all of the hashtags
 RidgePlot(my_data.hashtag, assay = "HTO", features = rownames(my_data.hashtag[["HTO"]])[1:4], ncol = 2)
 
 FeatureScatter(my_data.hashtag, feature1 = shortened_hashtag_names[1], feature2 = shortened_hashtag_names[2])

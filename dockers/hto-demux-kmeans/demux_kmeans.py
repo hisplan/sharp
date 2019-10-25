@@ -71,7 +71,7 @@ def hto_demux(path_hto_umi_count_dir):
 
     # change column name to column index so that we can access by e.g. x[1]
     df_tmp = df_umi
-    df_tmp.columns = range(0, 4)
+    df_tmp.columns = range(0, len(df_tmp.columns))
 
     # for each row (barcode), get the index of the one with the largest UMI count
     ss_umi_largest = df_tmp.idxmax(axis=1)

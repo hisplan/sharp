@@ -5,7 +5,7 @@
 ```bash
 $ docker run -it --rm \
     -v /Users/chunj/projects/sharp/scratch:/data/ \
-    cromwell-hto-demux-seurat:0.3
+    cromwell-hto-demux-seurat:0.5
 ```
 
 ```bash

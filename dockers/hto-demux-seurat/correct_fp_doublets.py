@@ -71,7 +71,7 @@ def correct_false_positives(path_hto_classification, path_hto_umi_count_dir):
 
     # index = numeric cellular barcode (e.g. 120703409573286, ...)
     # column 1 = hashID (e.g. HTO-301, Doublet, ...)
-    # column 2 = (e.g. HTO_301-ACCCACCAGTAAGAC)
+    # column 2 = HTO_301-ACCCACCAGTAAGAC
     # column 3 = HTO_302-GGTCGAGAGCATTCA
     # column 4 = HTO_303-CTTGCCGCATGTCAT
     # column 5 = HTO_304-AAAGCATTCTTCACG
@@ -83,7 +83,7 @@ def correct_false_positives(path_hto_classification, path_hto_umi_count_dir):
     )
 
     # remove the column `unmapped`
-    df_fp = df_doublets_umi.iloc[:, 1:5]
+    df_fp = df_doublets_umi.iloc[:, 1:-1]
 
     logger.info("Computing centered log-ratio (CLR)...")
     # centered log-ratio (CLR) transformation
@@ -96,8 +96,8 @@ def correct_false_positives(path_hto_classification, path_hto_umi_count_dir):
         (row + 1) / scipy.stats.mstats.gmean(row + 1)), axis=1)
 
     # change column name to column index so that we can access by e.g. x[1]
-    df_tmp = df_doublets_umi.iloc[:, 1:5]
-    df_tmp.columns = range(0, 4)
+    df_tmp = df_doublets_umi.iloc[:, 1:-1]
+    df_tmp.columns = range(0, len(df_tmp.columns))
 
     # for each row (barcode), get the index of the one with the largest UMI count
     ss_doublets_umi_largest = df_tmp.idxmax(axis=1)

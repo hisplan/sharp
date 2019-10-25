@@ -7,7 +7,7 @@ task HtoDemuxSeurat {
         Float quantile
     }
 
-    String dockerImage = "hisplan/cromwell-hto-demux-seurat:0.3"
+    String dockerImage = "hisplan/cromwell-hto-demux-seurat:0.5"
     Int numCores = 2
     # Float inputSize = size(input_fastq1, "GiB") + size(input_fastq2, "GiB") + size(input_reference, "GiB")
 
@@ -49,7 +49,7 @@ task CorrectFalsePositiveDoublets {
         Array[File] umiCountFiles
     }
 
-    String dockerImage = "hisplan/cromwell-hto-demux-seurat:0.3"
+    String dockerImage = "hisplan/cromwell-hto-demux-seurat:0.5"
     Int numCores = 1
     # Float inputSize = size(htoClassification, "GiB") + size(denseCountMatrix, "GiB")
 
