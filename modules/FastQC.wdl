@@ -23,7 +23,6 @@ task FastQC {
 
     runtime {
         docker: dockerImage
-        disks: "local-disk 500 HDD"
         disks: "local-disk " + ceil(2 * (if inputSize < 1 then 1 else inputSize )) + " HDD"
         cpu: numCores
         memory: "16 GB"
