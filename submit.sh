@@ -6,7 +6,7 @@ cat << EOF
 USAGE: `basename $0` [options]
     -k  service account key (e.g. secrets.json)
     -i  inputs file (e.g. sample.inputs.json)
-    -l  labels file (e.g. labels.json)
+    -l  labels file (e.g. sample.labels.json)
     -o  options file (e.g. options.json)
 EOF
 }
