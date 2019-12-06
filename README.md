@@ -15,7 +15,11 @@ the sharp (♯) from musical notation similar to the hash (#) in hashtag.
 - Demultiplexing
 - Combining with scRNA-seq matrix
 
-## Running Workflow
+## Setup
+
+```bash
+aws s3 cp s3://dp-lab-home/software/install-sharp-0.0.1.sh - | bash
+```
 
 ```
 $ conda create -n cromwell python=3.6.5 pip
@@ -33,8 +37,16 @@ $ cat ~/secrets.json
 }
 ```
 
+## Running Workflow
+
 Finally, submit your job:
 
 ```bash
-$ ./submit.sh -k ~/secrets.json
+conda activate cromwell
+
+./submit.sh \
+    -k ~/secrets-aws.json \
+    -i config/PBMC_v2_Meth_Hash_2_ADT.inputs.json \
+    -l config/PBMC_v2_Meth_Hash_2_ADT.labels.json \
+    -o Sharp.options.aws.json
 ```
