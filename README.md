@@ -50,3 +50,27 @@ conda activate cromwell
     -l config/PBMC_v2_Meth_Hash_2_ADT.labels.json \
     -o Sharp.options.aws.json
 ```
+
+## Unit Test
+
+IL10neg
+
+```yaml
+Doublet: 1433
+HTO-301: 6615
+HTO-302: 1566
+HTO-303: 2049
+HTO-304: 1312
+Total: 12975
+```
+
+IL10pos
+
+```yaml
+Doublet: 367
+HTO-301: 6906
+HTO-302: 1441
+HTO-303: 157
+HTO-304: 90
+Total: 8961
+```
