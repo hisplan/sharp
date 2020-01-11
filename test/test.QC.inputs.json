@@ -1,0 +1,8 @@
+{
+    "QC.fastqR1": "s3://dp-lab-data/SCRI_Projects/Preservation/LX33_1_4_1_HTO/FASTQ/1687_LX33_1_4_1_HTO_IGO_10298_C_1_S1_R1_001.fastq.gz",
+    "QC.fastqR2": "s3://dp-lab-data/SCRI_Projects/Preservation/LX33_1_4_1_HTO/FASTQ/1687_LX33_1_4_1_HTO_IGO_10298_C_1_S1_R2_001.fastq.gz",
+    "QC.tagList": "s3://dp-lab-data/sc-seq/Project_10477/A_mScarlet_HTO/Hashtag_results/tag-list.csv",
+    "QC.cbBarcode1": "TCGACATC",
+    "QC.cbSpacer": "CATG",
+    "QC.cbBarcode2": "CTCAGCTA"
+}
