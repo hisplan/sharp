@@ -1,0 +1,20 @@
+
+FROM ubuntu:18.04
+
+LABEL maintainer="Jaeyoung Chun (chunj@mskcc.org)"
+
+# https://github.com/shenwei356/seqkit/releases
+
+ENV SEQKIT_VERSION 0.11.0
+
+RUN apt-get update \
+    && apt-get install --yes wget
+
+RUN cd /tmp \
+    && wget https://github.com/shenwei356/seqkit/releases/download/v${SEQKIT_VERSION}/seqkit_linux_amd64.tar.gz \
+    && tar xvzf seqkit_linux_amd64.tar.gz \
+    && mv seqkit /usr/local/bin \
+    && rm -rf /tmp seqkit_linux_amd64.tar.gz
+
+# ENTRYPOINT ["/usr/local/bin/seqkit"]
+# CMD ["--help"]
