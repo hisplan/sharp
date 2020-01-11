@@ -1,0 +1,5 @@
+{
+    "CutInDropSpacer.fastq": "gs://chunj-cromwell/indrop-trim-R1-1000.fastq.gz",
+    "CutInDropSpacer.assayVersion": "2",
+    "CutInDropSpacer.outFileName": "trim-R1.fastq.gz"
+}
