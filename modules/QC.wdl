@@ -41,10 +41,13 @@ task QC {
         seqkit grep -f ~{readIDsFileName} ~{fastqR2}  > ~{subsetR2FileName}
 
         # count the number of each hashtag in the subset of R2
-        grep -F "CTTGTACC" subset-R2.fastq | wc -l | tee ~{countFileName}
-        grep -F "GAACCCGG" subset-R2.fastq | wc -l | tee -a ~{countFileName}
-        grep -F "TCGTAGAT" subset-R2.fastq | wc -l | tee -a ~{countFileName}
-        grep -F "ACGCGGAA" subset-R2.fastq | wc -l | tee -a ~{countFileName}
+        touch ~{countFileName}
+        hashtags=`cut -f 1 -d, ~{tagList}`
+        for hashtag in $hashtags
+        do
+            count=`grep -c -F "${hashtag}" subset-R2.fastq || true`
+            echo "${hashtag}: ${count}" | tee -a ~{countFileName}
+        done
 
     >>>
 
