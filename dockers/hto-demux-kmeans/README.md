@@ -5,7 +5,7 @@
 ```bash
 $ docker run -it --rm \
     -v /Users/chunj/projects/sharp/scratch:/data/ \
-    cromwell-hto-demux-kmeans:0.2
+    cromwell-hto-demux-kmeans:0.3
 ```
 
 ```bash
