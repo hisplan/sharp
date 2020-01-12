@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-modules="MergeFastq FastQC Cutadapt PrepCBWhitelist Count HtoDemuxSeurat HtoDemuxKMeans Combine"
+modules="QC CutInDropSpacer MergeFastq FastQC Cutadapt PrepCBWhitelist Count HtoDemuxSeurat HtoDemuxKMeans Combine"
 
 for module_name in $modules
 do
