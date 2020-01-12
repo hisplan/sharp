@@ -16,6 +16,12 @@ task CiteSeqCount {
         Int umiStartPos
         Int umiEndPos
 
+        # how many bases should we trim before starting to look for hashtag sequence
+        Int trimPos
+
+        # activate sliding window alignement
+        Boolean slidingWindowSearch
+
         # correction
         Int cbCollapsingDistance
         Int umiCollapsingDistance
@@ -28,6 +34,7 @@ task CiteSeqCount {
     String dockerImage = "hisplan/cromwell-cite-seq-count:1.4.2-develop"
     Float inputSize = size(fastqR1, "GiB") + size(fastqR2, "GiB")
 
+    # https://hoohm.github.io/CITE-seq-Count/Running-the-script/
     command <<<
         set -euo pipefail
 
@@ -39,6 +46,7 @@ task CiteSeqCount {
             -umif ~{umiStartPos} -umil ~{umiEndPos} \
             --bc_collapsing_dist ~{cbCollapsingDistance} \
             --umi_collapsing_dist ~{umiCollapsingDistance} \
+            --start-trim ~{trimPos} ~{true='--sliding-window' false='' slidingWindowSearch} \
             --expected_cells ~{numExpectedCells} \
             --whitelist ~{cbWhiteList} \
             --output results \

@@ -18,6 +18,12 @@ workflow Count {
         Int umiStartPos
         Int umiEndPos
 
+        # how many bases should we trim before starting to look for hashtag sequence
+        Int trimPos
+
+        # activate sliding window alignement
+        Boolean slidingWindowSearch
+
         Int cbCollapsingDistance
         Int umiCollapsingDistance
 
@@ -34,6 +40,8 @@ workflow Count {
             cbEndPos = cbEndPos,
             umiStartPos = umiStartPos,
             umiEndPos = umiEndPos,
+            trimPos = trimPos,
+            slidingWindowSearch = slidingWindowSearch,            
             cbCollapsingDistance = cbCollapsingDistance,
             umiCollapsingDistance = umiCollapsingDistance,
             numExpectedCells = numExpectedCells
