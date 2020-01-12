@@ -12,6 +12,7 @@ import scipy.io
 import scipy.stats
 from sklearn.cluster import KMeans
 from dna3bit import DNA3Bit
+import warnings
 
 
 logger = logging.getLogger("demux_kmeans")
@@ -88,7 +89,10 @@ def hto_demux(path_hto_umi_count_dir):
     # 164759051090203    [0, 1, 1, 1]
     # 191020391422693    [0, 1, 1, 0]
     # 204968413023541    [0, 0, 0, 1]
-    df_kmeans = df_clr.apply(lambda row: kemans_per_row(row), axis=1)
+    with warnings.catch_warnings():
+        # avoid ConvergenceWarning: Number of distinct clusters (1) found smaller than n_clusters (2). Possibly due to duplicate points in X.
+        warnings.simplefilter("ignore")
+        df_kmeans = df_clr.apply(lambda row: kemans_per_row(row), axis=1)
 
     df_kmeans_hotencoded = df_kmeans.apply(
         lambda x: "".join(str(y) for y in x)).to_frame()
