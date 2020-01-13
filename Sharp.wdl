@@ -3,6 +3,7 @@ version 1.0
 import "modules/MergeFastq.wdl" as MergeFastq
 import "modules/FastQC.wdl" as FastQC
 import "modules/Cutadapt.wdl" as Cutadapt
+import "modules/CutInDropSpacer.wdl" as CutInDropSpacer
 import "modules/PrepCBWhitelist.wdl" as PrepCBWhitelist
 import "modules/Count.wdl" as Count
 import "modules/HtoDemuxSeurat.wdl" as HtoDemuxSeurat
@@ -23,6 +24,8 @@ workflow Sharp {
         File cellBarcodeWhitelistUri
         String cellBarcodeWhiteListMethod
 
+        String scRnaSeqPlatform = "10x_v3"
+
         File hashTagList
 
         # cellular barcode start/end positions
@@ -32,6 +35,12 @@ workflow Sharp {
         # UMI start/end positions
         Int umiStartPos
         Int umiEndPos
+
+        # how many bases should we trim before starting to look for hashtag sequence
+        Int trimPos = 0
+
+        # activate sliding window alignement
+        Boolean slidingWindowSearch = false
 
         # correction
         Int cbCollapsingDistance
@@ -72,13 +81,28 @@ workflow Sharp {
             fastqFile = MergeFastqR2.out
     }
 
-    # trim R1
-    call Cutadapt.Trim as TrimR1 {
-        input:
-            fastq = MergeFastqR1.out,
-            length = lengthR1,
-            outFileName = "R1.fastq.gz"
+    # if InDrops v4
+    if (scRnaSeqPlatform == "in_drop_v4") {
+        # trim R1 (remove the middler spacer as well)
+        call CutInDropSpacer.CutInDropSpacer {
+            input:
+                fastq = MergeFastqR1.out,
+                outFileName = "R1.fastq.gz"
+        }
     }
+
+    # if not InDrops v4
+    if (scRnaSeqPlatform != "in_drop_v4") {
+        # trim R1
+        call Cutadapt.Trim as TrimR1 {
+            input:
+                fastq = MergeFastqR1.out,
+                length = lengthR1,
+                outFileName = "R1.fastq.gz"
+        }
+    }
+
+    File trimR1 = select_first([CutInDropSpacer.outFile, TrimR1.outFile])
 
     # trim R2
     call Cutadapt.Trim as TrimR2 {
@@ -115,7 +139,7 @@ workflow Sharp {
     # run CITE-seq-Count
     call Count.CiteSeqCount {
         input:
-            fastqR1 = TrimR1.outFile,
+            fastqR1 = trimR1,
             fastqR2 = TrimR2.outFile,
             cbWhiteList = cbWhitelist,
             hashTagList = hashTagList,
@@ -123,6 +147,8 @@ workflow Sharp {
             cbEndPos = cbEndPos,
             umiStartPos = umiStartPos,
             umiEndPos = umiEndPos,
+            trimPos = trimPos,
+            slidingWindowSearch = slidingWindowSearch,
             cbCollapsingDistance = cbCollapsingDistance,
             umiCollapsingDistance = umiCollapsingDistance,
             numExpectedCells = numExpectedCells,
@@ -161,6 +187,8 @@ workflow Sharp {
         File fastQCR2Html = FastQCR2.outHtml
 
         File countReport = CiteSeqCount.outReport
+        Array[File] umiCountMatrix = CiteSeqCount.outUmiCount
+        Array[File] readCountMatrix = CiteSeqCount.outReadCount
 
         File htoClassification = HtoDemuxKMeans.outClass
         File htoClassification_Suppl1 = HtoDemuxSeurat.outClassCsv
