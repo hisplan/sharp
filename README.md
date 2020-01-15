@@ -51,6 +51,17 @@ conda activate cromwell
     -o Sharp.options.aws.json
 ```
 
+## Manual Inspection
+
+Jupyter Notebook and Papermill are required.
+
+```
+$ conda activate dev
+
+$ cd manual-inspection
+$ ./run.sh -k ~/secrets-aws.json -w 47080814-0fe7-458d-9edb-5e3cb86bf870
+```
+
 ## Unit Test
 
 IL10neg
