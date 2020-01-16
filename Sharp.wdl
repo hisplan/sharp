@@ -51,6 +51,8 @@ workflow Sharp {
         Int numCoresForCount
 
         File denseCountMatrix
+
+        Boolean runSeuratDemux = false
     }
 
     # merge FASTQ R1
@@ -162,20 +164,23 @@ workflow Sharp {
     }
 
     # HTO demux using Seurat
-    call HtoDemuxSeurat.HtoDemuxSeurat {
-        input:
-            umiCountFiles = CiteSeqCount.outUmiCount,
-            quantile = 0.99
+    if (runSeuratDemux == true) {
+
+        call HtoDemuxSeurat.HtoDemuxSeurat {
+            input:
+                umiCountFiles = CiteSeqCount.outUmiCount,
+                quantile = 0.99
+        }
+
+        # correct false positive doublets frm Seurat output
+        call HtoDemuxSeurat.CorrectFalsePositiveDoublets {
+            input:
+                htoClassification = HtoDemuxSeurat.outClassCsv,
+                umiCountFiles = CiteSeqCount.outUmiCount
+        }
     }
 
-    # correct false positive doublets frm Seurat output
-    call HtoDemuxSeurat.CorrectFalsePositiveDoublets {
-        input:
-            htoClassification = HtoDemuxSeurat.outClassCsv,
-            umiCountFiles = CiteSeqCount.outUmiCount
-    }
-
-    # combine count matrix with hashtag (Seurat)
+    # combine count matrix with hashtag
     call Combine.HashedCountMatrix {
         input:
             denseCountMatrix = denseCountMatrix,
@@ -191,15 +196,15 @@ workflow Sharp {
         Array[File] readCountMatrix = CiteSeqCount.outReadCount
 
         File htoClassification = HtoDemuxKMeans.outClass
-        File htoClassification_Suppl1 = HtoDemuxSeurat.outClassCsv
-        File htoClassification_Suppl2 = HtoDemuxSeurat.outFullCsv
-        File htoClassification_Suppl3 = CorrectFalsePositiveDoublets.outClass
+        File? htoClassification_Suppl1 = HtoDemuxSeurat.outClassCsv
+        File? htoClassification_Suppl2 = HtoDemuxSeurat.outFullCsv
+        File? htoClassification_Suppl3 = CorrectFalsePositiveDoublets.outClass
 
         File statsHtoDemux = HtoDemuxKMeans.outStats
-        File statsHtoDemux_Suppl1 = CorrectFalsePositiveDoublets.outStats
+        File? statsHtoDemux_Suppl1 = CorrectFalsePositiveDoublets.outStats
 
         File logHtoDemux = HtoDemuxKMeans.outLog
-        File logHtoDemux_Suppl1 = CorrectFalsePositiveDoublets.outLog
+        File? logHtoDemux_Suppl1 = CorrectFalsePositiveDoublets.outLog
 
         File combinedClass = HashedCountMatrix.outClass
         File combinedCountMatrix = HashedCountMatrix.outCountMatrix
