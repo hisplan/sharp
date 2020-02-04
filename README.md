@@ -4,6 +4,18 @@ A hashtag pipeline.
 
 the sharp (♯) from musical notation similar to the hash (#) in hashtag.
 
+## Outputs
+
+We do more than just CB/UMI correction/counting. Essentially, we demultiplex cells to their sample-of-origin and identify cross-sample doublets. And we combine with scRNA-seq data so that users can easily identify which cells belongs to which sample.
+
+Explanation about the output:
+
+- HashedCountMatrix
+  - `final-classification.tsv.gz`: tells you which cell belongs to which hashtag.
+  - `final-matrix.tsv.gz`: a cell x gene matrix from scRNA-seq + one additional column that tells you which hashtag a given cell belongs to.
+  - `stats.yml`: tells you how many cells belongs to each hashtag.
+- CiteSeqCount
+  - This may contain one or more files only for troubleshooting purpose.
 
 ## Components
 
