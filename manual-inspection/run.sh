@@ -36,6 +36,7 @@ papermill download.ipynb ${temp_file} \
     --parameters workflow_id ${workflow_id} \
     --parameters path_secrets_file ${service_account_key} \
     --parameters path_base_data ${path_base_data} \
+    --parameters skip_download False \
     --stdout-file ${workflow_id}.sample_name.txt
 
 # get sample name (download.ipynb outputs)
