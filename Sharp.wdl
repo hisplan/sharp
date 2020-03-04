@@ -89,7 +89,8 @@ workflow Sharp {
         call CutInDropSpacer.CutInDropSpacer {
             input:
                 fastq = MergeFastqR1.out,
-                outFileName = "R1.fastq.gz"
+                outFileName = "R1.fastq.gz",
+                assayVersion = scRnaSeqPlatform
         }
     }
 
