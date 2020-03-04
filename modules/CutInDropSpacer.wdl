@@ -4,7 +4,7 @@ task CutInDropSpacer {
 
     input {
         File fastq
-        String assayVersion = "2"
+        String assayVersion = "in_drop_v4"
         String outFileName
     }
 
