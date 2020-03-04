@@ -27,6 +27,9 @@ def cut_indrop_spacer(path_in, path_out, assay_version):
         with gzip.open(path_in, "rt") as fin:
             with gzip.open(path_out, "wt") as fout:
                 for record in SeqIO.parse(fin, "fastq"):
+                    # CB1: record[:8]
+                    # CB2: record[12:20]
+                    # UMI: record[20:28]
                     trimmed_rec = record[:8] + record[12:20] + record[20:28]
                     SeqIO.write(trimmed_rec, fout, "fastq")
     else:
