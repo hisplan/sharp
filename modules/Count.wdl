@@ -25,6 +25,7 @@ task CiteSeqCount {
         # correction
         Int cbCollapsingDistance
         Int umiCollapsingDistance
+        Int maxTagError
 
         Int numExpectedCells
 
@@ -46,6 +47,7 @@ task CiteSeqCount {
             -umif ~{umiStartPos} -umil ~{umiEndPos} \
             --bc_collapsing_dist ~{cbCollapsingDistance} \
             --umi_collapsing_dist ~{umiCollapsingDistance} \
+            --max-error ~{maxTagError} \
             --start-trim ~{trimPos} ~{true='--sliding-window' false='' slidingWindowSearch} \
             --expected_cells ~{numExpectedCells} \
             --whitelist ~{cbWhiteList} \

@@ -26,6 +26,7 @@ workflow Count {
 
         Int cbCollapsingDistance
         Int umiCollapsingDistance
+        Int maxTagError
 
         Int numExpectedCells
     }
@@ -44,6 +45,7 @@ workflow Count {
             slidingWindowSearch = slidingWindowSearch,            
             cbCollapsingDistance = cbCollapsingDistance,
             umiCollapsingDistance = umiCollapsingDistance,
+            maxTagError = maxTagError,
             numExpectedCells = numExpectedCells
     }
 

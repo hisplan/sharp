@@ -45,6 +45,7 @@ workflow Sharp {
         # correction
         Int cbCollapsingDistance
         Int umiCollapsingDistance
+        Int maxTagError = 2
 
         Int numExpectedCells
 
@@ -154,6 +155,7 @@ workflow Sharp {
             slidingWindowSearch = slidingWindowSearch,
             cbCollapsingDistance = cbCollapsingDistance,
             umiCollapsingDistance = umiCollapsingDistance,
+            maxTagError = maxTagError,
             numExpectedCells = numExpectedCells,
             numCores = numCoresForCount
     }

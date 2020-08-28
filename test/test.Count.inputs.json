@@ -11,6 +11,7 @@
     "Count.slidingWindowSearch": false,
     "Count.cbCollapsingDistance": 1,
     "Count.umiCollapsingDistance": 1,
+    "Count.maxTagError": 2,
     "Count.numExpectedCells": 0,
     "Count.CiteSeqCount.numCores": 8
 }
