@@ -128,7 +128,7 @@ def hto_demux(path_hto_umi_count_dir):
     logger.debug(df_class.groupby(by="hashID").size())
 
     df_class.to_csv(
-        "final-classification.tsv.gz",
+        "classification.tsv.gz",
         sep="\t",
         compression="gzip"
     )
