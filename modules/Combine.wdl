@@ -5,24 +5,20 @@ task HashedCountMatrix {
     input {
         File denseCountMatrix
         File htoClassification
+        Boolean translate10XBarcodes
     }
 
-    String dockerImage = "hisplan/cromwell-hashed-count-matrix:0.1"
+    String dockerImage = "hisplan/cromwell-hashed-count-matrix:0.2.0"
     Int numCores = 1
     Float inputSize = size(denseCountMatrix, "GiB") + size(htoClassification, "GiB")
 
     command <<<
         set -euo pipefail
 
-        # --dense-count-matrix: output from SEQC
-        #                       e.g. 1187_IL10neg_P163_IGO_09902_8_dense.csv
-
-        # --hto-classification: hto classification from either HtoDemuxSeurat or HtoDemuxKMeans
-        #                       e.g. final-classification.tsv.gz
-
         python3 /opt/combine.py \
             --dense-count-matrix ~{denseCountMatrix} \
-            --hto-classification ~{htoClassification}
+            --hto-classification ~{htoClassification} \
+            --10x-whitelist /opt/data/3M-february-2018.txt.gz ~{true="--10x-barcode-translation" false="" translate10XBarcodes}
 
     >>>
 

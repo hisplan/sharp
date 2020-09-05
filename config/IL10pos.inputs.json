@@ -12,6 +12,7 @@
     "Sharp.lengthR2": 15,
     "Sharp.cellBarcodeWhitelistUri": "s3://dp-lab-data/collaborators/arudensky/Il10_scRNAseq/IL10pos/seqc-results/1186_IL10pos_P163_IGO_09902_7_dense.csv",
     "Sharp.cellBarcodeWhiteListMethod": "SeqcDenseCountsMatrixCsv",
+    "Sharp.translate10XBarcodes": false,
     "Sharp.hashTagList": "s3://dp-lab-data/collaborators/arudensky/Il10_scRNAseq/IL10pos_HTO/Hashtag_results/tag-list.csv",
     "Sharp.cbStartPos": 1,
     "Sharp.cbEndPos": 16,

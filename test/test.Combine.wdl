@@ -7,13 +7,14 @@ workflow Combine {
     input {
         File denseCountMatrix
         File htoClassification
-        Array[File] umiCountFiles
+        Boolean translate10XBarcodes
     }
 
     call module.HashedCountMatrix {
         input:
             denseCountMatrix = denseCountMatrix,
-            htoClassification = htoClassification
+            htoClassification = htoClassification,
+            translate10XBarcodes = translate10XBarcodes
     }
 
     output {

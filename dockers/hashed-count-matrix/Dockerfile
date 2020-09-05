@@ -7,9 +7,13 @@ RUN apt-get update \
 
 RUN apt-get install --yes wget zlib1g-dev libbz2-dev liblzma-dev
 
-RUN pip3 install pandas numpy pyyaml scipy sklearn
+RUN pip3 install pandas numpy pyyaml scipy sklearn tqdm
 
+# code
 COPY combine.py /opt/combine.py
 COPY dna3bit.py /opt/dna3bit.py
+
+# data
+COPY ./data/3M-february-2018.txt.gz /opt/data/
 
 WORKDIR /opt

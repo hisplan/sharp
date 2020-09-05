@@ -24,6 +24,10 @@ workflow Sharp {
         File cellBarcodeWhitelistUri
         String cellBarcodeWhiteListMethod
 
+        # set to false if TotalSeq-A is used
+        # set to true if TotalSeq-B or C is used
+        Boolean translate10XBarcodes
+
         String scRnaSeqPlatform = "10x_v3"
 
         File hashTagList
@@ -138,7 +142,18 @@ workflow Sharp {
         call PrepCBWhitelist.NotImplemented
     }
 
-    File cbWhitelist = select_first([WhitelistFromSeqcSparseBarcodes.out, WhitelistFromSeqcDenseMatrix.out])
+    File cbWhitelistTemp = select_first([WhitelistFromSeqcSparseBarcodes.out, WhitelistFromSeqcDenseMatrix.out])
+
+    if (translate10XBarcodes == true) {
+        # do translation if necessary
+        call PrepCBWhitelist.Translate10XBarcodes {
+            input:
+                barcodesFile = cbWhitelistTemp
+        }
+    }
+
+    # pick translated version if available
+    File cbWhitelist = select_first([Translate10XBarcodes.out, cbWhitelistTemp])
 
     # run CITE-seq-Count
     call Count.CiteSeqCount {
@@ -187,7 +202,8 @@ workflow Sharp {
     call Combine.HashedCountMatrix {
         input:
             denseCountMatrix = denseCountMatrix,
-            htoClassification = HtoDemuxKMeans.outClass
+            htoClassification = HtoDemuxKMeans.outClass,
+            translate10XBarcodes = translate10XBarcodes
     }
 
     output {

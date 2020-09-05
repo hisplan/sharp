@@ -30,8 +30,15 @@ workflow PrepCBWhitelist {
         call module.NotImplemented
     }
 
+    File whitelist = select_first([WhitelistFromSeqcSparseBarcodes.out, WhitelistFromSeqcDenseMatrix.out])
+
+    call module.Translate10XBarcodes {
+        input:
+            barcodesFile = whitelist
+    }
+
     output {
-        String out = select_first([WhitelistFromSeqcSparseBarcodes.out, WhitelistFromSeqcDenseMatrix.out])
+        String outTranslated = Translate10XBarcodes.out
     }
 
 }

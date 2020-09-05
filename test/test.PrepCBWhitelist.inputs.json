@@ -1,4 +1,4 @@
 {
-    "PrepCBWhitelist.inputFile": "gs://chunj-cromwell/1187_IL10neg_P163_IGO_09902_8_dense.csv",
+    "PrepCBWhitelist.inputFile": "s3://dp-lab-data/collaborators/hsuk/7xNK/HD1915_7xNK/seqc-results/1973_HD1915_7xNK_IGO_10657_2_dense.csv",
     "PrepCBWhitelist.method": "SeqcDenseCountsMatrixCsv"
 }

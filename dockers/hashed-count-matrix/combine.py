@@ -5,28 +5,57 @@ import argparse
 import pandas as pd
 import numpy as np
 import yaml
+import csv
+import gzip
 import logging
 from dna3bit import DNA3Bit
-
+from tqdm import tqdm
 
 logger = logging.getLogger("combine")
 
 logging.basicConfig(
     level=logging.DEBUG,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    handlers=[
-        logging.FileHandler("combine.log"),
-        logging.StreamHandler(sys.stdout)
-    ]
+    handlers=[logging.FileHandler("combine.log"), logging.StreamHandler(sys.stdout)],
 )
 
 
-def combine(path_dense_count_matrix, path_hto_classification):
+def convert(df, path_10x_whitelist):
 
-    df_gene = pd.read_csv(
-        path_dense_count_matrix,
-        index_col=0
+    encoder_decoder = DNA3Bit()
+
+    # 1234 barcodes to acgt barcodes
+    acgt_barcodes = df.index.map(lambda x: encoder_decoder.decode(x).decode())
+
+    # create a mapper (HTO <--> GEX)
+    mapper = dict()
+
+    with gzip.open(path_10x_whitelist, "rt") as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter="\t")
+        for row in tqdm(csv_reader, disable=None):
+            mapper[row[0].strip()] = row[1].strip()
+
+    # translate
+    translated_acgt_barcodes = acgt_barcodes.map(lambda x: mapper[x])
+
+    # acgt barcodes to 1234 barcodes
+    translated_1234_barcodes = translated_acgt_barcodes.map(
+        lambda x: encoder_decoder.encode(x)
     )
+
+    df.index = translated_1234_barcodes
+
+    return df
+
+
+def combine(
+    path_dense_count_matrix,
+    path_hto_classification,
+    translate_10x_barcodes,
+    path_10x_whitelist,
+):
+
+    df_gene = pd.read_csv(path_dense_count_matrix, index_col=0)
 
     logger.info(
         "Loaded transcript count matrix ({} x {})".format(
@@ -35,10 +64,7 @@ def combine(path_dense_count_matrix, path_hto_classification):
     )
 
     df_class = pd.read_csv(
-        path_hto_classification,
-        sep="\t",
-        index_col=0,
-        compression="gzip"
+        path_hto_classification, sep="\t", index_col=0, compression="gzip"
     )
 
     logger.info(
@@ -49,18 +75,13 @@ def combine(path_dense_count_matrix, path_hto_classification):
 
     logger.debug(df_class.groupby(by="hashID").size())
 
-    # df_class.groupby(by="hashID").size() / len(df_class) * 100.0
-
-    # df_class[df_class.hashID.isin(
-    #     ["HTO-301", "HTO-302", "HTO-303", "HTO-304"])].shape[0]
-
-    # df_class[df_class.hashID.isin(
-    #     ["HTO-301", "HTO-302", "HTO-303", "HTO-304"])].shape[0] / len(df_class) * 100.0
+    # translate HTO barcodes to GEX barcodes
+    if translate_10x_barcodes:
+        logger.info("Translating TotalSeq-B/C HTO barcodes to GEX barcodes...")
+        df_class = convert(df_class, path_10x_whitelist)
 
     df_merged = pd.merge(
-        df_gene, df_class,
-        left_index=True, right_index=True,
-        how="inner"
+        df_gene, df_class, left_index=True, right_index=True, how="inner"
     )
 
     logger.info(
@@ -73,20 +94,12 @@ def combine(path_dense_count_matrix, path_hto_classification):
 
     logger.info("Writing the full dense count matrix with hashtag...")
 
-    df_merged.to_csv(
-        "final-matrix.tsv.gz",
-        sep="\t",
-        compression="gzip"
-    )
+    df_merged.to_csv("final-matrix.tsv.gz", sep="\t", compression="gzip")
 
     # the last column has the hashID
     df_class = df_merged.iloc[:, -1].to_frame()
 
-    df_class.to_csv(
-        "final-classification.tsv.gz",
-        sep="\t",
-        compression="gzip"
-    )
+    df_class.to_csv("final-classification.tsv.gz", sep="\t", compression="gzip")
 
     return df_class
 
@@ -111,7 +124,7 @@ def parse_arguments():
         action="store",
         dest="path_dense_count_matrix",
         help="path to scRNA-seq dnese cell-by-gene count matrix file (*.csv)",
-        required=True
+        required=True,
     )
 
     parser.add_argument(
@@ -119,7 +132,23 @@ def parse_arguments():
         action="store",
         dest="path_hto_classification",
         help="path to HTO classification file (*.tsv.gz)",
-        required=True
+        required=True,
+    )
+
+    parser.add_argument(
+        "--10x-barcode-translation",
+        action="store_true",
+        dest="translate_10x_barcodes",
+        help="Translate HTO barcodes to GEX barcodes",
+        default=False,
+    )
+
+    parser.add_argument(
+        "--10x-whitelist",
+        action="store",
+        dest="path_10x_whitelist",
+        help="path to the official 10x barcode whitelist (gzipped)",
+        default="data/3M-february-2018.txt.gz",
     )
 
     # parse arguments
@@ -135,8 +164,10 @@ if __name__ == "__main__":
     logger.info("Starting...")
 
     df_class = combine(
-        params.path_dense_count_matrix,
-        params.path_hto_classification
+        path_dense_count_matrix=params.path_dense_count_matrix,
+        path_hto_classification=params.path_hto_classification,
+        translate_10x_barcodes=params.translate_10x_barcodes,
+        path_10x_whitelist=params.path_10x_whitelist,
     )
 
     logger.info("Writing statistics...")
