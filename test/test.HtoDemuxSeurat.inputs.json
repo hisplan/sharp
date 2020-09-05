@@ -1,8 +1,8 @@
 {
     "HtoDemuxSeurat.umiCountFiles": [
-        "s3://dp-lab-batch/cromwell-execution/Sharp/67c7c4db-b739-44d9-94f1-7d4c7ccb0b2b/call-CiteSeqCount/glob-5b2373ebac80816456a7726e786fc4d4/barcodes.tsv.gz",
-        "s3://dp-lab-batch/cromwell-execution/Sharp/67c7c4db-b739-44d9-94f1-7d4c7ccb0b2b/call-CiteSeqCount/glob-5b2373ebac80816456a7726e786fc4d4/features.tsv.gz",
-        "s3://dp-lab-batch/cromwell-execution/Sharp/67c7c4db-b739-44d9-94f1-7d4c7ccb0b2b/call-CiteSeqCount/glob-5b2373ebac80816456a7726e786fc4d4/matrix.mtx.gz"
+        "s3://dp-lab-batch/cromwell-execution/Sharp/3fab897c-9087-4ae3-b739-6fb31ed00df8/call-CiteSeqCount/glob-5b2373ebac80816456a7726e786fc4d4/barcodes.tsv.gz",
+        "s3://dp-lab-batch/cromwell-execution/Sharp/3fab897c-9087-4ae3-b739-6fb31ed00df8/call-CiteSeqCount/glob-5b2373ebac80816456a7726e786fc4d4/features.tsv.gz",
+        "s3://dp-lab-batch/cromwell-execution/Sharp/3fab897c-9087-4ae3-b739-6fb31ed00df8/call-CiteSeqCount/glob-5b2373ebac80816456a7726e786fc4d4/matrix.mtx.gz"
     ],
     "HtoDemuxSeurat.quantile": 0.99
 }

@@ -6,7 +6,7 @@ task HtoDemuxKMeans {
         Array[File] umiCountFiles
     }
 
-    String dockerImage = "hisplan/cromwell-hto-demux-kmeans:0.3"
+    String dockerImage = "hisplan/cromwell-hto-demux-kmeans:0.4.0"
     Int numCores = 1
     # Float inputSize = size(htoClassification, "GiB") + size(denseCountMatrix, "GiB")
 
@@ -26,7 +26,7 @@ task HtoDemuxKMeans {
     >>>
 
     output {
-        File outClass = "final-classification.tsv.gz"
+        File outClass = "classification.tsv.gz"
         File outStats = "stats.yml"
         File outLog = "demux_kmeans.log"
     }
