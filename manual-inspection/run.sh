@@ -1,19 +1,23 @@
 #!/bin/bash
 
+skip_download="False"
+
 usage()
 {
 cat << EOF
 USAGE: `basename $0` [options]
     -k  service account key (e.g. secrets.json)
     -w  workflow ID
+    -s  skip download and use the pre-downloaded data
 EOF
 }
 
-while getopts "k:w:h" OPTION
+while getopts "k:w:sh" OPTION
 do
     case $OPTION in
         k) service_account_key=$OPTARG ;;
         w) workflow_id=$OPTARG ;;
+        s) skip_download="True" ;;
         h) usage; exit 1 ;;
         *) usage; exit 1 ;;
     esac
@@ -36,7 +40,7 @@ papermill download.ipynb ${temp_file} \
     --parameters workflow_id ${workflow_id} \
     --parameters path_secrets_file ${service_account_key} \
     --parameters path_base_data ${path_base_data} \
-    --parameters skip_download False \
+    --parameters skip_download ${skip_download} \
     --stdout-file ${workflow_id}.sample_name.txt
 
 # get sample name (download.ipynb outputs)
