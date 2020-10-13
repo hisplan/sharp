@@ -1,0 +1,11 @@
+pandas
+matplotlib
+numpy
+seaborn
+jupyter
+papermill
+sklearn
+scanpy
+leidenalg
+autopep8
+black
