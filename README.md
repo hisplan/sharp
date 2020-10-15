@@ -34,7 +34,8 @@ aws s3 cp s3://dp-lab-home/software/install-sharp-0.0.4.sh - | bash
 ```
 
 ```
-$ conda create -n cromwell python=3.6.5 pip
+$ conda create -n cromwell python=3.7.7 pip
+$ conda activate cromwell
 $ pip install cromwell-tools
 ```
 
