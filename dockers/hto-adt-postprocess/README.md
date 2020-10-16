@@ -1,11 +1,11 @@
-# hashed-count-matrix
+# hto-adt-postprocess
 
 ## Testing
 
 ```bash
 $ docker run -it --rm \
     -v /Users/chunj/projects/sharp/scratch:/data/ \
-    cromwell-hashed-count-matrix:0.1
+    cromwell-hto-adt-postprocess:0.3.0
 ```
 
 ```bash
