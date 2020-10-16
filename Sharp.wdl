@@ -161,7 +161,7 @@ workflow Sharp {
             fastqR1 = trimR1,
             fastqR2 = TrimR2.outFile,
             cbWhiteList = cbWhitelist,
-            hashTagList = hashTagList,
+            tagList = hashTagList,
             cbStartPos = cbStartPos,
             cbEndPos = cbEndPos,
             umiStartPos = umiStartPos,

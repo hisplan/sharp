@@ -8,7 +8,7 @@ workflow Count {
         File fastqR1
         File fastqR2
         File cbWhiteList
-        File hashTagList
+        File tagList
 
         # cellular barcode
         Int cbStartPos
@@ -36,7 +36,7 @@ workflow Count {
             fastqR1 = fastqR1,
             fastqR2 = fastqR2,
             cbWhiteList = cbWhiteList,
-            hashTagList = hashTagList,
+            tagList = tagList,
             cbStartPos = cbStartPos,
             cbEndPos = cbEndPos,
             umiStartPos = umiStartPos,

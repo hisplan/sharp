@@ -6,7 +6,7 @@ task CiteSeqCount {
         File fastqR1
         File fastqR2
         File cbWhiteList
-        File hashTagList
+        File tagList
 
         # cellular barcode
         Int cbStartPos
@@ -42,7 +42,7 @@ task CiteSeqCount {
         CITE-seq-Count \
             -R1 ~{fastqR1} \
             -R2 ~{fastqR2} \
-            --tags ~{hashTagList} \
+            --tags ~{tagList} \
             -cbf ~{cbStartPos} -cbl ~{cbEndPos} \
             -umif ~{umiStartPos} -umil ~{umiEndPos} \
             --bc_collapsing_dist ~{cbCollapsingDistance} \
