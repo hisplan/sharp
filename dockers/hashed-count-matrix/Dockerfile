@@ -12,6 +12,7 @@ RUN pip3 install pandas numpy pyyaml scipy sklearn tqdm
 # code
 COPY combine.py /opt/combine.py
 COPY dna3bit.py /opt/dna3bit.py
+COPY translate_barcodes.py /opt/translate_barcodes.py
 
 # data
 COPY ./data/3M-february-2018.txt.gz /opt/data/
