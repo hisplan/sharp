@@ -1,0 +1,12 @@
+{
+    "TranslateBarcodes.umiCountFiles": [
+        "s3://dp-lab-batch/cromwell-execution/Sharp/b7fa5760-a2f1-4b3a-bbcd-eb2064165cd5/call-CiteSeqCount/glob-8e7f6a2dd9fb1323e5ebc5c1c063f6df/barcodes.tsv.gz",
+        "s3://dp-lab-batch/cromwell-execution/Sharp/b7fa5760-a2f1-4b3a-bbcd-eb2064165cd5/call-CiteSeqCount/glob-8e7f6a2dd9fb1323e5ebc5c1c063f6df/features.tsv.gz",
+        "s3://dp-lab-batch/cromwell-execution/Sharp/b7fa5760-a2f1-4b3a-bbcd-eb2064165cd5/call-CiteSeqCount/glob-8e7f6a2dd9fb1323e5ebc5c1c063f6df/matrix.mtx.gz"
+    ],
+    "TranslateBarcodes.readCountFiles": [
+        "s3://dp-lab-batch/cromwell-execution/Sharp/b7fa5760-a2f1-4b3a-bbcd-eb2064165cd5/call-CiteSeqCount/glob-5b2373ebac80816456a7726e786fc4d4/barcodes.tsv.gz",
+        "s3://dp-lab-batch/cromwell-execution/Sharp/b7fa5760-a2f1-4b3a-bbcd-eb2064165cd5/call-CiteSeqCount/glob-5b2373ebac80816456a7726e786fc4d4/features.tsv.gz",
+        "s3://dp-lab-batch/cromwell-execution/Sharp/b7fa5760-a2f1-4b3a-bbcd-eb2064165cd5/call-CiteSeqCount/glob-5b2373ebac80816456a7726e786fc4d4/matrix.mtx.gz"
+    ]
+}
