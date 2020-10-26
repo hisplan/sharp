@@ -29,6 +29,8 @@ workflow Count {
         Int maxTagError
 
         Int numExpectedCells
+
+        Map[String, Int] resourceSpec
     }
 
     call module.CiteSeqCount {
@@ -42,18 +44,18 @@ workflow Count {
             umiStartPos = umiStartPos,
             umiEndPos = umiEndPos,
             trimPos = trimPos,
-            slidingWindowSearch = slidingWindowSearch,            
+            slidingWindowSearch = slidingWindowSearch,
             cbCollapsingDistance = cbCollapsingDistance,
             umiCollapsingDistance = umiCollapsingDistance,
             maxTagError = maxTagError,
-            numExpectedCells = numExpectedCells
+            numExpectedCells = numExpectedCells,
+            resourceSpec = resourceSpec
     }
 
     output {
-        File outUmiDenseCount = CiteSeqCount.outUmiDenseCount
-        File outUnmapped = CiteSeqCount.outUnmapped
         File outReport = CiteSeqCount.outReport
-        File outUncorrected = CiteSeqCount.outUncorrected
+        File? outUnmapped = CiteSeqCount.outUnmapped
+        File? outUncorrected = CiteSeqCount.outUncorrected
 
         Array[File] outUmiCount = CiteSeqCount.outUmiCount
         Array[File] outReadCount = CiteSeqCount.outReadCount
