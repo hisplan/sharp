@@ -1,11 +1,6 @@
 version 1.0
 
-import "modules/MergeFastq.wdl" as MergeFastq
-import "modules/FastQC.wdl" as FastQC
-import "modules/Cutadapt.wdl" as Cutadapt
-import "modules/CutInDropSpacer.wdl" as CutInDropSpacer
-import "modules/PrepCBWhitelist.wdl" as PrepCBWhitelist
-import "modules/Count.wdl" as Count
+import "modules/Preprocess.wdl" as Preprocess
 import "modules/HtoDemuxSeurat.wdl" as HtoDemuxSeurat
 import "modules/HtoDemuxKMeans.wdl" as HtoDemuxKMeans
 import "modules/Combine.wdl" as Combine
@@ -53,114 +48,24 @@ workflow Sharp {
 
         Int numExpectedCells
 
-        Int numCoresForCount
-
         File denseCountMatrix
 
         Boolean runSeuratDemux = false
+
+        Map[String, Int] resourceSpec
     }
 
-    # merge FASTQ R1
-    call MergeFastq.MergeFastq as MergeFastqR1 {
+    call Preprocess.Preprocess {
         input:
-            uriFastq = uriFastqR1,
+            uriFastqR1 = uriFastqR1,
+            uriFastqR2 = uriFastqR2,
+            lengthR1 = lengthR1,
+            lengthR2 = lengthR2,
             sampleName = sampleName,
-            readName = "R1"
-    }
-
-    # merge FASTQ R2
-    call MergeFastq.MergeFastq as MergeFastqR2 {
-        input:
-            uriFastq = uriFastqR2,
-            sampleName = sampleName,
-            readName = "R2"
-    }
-
-    # run FastQC R1
-    call FastQC.FastQC as FastQCR1 {
-        input:
-            fastqFile = MergeFastqR1.out
-    }
-
-    # run FastQC R2
-    call FastQC.FastQC as FastQCR2 {
-        input:
-            fastqFile = MergeFastqR2.out
-    }
-
-    # if InDrops v4
-    if (scRnaSeqPlatform == "in_drop_v4") {
-        # trim R1 (remove the middler spacer as well)
-        call CutInDropSpacer.CutInDropSpacer {
-            input:
-                fastq = MergeFastqR1.out,
-                outFileName = "R1.fastq.gz",
-                assayVersion = scRnaSeqPlatform
-        }
-    }
-
-    # if not InDrops v4
-    if (scRnaSeqPlatform != "in_drop_v4") {
-        # trim R1
-        call Cutadapt.Trim as TrimR1 {
-            input:
-                fastq = MergeFastqR1.out,
-                length = lengthR1,
-                outFileName = "R1.fastq.gz"
-        }
-    }
-
-    File trimR1 = select_first([CutInDropSpacer.outFile, TrimR1.outFile])
-
-    # trim R2
-    call Cutadapt.Trim as TrimR2 {
-        input:
-            fastq = MergeFastqR2.out,
-            length = lengthR2,
-            outFileName = "R2.fastq.gz"
-    }
-
-    # prepare cell barcode whitelist
-    if (cellBarcodeWhiteListMethod == "SeqcSparseCountsBarcodesCsv") {
-        # *_sparse_counts_barcodes.csv
-        call PrepCBWhitelist.WhitelistFromSeqcSparseBarcodes {
-            input:
-                csvFile = cellBarcodeWhitelistUri
-        }
-    }
-
-    if (cellBarcodeWhiteListMethod == "SeqcDenseCountsMatrixCsv") {
-        # *_dense.csv
-        call PrepCBWhitelist.WhitelistFromSeqcDenseMatrix {
-            input:
-                csvFile = cellBarcodeWhitelistUri
-        }
-    }
-
-    if (cellBarcodeWhiteListMethod == "BarcodeWhitelistCsv") {
-        # one barcode per line
-        call PrepCBWhitelist.NotImplemented
-    }
-
-    File cbWhitelistTemp = select_first([WhitelistFromSeqcSparseBarcodes.out, WhitelistFromSeqcDenseMatrix.out])
-
-    if (translate10XBarcodes == true) {
-        # do translation if necessary
-        call PrepCBWhitelist.Translate10XBarcodes {
-            input:
-                barcodesFile = cbWhitelistTemp
-        }
-    }
-
-    # pick translated version if available
-    File cbWhitelist = select_first([Translate10XBarcodes.out, cbWhitelistTemp])
-
-    # run CITE-seq-Count
-    call Count.CiteSeqCount {
-        input:
-            fastqR1 = trimR1,
-            fastqR2 = TrimR2.outFile,
-            cbWhiteList = cbWhitelist,
+            cellBarcodeWhitelistUri = cellBarcodeWhitelistUri,
+            cellBarcodeWhiteListMethod = cellBarcodeWhiteListMethod,
+            translate10XBarcodes = translate10XBarcodes,
+            scRnaSeqPlatform = scRnaSeqPlatform,
             tagList = hashTagList,
             cbStartPos = cbStartPos,
             cbEndPos = cbEndPos,
@@ -172,13 +77,15 @@ workflow Sharp {
             umiCollapsingDistance = umiCollapsingDistance,
             maxTagError = maxTagError,
             numExpectedCells = numExpectedCells,
-            numCores = numCoresForCount
+            denseCountMatrix = denseCountMatrix,
+            runSeuratDemux = runSeuratDemux,
+            resourceSpec = resourceSpec
     }
 
     # HTO demux using KMeans
     call HtoDemuxKMeans.HtoDemuxKMeans {
         input:
-            umiCountFiles = CiteSeqCount.outUmiCount
+            umiCountFiles = Preprocess.umiCountMatrix
     }
 
     # HTO demux using Seurat
@@ -186,7 +93,7 @@ workflow Sharp {
 
         call HtoDemuxSeurat.HtoDemuxSeurat {
             input:
-                umiCountFiles = CiteSeqCount.outUmiCount,
+                umiCountFiles = Preprocess.umiCountMatrix,
                 quantile = 0.99
         }
 
@@ -194,7 +101,7 @@ workflow Sharp {
         call HtoDemuxSeurat.CorrectFalsePositiveDoublets {
             input:
                 htoClassification = HtoDemuxSeurat.outClassCsv,
-                umiCountFiles = CiteSeqCount.outUmiCount
+                umiCountFiles = Preprocess.umiCountMatrix
         }
     }
 
@@ -207,12 +114,12 @@ workflow Sharp {
     }
 
     output {
-        File fastQCR1Html = FastQCR1.outHtml
-        File fastQCR2Html = FastQCR2.outHtml
+        File fastQCR1Html = Preprocess.fastQCR1Html
+        File fastQCR2Html = Preprocess.fastQCR2Html
 
-        File countReport = CiteSeqCount.outReport
-        Array[File] umiCountMatrix = CiteSeqCount.outUmiCount
-        Array[File] readCountMatrix = CiteSeqCount.outReadCount
+        File countReport = Preprocess.countReport
+        Array[File] umiCountMatrix = Preprocess.umiCountMatrix
+        Array[File] readCountMatrix = Preprocess.readCountMatrix
 
         File htoClassification = HtoDemuxKMeans.outClass
         File? htoClassification_Suppl1 = HtoDemuxSeurat.outClassCsv
