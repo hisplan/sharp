@@ -21,6 +21,9 @@
     "Sharp.cbCollapsingDistance": 1,
     "Sharp.umiCollapsingDistance": 1,
     "Sharp.numExpectedCells": 0,
-    "Sharp.numCoresForCount": 8,
-    "Sharp.denseCountMatrix": "s3://dp-lab-data/collaborators/arudensky/Il10_scRNAseq/IL10pos/seqc-results/1186_IL10pos_P163_IGO_09902_7_dense.csv"
+    "Sharp.denseCountMatrix": "s3://dp-lab-data/collaborators/arudensky/Il10_scRNAseq/IL10pos/seqc-results/1186_IL10pos_P163_IGO_09902_7_dense.csv",
+    "Sharp.resourceSpec": {
+        "cpu": 4,
+        "memory": 64
+    }
 }
