@@ -1,6 +1,6 @@
 # sharp
 
-A hashtag pipeline.
+A hashtag & CITE-seq pipeline.
 
 the sharp (♯) from musical notation similar to the hash (#) in hashtag.
 
@@ -73,7 +73,7 @@ Jupyter Notebook and Papermill are required.
 $ conda activate dev
 
 $ cd manual-inspection
-$ ./run.sh -k ~/secrets-aws.json -w 47080814-0fe7-458d-9edb-5e3cb86bf870
+$ ./run.sh -k ~/secrets-aws.json -t hashtag -w 47080814-0fe7-458d-9edb-5e3cb86bf870
 ```
 
 ## Unit Test
