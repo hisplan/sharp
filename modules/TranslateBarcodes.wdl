@@ -7,7 +7,7 @@ task Translate10XBarcodes {
         Array[File] readCountFiles
     }
 
-    String dockerImage = "hisplan/cromwell-hto-adt-postprocess:0.3.0"
+    String dockerImage = "hisplan/cromwell-hto-adt-postprocess:0.3.1"
     Int numCores = 1
     Float inputSize = size(umiCountFiles, "GiB") + size(readCountFiles, "GiB")
 
