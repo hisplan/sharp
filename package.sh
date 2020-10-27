@@ -1,6 +1,6 @@
 #!/bin/bash
 
-version="0.0.4"
+version="0.0.5-beta.1"
 
 #
 # package it and push it to AWS S3
@@ -22,7 +22,7 @@ echo "DONE."
 EOF
 
 tar cvzf ${path_workdir}/sharp-${version}.tar.gz \
-    submit.sh Sharp.wdl Sharp.deps.zip Sharp.options.aws.json
+    submit.sh Sharp.deps.zip Sharp.wdl Sharp.options.aws.json CiteSeq.wdl CiteSeq.options.aws.json
 
 aws s3 cp ${path_workdir}/sharp-${version}.tar.gz ${s3_dest}/
 aws s3 cp ${path_workdir}/install.sh ${s3_dest}/install-sharp-${version}.sh
