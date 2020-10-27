@@ -5,7 +5,7 @@
 ```bash
 $ docker run -it --rm \
     -v /Users/chunj/projects/sharp/scratch:/data/ \
-    cromwell-hto-adt-postprocess:0.3.0
+    cromwell-hto-adt-postprocess:0.3.1
 ```
 
 ```bash
