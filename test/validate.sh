@@ -3,7 +3,7 @@
 #hack: get dependency set up
 ln -s ../modules/ modules
 
-modules="Preprocess TranslateBarcodes QC CutInDropSpacer MergeFastq FastQC Cutadapt PrepCBWhitelist Count HtoDemuxSeurat HtoDemuxKMeans Combine"
+modules="ToAnnData Preprocess TranslateBarcodes QC CutInDropSpacer MergeFastq FastQC Cutadapt PrepCBWhitelist Count HtoDemuxSeurat HtoDemuxKMeans Combine"
 
 for module_name in $modules
 do
