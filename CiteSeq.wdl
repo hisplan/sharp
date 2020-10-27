@@ -1,6 +1,7 @@
 version 1.0
 
 import "modules/Preprocess.wdl" as Preprocess
+import "modules/ToAnnData.wdl" as ToAnnData
 
 workflow CiteSeq {
 
@@ -43,7 +44,7 @@ workflow CiteSeq {
         Int umiCollapsingDistance
         Int maxTagError = 2
 
-        Int numExpectedCells        
+        Int numExpectedCells
 
         File denseCountMatrix
 
@@ -79,6 +80,14 @@ workflow CiteSeq {
             resourceSpec = resourceSpec
     }
 
+    call ToAnnData.CiteSeqToAnnData {
+        input:
+            sampleName = sampleName,
+            tagList = tagList,
+            umiCountFiles = Preprocess.umiCountMatrix,
+            readCountFiles = Preprocess.readCountMatrix
+    }
+
     output {
         File fastQCR1Html = Preprocess.fastQCR1Html
         File fastQCR2Html = Preprocess.fastQCR2Html
@@ -86,5 +95,7 @@ workflow CiteSeq {
         File countReport = Preprocess.countReport
         Array[File] umiCountMatrix = Preprocess.umiCountMatrix
         Array[File] readCountMatrix = Preprocess.readCountMatrix
+
+        File adata = CiteSeqToAnnData.outAdata
     }
 }
