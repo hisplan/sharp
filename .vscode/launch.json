@@ -28,6 +28,20 @@
                 "--barcodes", "./tests/barcodes.tsv.gz",
                 "--10x-whitelist", "${workspaceFolder}/dockers/hto-adt-postprocess/data/3M-february-2018.txt.gz"
             ]
-        }        
+        },
+        {
+            "name": "Python: hto-adt-postprocess/citeseq_to_adata.py",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/dockers/hto-adt-postprocess/citeseq_to_adata.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/dockers/hto-adt-postprocess/tests/citeseq/",
+            "args": [
+                "--sample", "test",
+                "--tag-list", "tag-list.csv",
+                "--umi-counts", "umi-counts/",
+                "--read-counts", "read-counts/"
+            ]
+        }
     ]
 }
