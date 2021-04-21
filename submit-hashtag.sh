@@ -31,7 +31,7 @@ fi
 
 cromwell-tools submit \
     --secrets-file ${service_account_key} \
-    --wdl Sharp.wdl \
+    --wdl Hashtag.wdl \
     --deps-file Sharp.deps.zip \
     --inputs-files ${inputs_file} \
     --label-file ${labels_file} \

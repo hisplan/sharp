@@ -55,10 +55,24 @@ $ cat ~/secrets.json
 
 Finally, submit your job:
 
+### Hashtag
+
 ```bash
 conda activate cromwell
 
-./submit.sh \
+./submit-hashtag.sh \
+    -k ~/secrets-aws.json \
+    -i config/PBMC_v2_Meth_Hash_2_ADT.inputs.json \
+    -l config/PBMC_v2_Meth_Hash_2_ADT.labels.json \
+    -o Sharp.options.aws.json
+```
+
+### CITE-SEQ
+
+```bash
+conda activate cromwell
+
+./submit-citeseq.sh \
     -k ~/secrets-aws.json \
     -i config/PBMC_v2_Meth_Hash_2_ADT.inputs.json \
     -l config/PBMC_v2_Meth_Hash_2_ADT.labels.json \

@@ -1,6 +1,0 @@
-{
-    "write_to_cache": true,
-    "read_from_cache": true,
-    "monitoring_script": "s3://dp-lab-batch/monitoring.sh",
-    "workflow_failure_mode": "ContinueWhilePossible"
-}

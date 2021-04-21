@@ -24,7 +24,7 @@ echo "DONE."
 EOF
 
 tar cvzf ${path_workdir}/sharp-${version}.tar.gz \
-    submit-citeseq.sh submit-hashtag.sh Sharp.deps.zip Sharp.wdl Sharp.options.aws.json CiteSeq.wdl CiteSeq.options.aws.json
+    submit-hashtag.sh submit-citeseq.sh Sharp.deps.zip Hashtag.wdl CiteSeq.wdl Sharp.options.aws.json
 
 aws s3 cp ${path_workdir}/sharp-${version}.tar.gz ${s3_dest}/
 aws s3 cp ${path_workdir}/install.sh ${s3_dest}/install-sharp-${version}.sh
