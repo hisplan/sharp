@@ -8,7 +8,7 @@ workflow Count {
         File fastqR1
         File fastqR2
         File cbWhiteList
-        File hashTagList
+        File tagList
 
         # cellular barcode
         Int cbStartPos
@@ -29,6 +29,8 @@ workflow Count {
         Int maxTagError
 
         Int numExpectedCells
+
+        Map[String, Int] resourceSpec
     }
 
     call module.CiteSeqCount {
@@ -36,24 +38,24 @@ workflow Count {
             fastqR1 = fastqR1,
             fastqR2 = fastqR2,
             cbWhiteList = cbWhiteList,
-            hashTagList = hashTagList,
+            tagList = tagList,
             cbStartPos = cbStartPos,
             cbEndPos = cbEndPos,
             umiStartPos = umiStartPos,
             umiEndPos = umiEndPos,
             trimPos = trimPos,
-            slidingWindowSearch = slidingWindowSearch,            
+            slidingWindowSearch = slidingWindowSearch,
             cbCollapsingDistance = cbCollapsingDistance,
             umiCollapsingDistance = umiCollapsingDistance,
             maxTagError = maxTagError,
-            numExpectedCells = numExpectedCells
+            numExpectedCells = numExpectedCells,
+            resourceSpec = resourceSpec
     }
 
     output {
-        File outUmiDenseCount = CiteSeqCount.outUmiDenseCount
-        File outUnmapped = CiteSeqCount.outUnmapped
         File outReport = CiteSeqCount.outReport
-        File outUncorrected = CiteSeqCount.outUncorrected
+        File? outUnmapped = CiteSeqCount.outUnmapped
+        File? outUncorrected = CiteSeqCount.outUncorrected
 
         Array[File] outUmiCount = CiteSeqCount.outUmiCount
         Array[File] outReadCount = CiteSeqCount.outReadCount

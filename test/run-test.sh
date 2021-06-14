@@ -33,4 +33,5 @@ cromwell-tools submit \
     --wdl test.${module_name}.wdl \
     --inputs-files test.${module_name}.inputs.json \
     --deps-file ../Sharp.deps.zip \
-    --label-file test.labels.json
+    --label-file test.labels.json \
+    --options-file test.options.aws.json

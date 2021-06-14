@@ -1,6 +1,6 @@
 # sharp
 
-A hashtag pipeline.
+A hashtag & CITE-seq pipeline.
 
 the sharp (♯) from musical notation similar to the hash (#) in hashtag.
 
@@ -30,11 +30,13 @@ Explanation about the output:
 ## Setup
 
 ```bash
-aws s3 cp s3://dp-lab-home/software/install-sharp-0.0.4.sh - | bash
+aws s3 cp s3://dp-lab-home/software/install-sharp-0.0.5.sh - | bash
 ```
 
 ```
-$ conda create -n cromwell python=3.6.5 pip
+$ conda create -n cromwell python=3.7.7 pip
+$ conda activate cromwell
+$ conda install -c cyclus java-jre
 $ pip install cromwell-tools
 ```
 
@@ -53,10 +55,24 @@ $ cat ~/secrets.json
 
 Finally, submit your job:
 
+### Hashtag
+
 ```bash
 conda activate cromwell
 
-./submit.sh \
+./submit-hashtag.sh \
+    -k ~/secrets-aws.json \
+    -i config/PBMC_v2_Meth_Hash_2_ADT.inputs.json \
+    -l config/PBMC_v2_Meth_Hash_2_ADT.labels.json \
+    -o Sharp.options.aws.json
+```
+
+### CITE-SEQ
+
+```bash
+conda activate cromwell
+
+./submit-citeseq.sh \
     -k ~/secrets-aws.json \
     -i config/PBMC_v2_Meth_Hash_2_ADT.inputs.json \
     -l config/PBMC_v2_Meth_Hash_2_ADT.labels.json \
@@ -71,7 +87,7 @@ Jupyter Notebook and Papermill are required.
 $ conda activate dev
 
 $ cd manual-inspection
-$ ./run.sh -k ~/secrets-aws.json -w 47080814-0fe7-458d-9edb-5e3cb86bf870
+$ ./run.sh -k ~/secrets-aws.json -t hashtag -w 47080814-0fe7-458d-9edb-5e3cb86bf870
 ```
 
 ## Unit Test

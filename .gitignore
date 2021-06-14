@@ -3,5 +3,6 @@
 __pycache__
 temp/*
 scratch/*
-manual-inspection/data/*
+manual-inspection/hashtag/*
+manual-inspection/citeseq/*
 config/*

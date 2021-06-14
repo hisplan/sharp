@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/bin/bash -e
 
-version="0.0.4"
+version="0.0.5-beta.1"
 
 #
 # package it and push it to AWS S3
@@ -9,6 +9,8 @@ version="0.0.4"
 s3_dest="s3://dp-lab-home/software"
 
 path_workdir=`mktemp -d`
+
+echo $path_workdir
 
 # create installation script
 cat <<EOF > ${path_workdir}/install.sh
@@ -22,7 +24,7 @@ echo "DONE."
 EOF
 
 tar cvzf ${path_workdir}/sharp-${version}.tar.gz \
-    submit.sh Sharp.wdl Sharp.deps.zip Sharp.options.aws.json
+    submit-hashtag.sh submit-citeseq.sh Sharp.deps.zip Hashtag.wdl CiteSeq.wdl Sharp.options.aws.json
 
 aws s3 cp ${path_workdir}/sharp-${version}.tar.gz ${s3_dest}/
 aws s3 cp ${path_workdir}/install.sh ${s3_dest}/install-sharp-${version}.sh

@@ -6,7 +6,7 @@ task CiteSeqCount {
         File fastqR1
         File fastqR2
         File cbWhiteList
-        File hashTagList
+        File tagList
 
         # cellular barcode
         Int cbStartPos
@@ -29,20 +29,24 @@ task CiteSeqCount {
 
         Int numExpectedCells
 
-        Int numCores
+        Map[String, Int] resourceSpec
     }
 
+    # String dockerImage = "hisplan/cromwell-cite-seq-count:1.5.0-feature-barcode_translation"
     String dockerImage = "hisplan/cromwell-cite-seq-count:1.4.2-develop"
-    Float inputSize = size(fastqR1, "GiB") + size(fastqR2, "GiB")
+    Float inputSize = size(fastqR1, "GiB") + size(fastqR2, "GiB") + size(cbWhiteList, "GiB") + size(tagList, "GiB")
 
     # https://hoohm.github.io/CITE-seq-Count/Running-the-script/
     command <<<
         set -euo pipefail
 
+        # preserve one core for the main process just in case
+        let n_threads=~{resourceSpec["cpu"]}-1
+
         CITE-seq-Count \
             -R1 ~{fastqR1} \
             -R2 ~{fastqR2} \
-            --tags ~{hashTagList} \
+            --tags ~{tagList} \
             -cbf ~{cbStartPos} -cbl ~{cbEndPos} \
             -umif ~{umiStartPos} -umil ~{umiEndPos} \
             --bc_collapsing_dist ~{cbCollapsingDistance} \
@@ -52,13 +56,12 @@ task CiteSeqCount {
             --expected_cells ~{numExpectedCells} \
             --whitelist ~{cbWhiteList} \
             --output results \
-            --dense \
             --unmapped-tags unmapped.csv \
-            --threads ~{numCores}
+            --threads ${n_threads}
     >>>
 
     output {
-        File outUmiDenseCount = "results/dense_umis.tsv"
+        # File outUmiDenseCount = "results/dense_umis.tsv"
         File outUnmapped = "results/unmapped.csv"
         File outReport = "results/run_report.yaml"
         File outUncorrected = "results/uncorrected_cells/dense_umis.tsv"
@@ -69,10 +72,10 @@ task CiteSeqCount {
 
     runtime {
         docker: dockerImage
-        disks: "local-disk " + ceil(10 * (if inputSize < 1 then 10 else inputSize )) + " HDD"
-        cpu: numCores
-        memory: "32 GB"
-        preemptible: 0
+        # disks: "local-disk " + ceil(10 * (if inputSize < 1 then 10 else inputSize )) + " HDD"
+        cpu: resourceSpec["cpu"]
+        memory: resourceSpec["memory"] + " GB"
+        # preemptible: 0
     }
 
 }

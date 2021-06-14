@@ -8,7 +8,7 @@ task HashedCountMatrix {
         Boolean translate10XBarcodes
     }
 
-    String dockerImage = "hisplan/cromwell-hashed-count-matrix:0.2.0"
+    String dockerImage = "hisplan/cromwell-hto-adt-postprocess:0.3.1"
     Int numCores = 1
     Float inputSize = size(denseCountMatrix, "GiB") + size(htoClassification, "GiB")
 

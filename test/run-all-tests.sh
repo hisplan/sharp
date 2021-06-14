@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-modules="QC CutInDropSpacer MergeFastq FastQC Cutadapt PrepCBWhitelist Count HtoDemuxSeurat HtoDemuxKMeans Combine"
+modules="ToAnnData Preprocess TranslateBarcodes QC CutInDropSpacer MergeFastq FastQC Cutadapt PrepCBWhitelist Count HtoDemuxSeurat HtoDemuxKMeans Combine"
 
 for module_name in $modules
 do

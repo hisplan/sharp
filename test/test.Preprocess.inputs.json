@@ -1,0 +1,30 @@
+{
+    "Preprocess.uriFastqR1": [
+        "s3://dp-lab-data/sc-seq/Project_11244/CS1429a_T_1_CD45pos_citeseq_2_CITE/FASTQ/CS1429a_T_1_CD45pos_citeseq_2_CITE_IGO_11244_16_S2_R1_001.fastq.gz"
+    ],
+    "Preprocess.uriFastqR2": [
+        "s3://dp-lab-data/sc-seq/Project_11244/CS1429a_T_1_CD45pos_citeseq_2_CITE/FASTQ/CS1429a_T_1_CD45pos_citeseq_2_CITE_IGO_11244_16_S2_R2_001.fastq.gz"
+    ],
+    "Preprocess.sampleName": "2091_CS1429a_T_1_CD45pos_citeseq_2_CITE",
+    "Preprocess.scRnaSeqPlatform": "10x_v3",
+    "Preprocess.lengthR1": 28,
+    "Preprocess.lengthR2": 15,
+    "Preprocess.cellBarcodeWhitelistUri": "s3://dp-lab-data/SCRI_Projects/HTAN_CITEseq/CS1429a_T_1_CD45pos_citeseq_2/seqc-results/2091_CS1429a_T_1_CD45pos_citeseq_2_IGO_11242_14_dense.csv",
+    "Preprocess.cellBarcodeWhiteListMethod": "SeqcDenseCountsMatrixCsv",
+    "Preprocess.tagList": "s3://dp-lab-data/sc-seq/Project_11244/CS1429a_T_1_CD45pos_citeseq_2_CITE/Hashtag_results/tag-list.csv",
+    "Preprocess.cbStartPos": 1,
+    "Preprocess.cbEndPos": 16,
+    "Preprocess.umiStartPos": 17,
+    "Preprocess.umiEndPos": 28,
+    "Preprocess.trimPos": 0,
+    "Preprocess.slidingWindowSearch": false,
+    "Preprocess.translate10XBarcodes": false,
+    "Preprocess.cbCollapsingDistance": 1,
+    "Preprocess.umiCollapsingDistance": 1,
+    "Preprocess.numExpectedCells": 0,
+    "Preprocess.denseCountMatrix": "s3://dp-lab-data/SCRI_Projects/HTAN_CITEseq/CS1429a_T_1_CD45pos_citeseq_2/seqc-results/2091_CS1429a_T_1_CD45pos_citeseq_2_IGO_11242_14_dense.csv",
+    "Preprocess.resourceSpec": {
+        "cpu": 4,
+        "memory": 64
+    }
+}

@@ -1,17 +1,20 @@
 {
-    "Count.fastqR1": "s3://dp-lab-batch/cromwell-execution/Sharp/73cab1fb-c253-4c1a-ac27-e1044a9c7202/call-TrimR1/R1.fastq.gz",
-    "Count.fastqR2": "s3://dp-lab-batch/cromwell-execution/Sharp/73cab1fb-c253-4c1a-ac27-e1044a9c7202/call-TrimR2/R2.fastq.gz",
-    "Count.cbWhiteList": "s3://dp-lab-test/hashtag/7xNK/mapped-whitelist.txt",
-    "Count.hashTagList": "s3://dp-lab-data/collaborators/hsuk/7xNK/HD1915_7xNK_FB_HTO/Hashtag_results/tag-list.csv",
+    "Count.fastqR1": "s3://dp-lab-batch/cromwell-execution/Sharp/84e2795c-c927-41d4-a5c2-86429eca6060/call-CutInDropSpacer/R1.fastq.gz",
+    "Count.fastqR2": "s3://dp-lab-batch/cromwell-execution/Sharp/84e2795c-c927-41d4-a5c2-86429eca6060/call-TrimR2/R2.fastq.gz",
+    "Count.cbWhiteList": "s3://dp-lab-batch/cromwell-execution/Sharp/84e2795c-c927-41d4-a5c2-86429eca6060/call-WhitelistFromSeqcDenseMatrix/cb-whitelist.txt",
+    "Count.tagList": "s3://dp-lab-data/sc-seq/Project_11244/Adeno_fixed_InDrop2_2_HTO/Hashtag_results/tag-list.csv",
     "Count.cbStartPos": 1,
     "Count.cbEndPos": 16,
     "Count.umiStartPos": 17,
-    "Count.umiEndPos": 28,
-    "Count.trimPos": 10,
+    "Count.umiEndPos": 24,
+    "Count.trimPos": 1,
     "Count.slidingWindowSearch": false,
     "Count.cbCollapsingDistance": 1,
     "Count.umiCollapsingDistance": 1,
     "Count.maxTagError": 2,
     "Count.numExpectedCells": 0,
-    "Count.CiteSeqCount.numCores": 8
+    "Count.resourceSpec": {
+        "cpu": 4,
+        "memory": 64
+    }
 }

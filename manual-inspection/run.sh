@@ -7,15 +7,17 @@ usage()
 cat << EOF
 USAGE: `basename $0` [options]
     -k  service account key (e.g. secrets.json)
+    -t  type ('hashtag' or 'citeseq')
     -w  workflow ID
     -s  skip download and use the pre-downloaded data
 EOF
 }
 
-while getopts "k:w:sh" OPTION
+while getopts "k:t:w:sh" OPTION
 do
     case $OPTION in
         k) service_account_key=$OPTARG ;;
+        t) type=$OPTARG ;;
         w) workflow_id=$OPTARG ;;
         s) skip_download="True" ;;
         h) usage; exit 1 ;;
@@ -29,14 +31,20 @@ then
     exit 1
 fi
 
-path_base_data="./data"
+if [ "$type" != "hashtag" ] && [ "$type" != "citeseq" ]
+then
+    usage
+    exit 1
+fi
+
+path_base_data="./${type}"
 
 mkdir -p ${path_base_data}
 
 temp_file=`uuidgen`.ipynb
 
 # run download.ipynb to download necessary data
-papermill download.ipynb ${temp_file} \
+papermill download-${type}.ipynb ${temp_file} \
     --parameters workflow_id ${workflow_id} \
     --parameters path_secrets_file ${service_account_key} \
     --parameters path_base_data ${path_base_data} \
@@ -56,7 +64,7 @@ path_out="${path_base_data}/${sample_name}/${workflow_id}"
 cp dna3bit.py ${path_out}/
 
 # run inspect.ipynb to inspect data
-papermill inspect.ipynb ${path_out}/automated-inspection-outputs.ipynb \
+papermill inspect-${type}.ipynb ${path_out}/automated-inspection-outputs.ipynb \
     --cwd ${path_out} \
     --parameters workflow_id ${workflow_id} \
     --parameters sample_name ${sample_name} \

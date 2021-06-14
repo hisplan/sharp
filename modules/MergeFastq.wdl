@@ -9,9 +9,10 @@ task MergeFastq {
         String readName
     }
 
+    Int numFastq = length(uriFastq)
     String dockerImage = "ubuntu:18.04"
     Int numCores = 2
-    # Float inputSize = size(input_fastq1, "GiB") + size(input_fastq2, "GiB") + size(input_reference, "GiB")
+    Float inputSize = size(uriFastq, "GiB")
 
     command <<<
         set -euo pipefail
@@ -24,15 +25,21 @@ task MergeFastq {
 
         echo "${path_out}"
 
-        # gunzip and concatenate
-        for filename in $filenames
-        do
-            echo "$filename > ${path_out}"
-            gunzip -c ${filename} >> ${path_out}
-        done
+        if [ ~{numFastq} -eq 1 ]
+        then
+            # single file, no need to merge
+            cp ${filenames} ${path_out}.gz
+        else
+            # gunzip and concatenate
+            for filename in $filenames
+            do
+                echo "$filename > ${path_out}"
+                gunzip -c ${filename} >> ${path_out}
+            done
 
-        # gzip
-        gzip ${path_out}
+            # gzip
+            gzip ${path_out}
+        fi
     >>>
 
     output {
@@ -41,7 +48,6 @@ task MergeFastq {
 
     runtime {
         docker: dockerImage
-        # disks: "local-disk 500 HDD"
         # disks: "local-disk " + ceil(5 * (if inputSize < 1 then 1 else inputSize )) + " HDD"
         cpu: numCores
         memory: "8 GB"
