@@ -6,7 +6,7 @@ task WhitelistFromSeqcSparseBarcodes {
         File csvFile
     }
 
-    String dockerImage = "hisplan/cromwell-seqc:0.2.5"
+    String dockerImage = "hisplan/cromwell-seqc:0.2.7"
     Int numCores = 1
     Float inputSize = size(csvFile, "GiB")
 
@@ -39,9 +39,9 @@ task WhitelistFromSeqcSparseBarcodes {
 
     runtime {
         docker: dockerImage
-        disks: "local-disk " + ceil(5 * (if inputSize < 1 then 1 else inputSize )) + " HDD"
+        disks: "local-disk " + ceil(5 * (if inputSize < 1 then 50 else inputSize )) + " HDD"
         cpu: numCores
-        memory: "16 GB"
+        memory: "32 GB"
     }
 }
 
@@ -51,7 +51,7 @@ task WhitelistFromSeqcDenseMatrix {
         File csvFile
     }
 
-    String dockerImage = "hisplan/cromwell-seqc:0.2.5"
+    String dockerImage = "hisplan/cromwell-seqc:0.2.7"
     Int numCores = 1
     Float inputSize = size(csvFile, "GiB")
 
@@ -85,9 +85,9 @@ task WhitelistFromSeqcDenseMatrix {
 
     runtime {
         docker: dockerImage
-        disks: "local-disk " + ceil(5 * (if inputSize < 1 then 1 else inputSize )) + " HDD"
+        disks: "local-disk " + ceil(5 * (if inputSize < 1 then 50 else inputSize )) + " HDD"
         cpu: numCores
-        memory: "16 GB"
+        memory: "32 GB"
     }
 }
 
@@ -99,6 +99,7 @@ task Translate10XBarcodes {
 
     String dockerImage = "hisplan/cromwell-seqc-utils:0.4.8"
     Int numCores = 1
+    Float inputSize = size(barcodesFile, "GiB")
 
     command <<<
         set -euo pipefail
@@ -114,7 +115,7 @@ task Translate10XBarcodes {
 
     runtime {
         docker: dockerImage
-        disks: "local-disk 200 HDD"
+        disks: "local-disk " + ceil(5 * (if inputSize < 1 then 50 else inputSize )) + " HDD"
         cpu: numCores
         memory: "4 GB"
     }
