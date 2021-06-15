@@ -31,6 +31,8 @@ workflow Count {
         Int numExpectedCells
 
         Map[String, Int] resourceSpec
+
+        String version
     }
 
     call module.CiteSeqCount {
@@ -49,7 +51,8 @@ workflow Count {
             umiCollapsingDistance = umiCollapsingDistance,
             maxTagError = maxTagError,
             numExpectedCells = numExpectedCells,
-            resourceSpec = resourceSpec
+            resourceSpec = resourceSpec,
+            version = version
     }
 
     output {

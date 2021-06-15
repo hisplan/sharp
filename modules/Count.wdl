@@ -30,10 +30,11 @@ task CiteSeqCount {
         Int numExpectedCells
 
         Map[String, Int] resourceSpec
+
+        String version = "1.4.2-develop"
     }
 
-    # String dockerImage = "hisplan/cromwell-cite-seq-count:1.5.0-feature-barcode_translation"
-    String dockerImage = "hisplan/cromwell-cite-seq-count:1.4.2-develop"
+    String dockerImage = "hisplan/cromwell-cite-seq-count:" + version    
     Float inputSize = size(fastqR1, "GiB") + size(fastqR2, "GiB") + size(cbWhiteList, "GiB") + size(tagList, "GiB")
 
     # https://hoohm.github.io/CITE-seq-Count/Running-the-script/
