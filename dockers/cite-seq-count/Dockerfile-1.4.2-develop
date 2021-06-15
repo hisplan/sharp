@@ -14,6 +14,3 @@ RUN cd /tmp \
     && tar xvzf ${CITE_SEQ_COUNT_VERSION}.tar.gz \
     && cd CITE-seq-Count-${CITE_SEQ_COUNT_VERSION} \
     && pip3 install .
-
-# ENTRYPOINT ["/usr/local/bin/cutadapt"]
-# CMD ["--help"]
