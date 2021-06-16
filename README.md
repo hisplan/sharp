@@ -62,8 +62,8 @@ conda activate cromwell
 
 ./submit-hashtag.sh \
     -k ~/secrets-aws.json \
-    -i config/PBMC_v2_Meth_Hash_2_ADT.inputs.json \
-    -l config/PBMC_v2_Meth_Hash_2_ADT.labels.json \
+    -i configs/PBMC_v2_Meth_Hash_2_ADT.inputs.json \
+    -l configs/PBMC_v2_Meth_Hash_2_ADT.labels.json \
     -o Sharp.options.aws.json
 ```
 
@@ -74,8 +74,8 @@ conda activate cromwell
 
 ./submit-citeseq.sh \
     -k ~/secrets-aws.json \
-    -i config/PBMC_v2_Meth_Hash_2_ADT.inputs.json \
-    -l config/PBMC_v2_Meth_Hash_2_ADT.labels.json \
+    -i configs/PBMC_v2_Meth_Hash_2_ADT.inputs.json \
+    -l configs/PBMC_v2_Meth_Hash_2_ADT.labels.json \
     -o Sharp.options.aws.json
 ```
 
