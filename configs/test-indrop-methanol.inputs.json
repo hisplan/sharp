@@ -1,0 +1,30 @@
+{
+    "Sharp.uriFastqR1": [
+        "s3://dp-lab-home/chunj/indrop-trim-R1-2000.fastq.gz"
+    ],
+    "Sharp.uriFastqR2": [
+        "s3://dp-lab-home/chunj/indrop-trim-R2-2000.fastq.gz"
+    ],
+    "Sharp.sampleName": "1687_LX33_1_4_1_HTO",
+    "Sharp.lengthR1": 24,
+    "Sharp.lengthR2": 9,
+    "Sharp.cellBarcodeWhitelistUri": "s3://dp-lab-data/SCRI_Projects/Preservation/LX33_1_4_1/seqc-results/1687_LX33_1_4_1_IGO_10298_B_32_dense.csv",
+    "Sharp.cellBarcodeWhiteListMethod": "SeqcDenseCountsMatrixCsv",
+    "Sharp.translate10XBarcodes": false,
+    "Sharp.scRnaSeqPlatform": "in_drop_v4",
+    "Sharp.hashTagList": "s3://dp-lab-data/sc-seq/Project_10298_C/LX33_1_4_1_HTO/Hashtag_results/tag-list.csv",
+    "Sharp.cbStartPos": 1,
+    "Sharp.cbEndPos": 16,
+    "Sharp.umiStartPos": 17,
+    "Sharp.umiEndPos": 24,
+    "Sharp.trimPos": 1,
+    "Sharp.slidingWindowSearch": false,
+    "Sharp.cbCollapsingDistance": 1,
+    "Sharp.umiCollapsingDistance": 1,
+    "Sharp.numExpectedCells": 0,
+    "Sharp.denseCountMatrix": "s3://dp-lab-data/SCRI_Projects/Preservation/LX33_1_4_1/seqc-results/1687_LX33_1_4_1_IGO_10298_B_32_dense.csv",
+    "Sharp.resourceSpec": {
+        "cpu": 32,
+        "memory": 64
+    }
+}

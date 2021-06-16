@@ -1,0 +1,29 @@
+{
+    "Sharp.uriFastqR1": [
+        "s3://dp-lab-data/collaborators/arudensky/Il10_scRNAseq/IL10pos_HTO/FASTQ/1186_IL10pos_HTO_IGO_10034_22_S1_L001_R1_001.fastq.gz",
+        "s3://dp-lab-data/collaborators/arudensky/Il10_scRNAseq/IL10pos_HTO/FASTQ/1186_IL10pos_HTO_IGO_10034_22_S1_L002_R1_001.fastq.gz"
+    ],
+    "Sharp.uriFastqR2": [
+        "s3://dp-lab-data/collaborators/arudensky/Il10_scRNAseq/IL10pos_HTO/FASTQ/1186_IL10pos_HTO_IGO_10034_22_S1_L001_R2_001.fastq.gz",
+        "s3://dp-lab-data/collaborators/arudensky/Il10_scRNAseq/IL10pos_HTO/FASTQ/1186_IL10pos_HTO_IGO_10034_22_S1_L002_R2_001.fastq.gz"
+    ],
+    "Sharp.sampleName": "IL10pos_HTO_IGO_10034_22_S1",
+    "Sharp.lengthR1": 28,
+    "Sharp.lengthR2": 15,
+    "Sharp.cellBarcodeWhitelistUri": "s3://dp-lab-data/collaborators/arudensky/Il10_scRNAseq/IL10pos/seqc-results/1186_IL10pos_P163_IGO_09902_7_dense.csv",
+    "Sharp.cellBarcodeWhiteListMethod": "SeqcDenseCountsMatrixCsv",
+    "Sharp.translate10XBarcodes": false,
+    "Sharp.hashTagList": "s3://dp-lab-data/collaborators/arudensky/Il10_scRNAseq/IL10pos_HTO/Hashtag_results/tag-list.csv",
+    "Sharp.cbStartPos": 1,
+    "Sharp.cbEndPos": 16,
+    "Sharp.umiStartPos": 17,
+    "Sharp.umiEndPos": 28,
+    "Sharp.cbCollapsingDistance": 1,
+    "Sharp.umiCollapsingDistance": 1,
+    "Sharp.numExpectedCells": 0,
+    "Sharp.denseCountMatrix": "s3://dp-lab-data/collaborators/arudensky/Il10_scRNAseq/IL10pos/seqc-results/1186_IL10pos_P163_IGO_09902_7_dense.csv",
+    "Sharp.resourceSpec": {
+        "cpu": 4,
+        "memory": 64
+    }
+}
