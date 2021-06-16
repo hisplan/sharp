@@ -1,9 +1,0 @@
-{
-    "pipelineType": "Sharp",
-    "project": "Project 192",
-    "sample": "1906_shK_052720_HTO",
-    "owner": "chunj",
-    "destination": "s3://dp-lab-test/",
-    "transfer": "skip",
-    "comment": "DEV/TEST"
-}

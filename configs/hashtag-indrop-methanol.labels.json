@@ -3,7 +3,7 @@
     "project": "Project 168",
     "sample": "1687_LX33_1_4_1_HTO",
     "owner": "masilioi",
-    "destination": "s3://dp-lab-data/sc-seq/Project_10298_C/LX33_1_4_1_HTO/Hashtag_results/",
+    "destination": "s3://dp-lab-test/sharp/hashtag/indrop-methanol/",
     "transfer": "-",
-    "comment": "test-indrop-methanol"
+    "comment": "InDrop Methanol"
 }

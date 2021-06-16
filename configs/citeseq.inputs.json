@@ -1,0 +1,36 @@
+{
+    "CiteSeq.uriFastqR1": [
+        "s3://dp-lab-data/sc-seq/Project_11242/CS1429a_T_1_CD45pos_citeseq_1_CITE/CS1429a_T_1_CD45pos_citeseq_1_CITE_IGO_11242_11_S17_L001_R1_001.fastq.gz",
+        "s3://dp-lab-data/sc-seq/Project_11242/CS1429a_T_1_CD45pos_citeseq_1_CITE/CS1429a_T_1_CD45pos_citeseq_1_CITE_IGO_11242_11_S17_L002_R1_001.fastq.gz",
+        "s3://dp-lab-data/sc-seq/Project_11242/CS1429a_T_1_CD45pos_citeseq_1_CITE/FASTQ/2090_CS1429a_T_1_CD45pos_citeseq_1_CITE_IGO_11242_11_S17_L001_R1_001.fastq.gz",
+        "s3://dp-lab-data/sc-seq/Project_11242/CS1429a_T_1_CD45pos_citeseq_1_CITE/FASTQ/2090_CS1429a_T_1_CD45pos_citeseq_1_CITE_IGO_11242_11_S17_L002_R1_001.fastq.gz"
+    ],
+    "CiteSeq.uriFastqR2": [
+        "s3://dp-lab-data/sc-seq/Project_11242/CS1429a_T_1_CD45pos_citeseq_1_CITE/CS1429a_T_1_CD45pos_citeseq_1_CITE_IGO_11242_11_S17_L001_R2_001.fastq.gz",
+        "s3://dp-lab-data/sc-seq/Project_11242/CS1429a_T_1_CD45pos_citeseq_1_CITE/CS1429a_T_1_CD45pos_citeseq_1_CITE_IGO_11242_11_S17_L002_R2_001.fastq.gz",
+        "s3://dp-lab-data/sc-seq/Project_11242/CS1429a_T_1_CD45pos_citeseq_1_CITE/FASTQ/2090_CS1429a_T_1_CD45pos_citeseq_1_CITE_IGO_11242_11_S17_L001_R2_001.fastq.gz",
+        "s3://dp-lab-data/sc-seq/Project_11242/CS1429a_T_1_CD45pos_citeseq_1_CITE/FASTQ/2090_CS1429a_T_1_CD45pos_citeseq_1_CITE_IGO_11242_11_S17_L002_R2_001.fastq.gz"
+    ],
+    "CiteSeq.sampleName": "2090_CS1429a_T_1_CD45pos_citeseq_1_CITE",
+    "CiteSeq.scRnaSeqPlatform": "10x_v3",
+    "CiteSeq.lengthR1": 28,
+    "CiteSeq.lengthR2": 15,
+    "CiteSeq.cellBarcodeWhitelistUri": "s3://dp-lab-data/SCRI_Projects/HTAN_CITEseq/CS1429a_T_1_CD45pos_citeseq_1/seqc-results/2090_CS1429a_T_1_CD45pos_citeseq_1_IGO_11244_17_dense.csv",
+    "CiteSeq.cellBarcodeWhiteListMethod": "SeqcDenseCountsMatrixCsv",
+    "CiteSeq.tagList": "s3://dp-lab-data/sc-seq/Project_11242/CS1429a_T_1_CD45pos_citeseq_1_CITE/Hashtag_results/tag-list.csv",
+    "CiteSeq.cbStartPos": 1,
+    "CiteSeq.cbEndPos": 16,
+    "CiteSeq.umiStartPos": 17,
+    "CiteSeq.umiEndPos": 28,
+    "CiteSeq.trimPos": 0,
+    "CiteSeq.slidingWindowSearch": false,
+    "CiteSeq.translate10XBarcodes": false,
+    "CiteSeq.cbCollapsingDistance": 1,
+    "CiteSeq.umiCollapsingDistance": 1,
+    "CiteSeq.numExpectedCells": 0,
+    "CiteSeq.denseCountMatrix": "s3://dp-lab-data/SCRI_Projects/HTAN_CITEseq/CS1429a_T_1_CD45pos_citeseq_1/seqc-results/2090_CS1429a_T_1_CD45pos_citeseq_1_IGO_11244_17_dense.csv",
+    "CiteSeq.resourceSpec": {
+        "cpu": 4,
+        "memory": 64
+    }
+}
