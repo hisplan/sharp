@@ -5,6 +5,7 @@ import "FastQC.wdl" as FastQC
 import "Cutadapt.wdl" as Cutadapt
 import "CutInDropSpacer.wdl" as CutInDropSpacer
 import "PrepCBWhitelist.wdl" as PrepCBWhitelist
+import "CountReads.wdl" as CountReads
 import "Count.wdl" as Count
 
 workflow Preprocess {
@@ -55,6 +56,10 @@ workflow Preprocess {
         File denseCountMatrix
 
         Boolean runSeuratDemux = false
+    }
+
+    parameter_meta {
+        resourceSpec: { help: "memory <= 0 means it will computes required memory for CITE-seq-Count"}
     }
 
     # merge FASTQ R1
@@ -152,6 +157,20 @@ workflow Preprocess {
     # pick translated version if available
     File cbWhitelist = select_first([Translate10XBarcodes.out, cbWhitelistTemp])
 
+    call CountReads.CountReads {
+        input:
+            fastq = trimR1
+    }
+
+    # auto compute memory requirement using the number of reads if memory specified <= 0
+    if (resourceSpec["memory"] <= 0) {
+        # 192 GB if more than 150M reads
+        #  64 GB otherwise
+        Int memoryComputed = if (CountReads.numOfReads > 150000000) then 192 else 64
+    }
+
+    Int memoryRequirement = select_first([memoryComputed, resourceSpec["memory"]])
+
     # run CITE-seq-Count
     call Count.CiteSeqCount {
         input:
@@ -169,7 +188,10 @@ workflow Preprocess {
             umiCollapsingDistance = umiCollapsingDistance,
             maxTagError = maxTagError,
             numExpectedCells = numExpectedCells,
-            resourceSpec = resourceSpec
+            resourceSpec = {
+                "cpu": resourceSpec["cpu"],
+                "memory": memoryRequirement
+            }
     }
 
     output {
