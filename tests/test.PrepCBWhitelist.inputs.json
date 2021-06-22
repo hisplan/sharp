@@ -1,0 +1,4 @@
+{
+    "PrepCBWhitelist.inputFile": "s3://dp-lab-data/collaborators/tammela/KP_Sarcoma/PDX_RPS8370_MFHX0010a/seqc-results/2623_PDX_RPS8370_MFHX0010a_IGO_12068_7_dense.csv",
+    "PrepCBWhitelist.method": "SeqcDenseCountsMatrixCsv"
+}

@@ -1,0 +1,21 @@
+{
+    "Count.fastqR1": "s3://dp-lab-gwf-core/cromwell-execution/Sharp/990ac93d-b091-4cba-98e5-da1454fd4f1e/call-Preprocess/Preprocess/d8d78e5f-7180-420b-882a-c173b54e6f2c/call-TrimR1/R1.fastq.gz",
+    "Count.fastqR2": "s3://dp-lab-gwf-core/cromwell-execution/Sharp/990ac93d-b091-4cba-98e5-da1454fd4f1e/call-Preprocess/Preprocess/d8d78e5f-7180-420b-882a-c173b54e6f2c/call-TrimR2/R2.fastq.gz",
+    "Count.cbWhiteList": "s3://dp-lab-gwf-core/cromwell-execution/Sharp/990ac93d-b091-4cba-98e5-da1454fd4f1e/call-Preprocess/Preprocess/d8d78e5f-7180-420b-882a-c173b54e6f2c/call-WhitelistFromSeqcDenseMatrix/cacheCopy/cb-whitelist.txt",
+    "Count.tagList": "s3://dp-lab-data/sc-seq/Project_12068/Pool_1_HTO/Hashtag_results/tag-list.csv",
+    "Count.cbStartPos": 1,
+    "Count.cbEndPos": 16,
+    "Count.umiStartPos": 17,
+    "Count.umiEndPos": 28,
+    "Count.trimPos": 0,
+    "Count.slidingWindowSearch": false,
+    "Count.cbCollapsingDistance": 1,
+    "Count.umiCollapsingDistance": 1,
+    "Count.maxTagError": 2,
+    "Count.numExpectedCells": 0,
+    "Count.resourceSpec": {
+        "cpu": 16,
+        "memory": 64
+    },
+    "Count.version": "1.4.2-develop"
+}

@@ -1,30 +1,25 @@
 #!/usr/bin/env bash
 
-# 10x v3 / TotalSeq-A
+echo ">> 10x v3 / TotalSeq-A"
 java -jar ~/Applications/womtool.jar \
     validate \
     Hashtag.wdl \
-    --inputs ./config/IL10neg.inputs.json
+    --inputs ./configs/hashtag-10x-v3-totalseq-A.inputs.json
 
+echo ">> 10x v3 / TotalSeq-B barcode translation"
 java -jar ~/Applications/womtool.jar \
     validate \
     Hashtag.wdl \
-    --inputs ./config/IL10pos.inputs.json
+    --inputs ./configs/hashtag-10x-v3-totalseq-B.inputs.json
 
-# indrop
+echo ">> InDrop Methanol"
 java -jar ~/Applications/womtool.jar \
     validate \
     Hashtag.wdl \
-    --inputs ./config/test-indrop-methanol.inputs.json
+    --inputs ./configs/hashtag-indrop-methanol.inputs.json
 
-# 10x v3 / TotalSeq-B barcode translation
-java -jar ~/Applications/womtool.jar \
-    validate \
-    Hashtag.wdl \
-    --inputs ./config/1973_HD1915_7xNK_FB_HTO.inputs.json
-
-# cite-seq
+echo ">> CITE-seq"
 java -jar ~/Applications/womtool.jar \
     validate \
     CiteSeq.wdl \
-    --inputs ./config/2091_CS1429a_T_1_CD45pos_citeseq_2_CITE.inputs.json
+    --inputs ./configs/citeseq.inputs.json

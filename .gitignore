@@ -5,4 +5,5 @@ temp/*
 scratch/*
 manual-inspection/hashtag/*
 manual-inspection/citeseq/*
-config/*
+configs/archive/*
+configs/sanity-check/*

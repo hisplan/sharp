@@ -1,0 +1,9 @@
+{
+    "pipelineType": "Sharp",
+    "project": "Project 10034",
+    "sample": "IL10pos",
+    "owner": "chunj",
+    "destination": "s3://dp-lab-test/sharp/hashtag/10x-v3-totalseq-A/",
+    "transfer": "-",
+    "comment": "10x v3 TotalSeq-A"    
+}

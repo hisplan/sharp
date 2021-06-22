@@ -1,0 +1,3 @@
+{
+    "CountReads.fastq": "s3://dp-lab-gwf-core/cromwell-execution/Sharp/9871b993-8312-4007-8252-50d88958d03f/call-Preprocess/Preprocess/6881e065-5aa9-410d-8929-3d985aea7f70/call-TrimR1/cacheCopy/R1.fastq.gz"
+}
