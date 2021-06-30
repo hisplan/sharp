@@ -27,5 +27,6 @@
     "Sharp.resourceSpec": {
         "cpu": 32,
         "memory": 64
-    }
+    },
+    "Sharp.demuxMode": 3
 }
