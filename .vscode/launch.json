@@ -5,6 +5,20 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Python: hto-demux-kmeans/demux_kmeans.py",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/dockers/hto-demux-kmeans/demux_kmeans.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/dockers/hto-demux-kmeans/",
+            "args": [
+                // "--hto-umi-count-dir", "../../scratch/umi_count/",
+                "--hto-umi-count-dir", "/Users/chunj/projects/sharp/manual-inspection/hashtag/2537_CellLines/67179a12-baeb-4a31-95a3-ff861aeb2963/umis/",
+                "--mode", "3",
+                "--min-count", "0",
+            ]
+        },        
+        {
             "name": "Python: hto-adt-postprocess/combine.py",
             "type": "python",
             "request": "launch",
