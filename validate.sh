@@ -23,3 +23,9 @@ java -jar ~/Applications/womtool.jar \
     validate \
     CiteSeq.wdl \
     --inputs ./configs/citeseq.inputs.json
+
+echo ">> CellPlex"
+java -jar ~/Applications/womtool.jar \
+    validate \
+    Hashtag.wdl \
+    --inputs ./configs/cellplex.inputs.json
