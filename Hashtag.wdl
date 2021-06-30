@@ -51,8 +51,14 @@ workflow Sharp {
         File denseCountMatrix
 
         Boolean runSeuratDemux = false
+        Int demuxMode = 1
+        Int minCount = 0
 
         Map[String, Int] resourceSpec
+    }
+
+    parameter_meta {
+        demuxMode: { help: "1=default, 2=noisy methanol, 3=aggressively rescue from doublets" }
     }
 
     call Preprocess.Preprocess {
@@ -85,7 +91,9 @@ workflow Sharp {
     # HTO demux using KMeans
     call HtoDemuxKMeans.HtoDemuxKMeans {
         input:
-            umiCountFiles = Preprocess.umiCountMatrix
+            umiCountFiles = Preprocess.umiCountMatrix,
+            minCount = minCount,
+            mode = demuxMode
     }
 
     # HTO demux using Seurat
