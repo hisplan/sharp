@@ -59,7 +59,7 @@ workflow Preprocess {
     }
 
     parameter_meta {
-        resourceSpec: { help: "memory <= 0 means it will computes required memory for CITE-seq-Count"}
+        resourceSpec: { help: "memory <= 0 means it will computes required memory for CITE-seq-Count" }
     }
 
     # merge FASTQ R1

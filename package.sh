@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-version="0.0.6"
+version="0.0.7"
 
 #
 # package it and push it to AWS S3
