@@ -1,0 +1,31 @@
+{
+    "Sharp.uriFastqR1": [
+        "s3://dp-lab-test/cellplex/datasets/cell-lines/2537_CellLines_CellPlex_test_CPL_IGO_11874_11_S11_L001_R1_001.fastq.gz",
+        "s3://dp-lab-test/cellplex/datasets/cell-lines/2537_CellLines_CellPlex_test_CPL_IGO_11874_11_S11_L002_R1_001.fastq.gz"
+    ],
+    "Sharp.uriFastqR2": [
+        "s3://dp-lab-test/cellplex/datasets/cell-lines/2537_CellLines_CellPlex_test_CPL_IGO_11874_11_S11_L001_R2_001.fastq.gz",
+        "s3://dp-lab-test/cellplex/datasets/cell-lines/2537_CellLines_CellPlex_test_CPL_IGO_11874_11_S11_L002_R2_001.fastq.gz"
+    ],
+    "Sharp.sampleName": "2537_CellLines",
+    "Sharp.scRnaSeqPlatform": "10x_v3",
+    "Sharp.lengthR1": 28,
+    "Sharp.lengthR2": 15,
+    "Sharp.cellBarcodeWhitelistUri": "s3://dp-lab-data/collaborators/lowe/CellplexPilot/CellLines_CellPlex_test/seqc-results/2537_CellLines_CellPlex_test_IGO_11963_2_dense.csv",
+    "Sharp.cellBarcodeWhiteListMethod": "SeqcDenseCountsMatrixCsv",
+    "Sharp.translate10XBarcodes": true,
+    "Sharp.hashTagList": "s3://dp-lab-test/cellplex/datasets/cell-lines/tag-list.csv",
+    "Sharp.cbStartPos": 1,
+    "Sharp.cbEndPos": 16,
+    "Sharp.umiStartPos": 17,
+    "Sharp.umiEndPos": 28,
+    "Sharp.slidingWindowSearch": false,
+    "Sharp.cbCollapsingDistance": 1,
+    "Sharp.umiCollapsingDistance": 1,
+    "Sharp.numExpectedCells": 0,
+    "Sharp.denseCountMatrix": "s3://dp-lab-data/collaborators/lowe/CellplexPilot/CellLines_CellPlex_test/seqc-results/2537_CellLines_CellPlex_test_IGO_11963_2_dense.csv",
+    "Sharp.resourceSpec": {
+        "cpu": 32,
+        "memory": 64
+    }
+}
