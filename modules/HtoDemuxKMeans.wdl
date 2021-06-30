@@ -4,11 +4,17 @@ task HtoDemuxKMeans {
 
     input {
         Array[File] umiCountFiles
+        Int minCount=0
+        Int mode=1
     }
 
-    String dockerImage = "hisplan/cromwell-hto-demux-kmeans:0.4.0"
+    parameter_meta {
+        mode: { help: "1=default, 2=noisy methanol, 3=aggressively rescue from doublets" }
+    }
+
+    String dockerImage = "hisplan/cromwell-hto-demux-kmeans:0.5.0"
     Int numCores = 1
-    # Float inputSize = size(htoClassification, "GiB") + size(denseCountMatrix, "GiB")
+    Float inputSize = size(umiCountFiles, "GiB")
 
     command <<<
         set -euo pipefail
@@ -19,9 +25,12 @@ task HtoDemuxKMeans {
 
         # --hto-umi-count-dir:  output directory from CITE-seq-Count
         #                       e.g. .../umi-count
+        # --mode: 1=default, 2=noisy methanol, 3=aggressively rescue from doublets
 
         python3 /opt/demux_kmeans.py \
-            --hto-umi-count-dir ./inputs
+            --hto-umi-count-dir ./inputs \
+            --min-count ~{minCount} \
+            --mode ~{mode}
 
     >>>
 
