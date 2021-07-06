@@ -4,9 +4,12 @@ task CountReads
 {
     input {
         File fastq
+
+        # docker-related
+        String dockerRegistry
     }
 
-    String dockerImage = "hisplan/cromwell-pigz:2.4"
+    String dockerImage = dockerRegistry + "/cromwell-pigz:2.4"
     Float inputSize = size(fastq, "GiB")
 
     command <<<

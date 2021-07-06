@@ -8,13 +8,17 @@ workflow CutInDropSpacer {
         File fastq
         String assayVersion = "2"
         String outFileName
+
+        # docker-related
+        String dockerRegistry
     }
 
     call module.CutInDropSpacer {
         input:
             fastq = fastq,
             assayVersion = assayVersion,
-            outFileName = outFileName
+            outFileName = outFileName,
+            dockerRegistry = dockerRegistry
     }
 
 }

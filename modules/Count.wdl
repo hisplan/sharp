@@ -31,10 +31,12 @@ task CiteSeqCount {
 
         Map[String, Int] resourceSpec
 
+        # docker-related
+        String dockerRegistry
         String version = "1.4.2-develop"
     }
 
-    String dockerImage = "hisplan/cromwell-cite-seq-count:" + version    
+    String dockerImage = dockerRegistry + "/cromwell-cite-seq-count:" + version
     Float inputSize = size(fastqR1, "GiB") + size(fastqR2, "GiB") + size(cbWhiteList, "GiB") + size(tagList, "GiB")
 
     # https://hoohm.github.io/CITE-seq-Count/Running-the-script/

@@ -6,13 +6,16 @@ task HtoDemuxKMeans {
         Array[File] umiCountFiles
         Int minCount=0
         Int mode=1
+
+        # docker-related
+        String dockerRegistry
     }
 
     parameter_meta {
         mode: { help: "1=default, 2=noisy methanol, 3=aggressively rescue from doublets" }
     }
 
-    String dockerImage = "hisplan/cromwell-hto-demux-kmeans:0.5.0"
+    String dockerImage = dockerRegistry + "/cromwell-hto-demux-kmeans:0.5.0"
     Int numCores = 1
     Float inputSize = size(umiCountFiles, "GiB")
 

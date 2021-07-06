@@ -51,6 +51,9 @@ workflow CiteSeq {
         Boolean runSeuratDemux = false
 
         Map[String, Int] resourceSpec
+
+        # docker-related
+        String dockerRegistry
     }
 
     call Preprocess.Preprocess {
@@ -77,7 +80,8 @@ workflow CiteSeq {
             numExpectedCells = numExpectedCells,
             denseCountMatrix = denseCountMatrix,
             runSeuratDemux = runSeuratDemux,
-            resourceSpec = resourceSpec
+            resourceSpec = resourceSpec,
+            dockerRegistry = dockerRegistry
     }
 
     call ToAnnData.CiteSeqToAnnData {
@@ -85,7 +89,8 @@ workflow CiteSeq {
             sampleName = sampleName,
             tagList = tagList,
             umiCountFiles = Preprocess.umiCountMatrix,
-            readCountFiles = Preprocess.readCountMatrix
+            readCountFiles = Preprocess.readCountMatrix,
+            dockerRegistry = dockerRegistry
     }
 
     output {

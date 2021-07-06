@@ -1,3 +1,5 @@
 #!/bin/bash
 
-docker build -t cromwell-fastqc:0.11.8 .
+source config.sh
+
+docker build -t ${image_name}:${version} .

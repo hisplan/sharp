@@ -1,5 +1,6 @@
 {
     "CutInDropSpacer.fastq": "gs://chunj-cromwell/indrop-trim-R1-1000.fastq.gz",
     "CutInDropSpacer.assayVersion": "2",
-    "CutInDropSpacer.outFileName": "trim-R1.fastq.gz"
+    "CutInDropSpacer.outFileName": "trim-R1.fastq.gz",
+    "CutInDropSpacer.dockerRegistry": "583643567512.dkr.ecr.us-east-1.amazonaws.com"
 }

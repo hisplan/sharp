@@ -55,6 +55,9 @@ workflow Sharp {
         Int minCount = 0
 
         Map[String, Int] resourceSpec
+
+        # docker-related
+        String dockerRegistry        
     }
 
     parameter_meta {
@@ -85,7 +88,8 @@ workflow Sharp {
             numExpectedCells = numExpectedCells,
             denseCountMatrix = denseCountMatrix,
             runSeuratDemux = runSeuratDemux,
-            resourceSpec = resourceSpec
+            resourceSpec = resourceSpec,
+            dockerRegistry = dockerRegistry
     }
 
     # HTO demux using KMeans
@@ -93,7 +97,8 @@ workflow Sharp {
         input:
             umiCountFiles = Preprocess.umiCountMatrix,
             minCount = minCount,
-            mode = demuxMode
+            mode = demuxMode,
+            dockerRegistry = dockerRegistry
     }
 
     # HTO demux using Seurat
@@ -102,14 +107,16 @@ workflow Sharp {
         call HtoDemuxSeurat.HtoDemuxSeurat {
             input:
                 umiCountFiles = Preprocess.umiCountMatrix,
-                quantile = 0.99
+                quantile = 0.99,
+                dockerRegistry = dockerRegistry
         }
 
         # correct false positive doublets frm Seurat output
         call HtoDemuxSeurat.CorrectFalsePositiveDoublets {
             input:
                 htoClassification = HtoDemuxSeurat.outClassCsv,
-                umiCountFiles = Preprocess.umiCountMatrix
+                umiCountFiles = Preprocess.umiCountMatrix,
+                dockerRegistry = dockerRegistry
         }
     }
 
@@ -118,7 +125,8 @@ workflow Sharp {
         input:
             denseCountMatrix = denseCountMatrix,
             htoClassification = HtoDemuxKMeans.outClass,
-            translate10XBarcodes = translate10XBarcodes
+            translate10XBarcodes = translate10XBarcodes,
+            dockerRegistry = dockerRegistry
     }
 
     output {

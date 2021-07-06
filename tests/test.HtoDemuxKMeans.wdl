@@ -6,11 +6,15 @@ workflow HtoDemuxKMeans {
 
     input {
         Array[File] umiCountFiles
+
+        # docker-related
+        String dockerRegistry
     }
 
     call module.HtoDemuxKMeans {
         input:
-            umiCountFiles = umiCountFiles
+            umiCountFiles = umiCountFiles,
+            dockerRegistry = dockerRegistry
     }
 
     output {

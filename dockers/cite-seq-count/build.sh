@@ -1,5 +1,5 @@
 #!/bin/bash
 
-source version.sh
+source config.sh
 
-docker build -t cromwell-cite-seq-count:${version} -f Dockerfile-${version} .
+docker build -t ${image_name}:${version} -f Dockerfile-${version} .

@@ -4,5 +4,6 @@
         "s3://dp-lab-batch/cromwell-execution/Sharp/3fab897c-9087-4ae3-b739-6fb31ed00df8/call-CiteSeqCount/glob-5b2373ebac80816456a7726e786fc4d4/features.tsv.gz",
         "s3://dp-lab-batch/cromwell-execution/Sharp/3fab897c-9087-4ae3-b739-6fb31ed00df8/call-CiteSeqCount/glob-5b2373ebac80816456a7726e786fc4d4/matrix.mtx.gz"
     ],
-    "HtoDemuxSeurat.quantile": 0.99
+    "HtoDemuxSeurat.quantile": 0.99,
+    "HtoDemuxSeurat.dockerRegistry": "583643567512.dkr.ecr.us-east-1.amazonaws.com"
 }

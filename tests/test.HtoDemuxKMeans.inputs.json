@@ -3,5 +3,6 @@
         "gs://chunj-cromwell/cromwell-execution/Count/fae92864-6f89-4c57-8a2f-62d69f4ac2db/call-CiteSeqCount/glob-5b2373ebac80816456a7726e786fc4d4/barcodes.tsv.gz",
         "gs://chunj-cromwell/cromwell-execution/Count/fae92864-6f89-4c57-8a2f-62d69f4ac2db/call-CiteSeqCount/glob-5b2373ebac80816456a7726e786fc4d4/features.tsv.gz",
         "gs://chunj-cromwell/cromwell-execution/Count/fae92864-6f89-4c57-8a2f-62d69f4ac2db/call-CiteSeqCount/glob-5b2373ebac80816456a7726e786fc4d4/matrix.mtx.gz"
-    ]
+    ],
+    "HtoDemuxKMeans.dockerRegistry": "583643567512.dkr.ecr.us-east-1.amazonaws.com"
 }

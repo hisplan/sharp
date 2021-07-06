@@ -10,7 +10,7 @@ task MergeFastq {
     }
 
     Int numFastq = length(uriFastq)
-    String dockerImage = "ubuntu:18.04"
+    String dockerImage = "ubuntu:20.04"
     Int numCores = 2
     Float inputSize = size(uriFastq, "GiB")
 

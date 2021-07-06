@@ -8,13 +8,17 @@ workflow Combine {
         File denseCountMatrix
         File htoClassification
         Boolean translate10XBarcodes
+
+        # docker-related
+        String dockerRegistry
     }
 
     call module.HashedCountMatrix {
         input:
             denseCountMatrix = denseCountMatrix,
             htoClassification = htoClassification,
-            translate10XBarcodes = translate10XBarcodes
+            translate10XBarcodes = translate10XBarcodes,
+            dockerRegistry = dockerRegistry
     }
 
     output {

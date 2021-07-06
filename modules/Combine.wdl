@@ -6,9 +6,12 @@ task HashedCountMatrix {
         File denseCountMatrix
         File htoClassification
         Boolean translate10XBarcodes
+
+        # docker-related
+        String dockerRegistry
     }
 
-    String dockerImage = "hisplan/cromwell-hto-adt-postprocess:0.3.1"
+    String dockerImage = dockerRegistry + "/cromwell-hto-adt-postprocess:0.3.2"
     Int numCores = 1
     Float inputSize = size(denseCountMatrix, "GiB") + size(htoClassification, "GiB")
 

@@ -1,3 +1,5 @@
 #!/bin/bash
 
-docker build -t cromwell-seqkit:0.11.0 .
+source config.sh
+
+docker build -t ${image_name}:${version} .

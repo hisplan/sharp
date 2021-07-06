@@ -5,9 +5,12 @@ task HtoDemuxSeurat {
     input {
         Array[File] umiCountFiles
         Float quantile
+
+        # docker-related
+        String dockerRegistry
     }
 
-    String dockerImage = "hisplan/cromwell-hto-demux-seurat:0.6.0"
+    String dockerImage = dockerRegistry + "/cromwell-hto-demux-seurat:0.6.0"
     Int numCores = 2
     # Float inputSize = size(input_fastq1, "GiB") + size(input_fastq2, "GiB") + size(input_reference, "GiB")
 
@@ -47,9 +50,12 @@ task CorrectFalsePositiveDoublets {
     input {
         File htoClassification
         Array[File] umiCountFiles
+
+        # docker-related
+        String dockerRegistry
     }
 
-    String dockerImage = "hisplan/cromwell-hto-demux-seurat:0.6.0"
+    String dockerImage = dockerRegistry + "/cromwell-hto-demux-seurat:0.6.0"
     Int numCores = 1
     # Float inputSize = size(htoClassification, "GiB") + size(denseCountMatrix, "GiB")
 

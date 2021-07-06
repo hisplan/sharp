@@ -26,5 +26,6 @@
     "Preprocess.resourceSpec": {
         "cpu": 4,
         "memory": 64
-    }
+    },
+    "Preprocess.dockerRegistry": "583643567512.dkr.ecr.us-east-1.amazonaws.com"
 }

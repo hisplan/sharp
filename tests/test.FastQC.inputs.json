@@ -1,6 +1,7 @@
 {
     "FastQC.fastqFiles": [
-        "gs://chunj-cromwell/cromwell-execution/MergeFastq/2361732a-b663-4089-9471-d18556db2435/call-MergeFastqR1/IL10neg_HTO_IGO_10034_23_S2_R1.fastq.gz",
-        "gs://chunj-cromwell/cromwell-execution/MergeFastq/2361732a-b663-4089-9471-d18556db2435/call-MergeFastqR2/IL10neg_HTO_IGO_10034_23_S2_R2.fastq.gz"
-    ]
+        "s3://dp-lab-batch/cromwell-execution/Sharp/da2cf736-1504-4936-8850-2c405bdfcf3f/call-MergeFastqR2/IL10neg_HTO_IGO_10034_23_S2_R2.fastq.gz",
+        "s3://dp-lab-batch/cromwell-execution/Sharp/da2cf736-1504-4936-8850-2c405bdfcf3f/call-MergeFastqR1/IL10neg_HTO_IGO_10034_23_S2_R1.fastq.gz"
+    ],
+    "FastQC.dockerRegistry": "583643567512.dkr.ecr.us-east-1.amazonaws.com"
 }

@@ -4,9 +4,12 @@ task WhitelistFromSeqcSparseBarcodes {
 
     input {
         File csvFile
+
+        # docker-related
+        String dockerRegistry
     }
 
-    String dockerImage = "hisplan/cromwell-seqc:0.2.7"
+    String dockerImage = dockerRegistry + "/cromwell-seqc:0.2.9"
     Int numCores = 1
     Float inputSize = size(csvFile, "GiB")
 
@@ -49,9 +52,12 @@ task WhitelistFromSeqcDenseMatrix {
 
     input {
         File csvFile
+
+        # docker-related
+        String dockerRegistry
     }
 
-    String dockerImage = "hisplan/cromwell-seqc:0.2.7"
+    String dockerImage = dockerRegistry + "/cromwell-seqc:0.2.9"
     Int numCores = 1
     Float inputSize = size(csvFile, "GiB")
 
@@ -95,9 +101,12 @@ task Translate10XBarcodes {
 
     input {
         File barcodesFile
+
+        # docker-related
+        String dockerRegistry
     }
 
-    String dockerImage = "hisplan/cromwell-seqc-utils:0.4.8"
+    String dockerImage = dockerRegistry + "/seqc-utils:0.4.11"
     Int numCores = 1
     Float inputSize = size(barcodesFile, "GiB")
 
@@ -130,7 +139,7 @@ task NotImplemented {
     >>>
 
     runtime {
-        docker: "ubuntu:18.04"
+        docker: "ubuntu:20.04"
         disks: "local-disk 100 HDD"
         cpu: 1
         memory: "1 GB"

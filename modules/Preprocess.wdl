@@ -56,6 +56,9 @@ workflow Preprocess {
         File denseCountMatrix
 
         Boolean runSeuratDemux = false
+
+        # docker-related
+        String dockerRegistry
     }
 
     parameter_meta {
@@ -81,13 +84,15 @@ workflow Preprocess {
     # run FastQC R1
     call FastQC.FastQC as FastQCR1 {
         input:
-            fastqFile = MergeFastqR1.out
+            fastqFile = MergeFastqR1.out,
+            dockerRegistry = dockerRegistry
     }
 
     # run FastQC R2
     call FastQC.FastQC as FastQCR2 {
         input:
-            fastqFile = MergeFastqR2.out
+            fastqFile = MergeFastqR2.out,
+            dockerRegistry = dockerRegistry
     }
 
     # if InDrops v4
@@ -97,7 +102,8 @@ workflow Preprocess {
             input:
                 fastq = MergeFastqR1.out,
                 outFileName = "R1.fastq.gz",
-                assayVersion = scRnaSeqPlatform
+                assayVersion = scRnaSeqPlatform,
+                dockerRegistry = dockerRegistry
         }
     }
 
@@ -108,7 +114,8 @@ workflow Preprocess {
             input:
                 fastq = MergeFastqR1.out,
                 length = lengthR1,
-                outFileName = "R1.fastq.gz"
+                outFileName = "R1.fastq.gz",
+                dockerRegistry = dockerRegistry
         }
     }
 
@@ -119,7 +126,8 @@ workflow Preprocess {
         input:
             fastq = MergeFastqR2.out,
             length = lengthR2,
-            outFileName = "R2.fastq.gz"
+            outFileName = "R2.fastq.gz",
+            dockerRegistry = dockerRegistry
     }
 
     # prepare cell barcode whitelist
@@ -127,7 +135,8 @@ workflow Preprocess {
         # *_sparse_counts_barcodes.csv
         call PrepCBWhitelist.WhitelistFromSeqcSparseBarcodes {
             input:
-                csvFile = cellBarcodeWhitelistUri
+                csvFile = cellBarcodeWhitelistUri,
+                dockerRegistry = dockerRegistry
         }
     }
 
@@ -135,7 +144,8 @@ workflow Preprocess {
         # *_dense.csv
         call PrepCBWhitelist.WhitelistFromSeqcDenseMatrix {
             input:
-                csvFile = cellBarcodeWhitelistUri
+                csvFile = cellBarcodeWhitelistUri,
+                dockerRegistry = dockerRegistry
         }
     }
 
@@ -150,7 +160,8 @@ workflow Preprocess {
         # do translation if necessary
         call PrepCBWhitelist.Translate10XBarcodes {
             input:
-                barcodesFile = cbWhitelistTemp
+                barcodesFile = cbWhitelistTemp,
+                dockerRegistry = dockerRegistry
         }
     }
 
@@ -159,7 +170,8 @@ workflow Preprocess {
 
     call CountReads.CountReads {
         input:
-            fastq = trimR1
+            fastq = trimR1,
+            dockerRegistry = dockerRegistry
     }
 
     # auto compute memory requirement using the number of reads if memory specified <= 0
@@ -191,7 +203,8 @@ workflow Preprocess {
             resourceSpec = {
                 "cpu": resourceSpec["cpu"],
                 "memory": memoryRequirement
-            }
+            },
+            dockerRegistry = dockerRegistry
     }
 
     output {

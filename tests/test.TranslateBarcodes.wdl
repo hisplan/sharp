@@ -7,12 +7,15 @@ workflow TranslateBarcodes {
     input {
         Array[File] umiCountFiles
         Array[File] readCountFiles
-    }
 
+        # docker-related
+        String dockerRegistry
+    }
 
     call module.Translate10XBarcodes {
         input:
             umiCountFiles = umiCountFiles,
-            readCountFiles = readCountFiles
+            readCountFiles = readCountFiles,
+            dockerRegistry = dockerRegistry
     }
 }

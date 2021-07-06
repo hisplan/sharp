@@ -1,3 +1,5 @@
 #!/bin/bash
 
-docker build -t cromwell-cutadapt:2.5 .
+source config.sh
+
+docker build -t ${image_name}:${version} .

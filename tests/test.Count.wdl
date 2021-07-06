@@ -32,6 +32,8 @@ workflow Count {
 
         Map[String, Int] resourceSpec
 
+        # docker-related
+        String dockerRegistry
         String version
     }
 
@@ -52,6 +54,7 @@ workflow Count {
             maxTagError = maxTagError,
             numExpectedCells = numExpectedCells,
             resourceSpec = resourceSpec,
+            dockerRegistry = dockerRegistry,
             version = version
     }
 

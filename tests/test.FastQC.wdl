@@ -6,13 +6,17 @@ workflow FastQC {
 
     input {
         Array[File] fastqFiles
+
+        # docker-related
+        String dockerRegistry
     }
 
     scatter (fastqFile in fastqFiles) {
 
         call module.FastQC {
             input:
-                fastqFile = fastqFile
+                fastqFile = fastqFile,
+                dockerRegistry = dockerRegistry
         }
     }
 }

@@ -10,5 +10,6 @@
         "s3://dp-lab-batch/cromwell-execution/CiteSeq/eb5f81d3-cb16-4436-80f0-c8c0a2ed04d6/call-Preprocess/Preprocess/e96102a6-b8fc-4b51-990a-14ec9f61e854/call-CiteSeqCount/glob-8e7f6a2dd9fb1323e5ebc5c1c063f6df/barcodes.tsv.gz",
         "s3://dp-lab-batch/cromwell-execution/CiteSeq/eb5f81d3-cb16-4436-80f0-c8c0a2ed04d6/call-Preprocess/Preprocess/e96102a6-b8fc-4b51-990a-14ec9f61e854/call-CiteSeqCount/glob-8e7f6a2dd9fb1323e5ebc5c1c063f6df/features.tsv.gz",
         "s3://dp-lab-batch/cromwell-execution/CiteSeq/eb5f81d3-cb16-4436-80f0-c8c0a2ed04d6/call-Preprocess/Preprocess/e96102a6-b8fc-4b51-990a-14ec9f61e854/call-CiteSeqCount/glob-8e7f6a2dd9fb1323e5ebc5c1c063f6df/matrix.mtx.gz"
-    ]
+    ],
+    "ToAnnData.dockerRegistry": "583643567512.dkr.ecr.us-east-1.amazonaws.com"
 }

@@ -7,13 +7,17 @@ workflow PrepCBWhitelist {
     input {
         File inputFile
         String method
+
+        # docker-related
+        String dockerRegistry
     }
 
     # *_sparse_counts_barcodes.csv
     if (method == "SeqcSparseCountsBarcodesCsv") {
         call module.WhitelistFromSeqcSparseBarcodes {
             input:
-                csvFile = inputFile
+                csvFile = inputFile,
+                dockerRegistry = dockerRegistry
         }
     }
 
@@ -21,7 +25,8 @@ workflow PrepCBWhitelist {
     if (method == "SeqcDenseCountsMatrixCsv") {
         call module.WhitelistFromSeqcDenseMatrix {
             input:
-                csvFile = inputFile
+                csvFile = inputFile,
+                dockerRegistry = dockerRegistry
         }
     }
 
@@ -34,7 +39,8 @@ workflow PrepCBWhitelist {
 
     call module.Translate10XBarcodes {
         input:
-            barcodesFile = whitelist
+            barcodesFile = whitelist,
+            dockerRegistry = dockerRegistry
     }
 
     output {

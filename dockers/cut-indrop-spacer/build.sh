@@ -1,3 +1,5 @@
 #!/bin/bash
 
-docker build -t cromwell-cut-indrop-spacer:0.2 .
+source config.sh
+
+docker build -t ${image_name}:${version} .

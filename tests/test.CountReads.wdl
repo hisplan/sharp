@@ -6,11 +6,15 @@ workflow CountReads {
 
     input {
         File fastq
+
+        # docker-related
+        String dockerRegistry
     }
 
     call module.CountReads {
         input:
-            fastq = fastq
+            fastq = fastq,
+            dockerRegistry = dockerRegistry
     }
 
     output {

@@ -6,10 +6,13 @@ task Trim {
         File fastq
         Int length
         String outFileName
+
+        # docker-related
+        String dockerRegistry
     }
 
     Int numCores = 4
-    String dockerImage = "hisplan/cromwell-cutadapt:2.5"
+    String dockerImage = dockerRegistry + "/cromwell-cutadapt:2.5"
 
     command <<<
         set -euo pipefail

@@ -8,7 +8,10 @@ workflow ToAnnData {
         String sampleName
         File tagList
         Array[File] umiCountFiles
-        Array[File] readCountFiles        
+        Array[File] readCountFiles
+
+        # docker-related
+        String dockerRegistry
     }
 
     call module.CiteSeqToAnnData {
@@ -16,7 +19,8 @@ workflow ToAnnData {
             sampleName = sampleName,
             tagList = tagList,
             umiCountFiles = umiCountFiles,
-            readCountFiles = readCountFiles
+            readCountFiles = readCountFiles,
+            dockerRegistry = dockerRegistry
     }
 
     output {

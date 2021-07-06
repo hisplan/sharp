@@ -6,9 +6,12 @@ task CutInDropSpacer {
         File fastq
         String assayVersion = "in_drop_v4"
         String outFileName
+
+        # docker-related
+        String dockerRegistry
     }
 
-    String dockerImage = "hisplan/cromwell-cut-indrop-spacer:0.2"
+    String dockerImage = dockerRegistry + "/cromwell-cut-indrop-spacer:0.2.0"
     Int numCores = 4
     Float inputSize = size(fastq, "GiB") * 2
 

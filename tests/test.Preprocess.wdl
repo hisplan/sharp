@@ -50,6 +50,9 @@ workflow Preprocess {
         File denseCountMatrix
 
         Boolean runSeuratDemux = false
+
+        # docker-related
+        String dockerRegistry
     }
 
     call module.Preprocess {
@@ -76,6 +79,7 @@ workflow Preprocess {
             numExpectedCells = numExpectedCells,
             denseCountMatrix = denseCountMatrix,
             runSeuratDemux = runSeuratDemux,
-            resourceSpec = resourceSpec
+            resourceSpec = resourceSpec,
+            dockerRegistry = dockerRegistry
     }
 }
