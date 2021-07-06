@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 LABEL maintainer="Jaeyoung Chun (chunj@mskcc.org)"
 
@@ -9,5 +9,5 @@ RUN apt-get update \
 
 RUN pip3 install cutadapt==${CUTADAPT_VERSION}
 
-# ENTRYPOINT ["/usr/local/bin/cutadapt"]
-# CMD ["--help"]
+ENTRYPOINT ["/usr/local/bin/cutadapt"]
+CMD ["--help"]
