@@ -15,5 +15,5 @@ RUN cd /tmp \
     && mv seqkit /usr/local/bin \
     && rm -rf /tmp/seqkit_linux_amd64.tar.gz
 
-ENTRYPOINT ["/usr/local/bin/seqkit"]
-CMD ["--help"]
+# ENTRYPOINT ["/usr/local/bin/seqkit"]
+# CMD ["--help"]
