@@ -30,6 +30,8 @@ logging.basicConfig(
 
 def to_adata(sample_name, path_tag_list, path_umi_counts, path_read_counts):
 
+    sc.logging.print_header()
+
     logger.info("Loading antibody tag list...")
     df_tags = pd.read_csv(
         path_tag_list, header=None, names=["seq", "id", "antibody", "shift"]
@@ -69,9 +71,9 @@ def to_adata(sample_name, path_tag_list, path_umi_counts, path_read_counts):
     # use numerical barcodes for the main obs names
     adata.obs_names = numerical_barcodes
 
-    sc.pp.calculate_qc_metrics(
-        adata, percent_top=(5, 10, 15), var_type="antibodies", inplace=True
-    )
+    # sc.pp.calculate_qc_metrics(
+    #     adata, percent_top=(5, 10, 15), var_type="antibodies", inplace=True
+    # )
 
     adata.write(sample_name + ".CITE-seq.h5ad")
 
