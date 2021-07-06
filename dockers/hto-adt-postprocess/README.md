@@ -4,12 +4,24 @@
 
 ```bash
 $ docker run -it --rm \
-    -v /Users/chunj/projects/sharp/scratch:/data/ \
-    cromwell-hto-adt-postprocess:0.3.1
+    -v $(pwd)/tests/citeseq:/tests \
+    cromwell-hto-adt-postprocess:0.3.2
 ```
 
+### combine.py
+
 ```bash
-$ python3 combine.py \
+python3 combine.py \
     --dense-count-matrix /data/1187_IL10neg_P163_IGO_09902_8_dense.csv \
     --hto-classification /data/final-classification.tsv.gz
+```
+
+### citeseq_to_adata.py
+
+```bash
+python3 citeseq_to_adata.py \
+    --sample test \
+    --tag-list /tests/tag-list.csv \
+    --umi-counts /tests/umi-counts/ \
+    --read-counts /tests/read-counts/
 ```
