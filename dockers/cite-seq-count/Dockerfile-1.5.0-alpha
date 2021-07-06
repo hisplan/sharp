@@ -9,12 +9,6 @@ RUN apt-get update \
 
 RUN apt-get install --yes wget zlib1g-dev libbz2-dev liblzma-dev
 
-# RUN cd /tmp \
-#     && wget https://github.com/hisplan/CITE-seq-Count/archive/${CITE_SEQ_COUNT_VERSION}.tar.gz \
-#     && tar xvzf ${CITE_SEQ_COUNT_VERSION}.tar.gz \
-#     && cd CITE-seq-Count-${CITE_SEQ_COUNT_VERSION} \
-#     && pip3 install .
-
 RUN cd /tmp \
     && wget https://github.com/Hoohm/CITE-seq-Count/archive/refs/tags/${CITE_SEQ_COUNT_VERSION}.tar.gz \
     && tar xvzf ${CITE_SEQ_COUNT_VERSION}.tar.gz \
