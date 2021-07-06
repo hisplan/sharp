@@ -7,7 +7,7 @@ RUN apt-get update \
 
 RUN apt-get install --yes wget zlib1g-dev libbz2-dev liblzma-dev
 
-RUN pip3 install pandas numpy pyyaml scipy sklearn tqdm scanpy==1.6.0
+RUN pip3 install pandas==1.3.0 numpy==1.21.0 pyyaml==5.4.1 scipy==1.7.0 scikit-learn==0.24.2 tqdm==4.61.2 scanpy==1.8.0
 
 # code
 COPY combine.py /opt/combine.py
