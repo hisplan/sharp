@@ -1,6 +1,6 @@
 {
     "pipelineType": "CITE-seq",
-    "project": "Project 230",
+    "project": "HTAN CITE-seq",
     "sample": "2090_CS1429a_T_1_CD45pos_citeseq_1_CITE",
     "owner": "chunj",
     "destination": "s3://dp-lab-test/sharp/citeseq/",
