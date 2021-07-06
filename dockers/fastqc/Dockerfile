@@ -15,5 +15,5 @@ RUN cd /tmp \
     && ln -s /opt/FastQC/fastqc /usr/local/bin/fastqc \
     && rm -rf /tmp/*
 
-# ENTRYPOINT ["/usr/local/bin/fastqc"]
-# CMD ["--help"]
+ENTRYPOINT ["/usr/local/bin/fastqc"]
+CMD ["--help"]
