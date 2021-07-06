@@ -9,7 +9,9 @@ task SanityCheck {
         String cbBarcode1
         String cbBarcode2 = ""
         String cbSpacer = ""
-        String tagSequence
+
+        # docker-related
+        String dockerRegistry
     }
 
     parameter_meta {
@@ -18,7 +20,7 @@ task SanityCheck {
         cbBarcode2 : { help: "e.g. for in_drops4, CTCAGCTA" }
     }
 
-    String dockerImage = "hisplan/cromwell-seqkit:0.11.0"
+    String dockerImage = dockerRegistry + "/cromwell-seqkit:0.16.1"
     Int numCores = 4
     Float inputSize = size(fastqR1, "GiB") + size(fastqR2, "GiB") + size(tagList, "GiB")
 

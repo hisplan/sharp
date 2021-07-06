@@ -1,8 +1,8 @@
 version 1.0
 
-import "modules/QC.wdl" as module
+import "modules/SanityCheck.wdl" as module
 
-workflow QC {
+workflow SanityCheck {
 
     input {
         File fastqR1
@@ -11,15 +11,19 @@ workflow QC {
         String cbBarcode1
         String cbBarcode2
         String cbSpacer
+
+        # docker-related
+        String dockerRegistry
     }
 
-    call module.QC {
+    call module.SanityCheck {
         input:
             fastqR1 = fastqR1,
             fastqR2 = fastqR2,
             tagList = tagList,
             cbBarcode1 = cbBarcode1,
             cbSpacer = cbSpacer,
-            cbBarcode2 = cbBarcode2
+            cbBarcode2 = cbBarcode2,
+            dockerRegistry = dockerRegistry
     }
 }

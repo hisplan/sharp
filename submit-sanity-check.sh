@@ -31,7 +31,7 @@ fi
 
 cromwell-tools submit \
     --secrets-file ${service_account_key} \
-    --wdl ./tests/test.QC.wdl \
+    --wdl ./tests/test.SanityCheck.wdl \
     --deps-file Sharp.deps.zip \
     --inputs-files ${inputs_file} \
     --label-file ${labels_file} \
