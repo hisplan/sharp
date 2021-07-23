@@ -2,5 +2,8 @@
     "write_to_cache": true,
     "read_from_cache": true,
     "monitoring_script": "gs://chunj-cromwell/monitoring.sh",
-    "workflow_failure_mode": "ContinueWhilePossible"
+    "workflow_failure_mode": "ContinueWhilePossible",
+    "default_runtime_attributes": {
+        "maxRetries": 3
+    }
 }
