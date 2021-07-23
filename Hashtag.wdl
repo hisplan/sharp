@@ -5,7 +5,7 @@ import "modules/HtoDemuxSeurat.wdl" as HtoDemuxSeurat
 import "modules/HtoDemuxKMeans.wdl" as HtoDemuxKMeans
 import "modules/Combine.wdl" as Combine
 
-workflow Sharp {
+workflow Hashtag {
 
     input {
         Array[File] uriFastqR1
@@ -86,8 +86,6 @@ workflow Sharp {
             umiCollapsingDistance = umiCollapsingDistance,
             maxTagError = maxTagError,
             numExpectedCells = numExpectedCells,
-            denseCountMatrix = denseCountMatrix,
-            runSeuratDemux = runSeuratDemux,
             resourceSpec = resourceSpec,
             dockerRegistry = dockerRegistry
     }
