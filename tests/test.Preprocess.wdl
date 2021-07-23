@@ -47,10 +47,6 @@ workflow Preprocess {
 
         Map[String, Int] resourceSpec
 
-        File denseCountMatrix
-
-        Boolean runSeuratDemux = false
-
         # docker-related
         String dockerRegistry
     }
@@ -77,8 +73,6 @@ workflow Preprocess {
             umiCollapsingDistance = umiCollapsingDistance,
             maxTagError = maxTagError,
             numExpectedCells = numExpectedCells,
-            denseCountMatrix = denseCountMatrix,
-            runSeuratDemux = runSeuratDemux,
             resourceSpec = resourceSpec,
             dockerRegistry = dockerRegistry
     }

@@ -46,10 +46,6 @@ workflow CiteSeq {
 
         Int numExpectedCells
 
-        File denseCountMatrix
-
-        Boolean runSeuratDemux = false
-
         Map[String, Int] resourceSpec
 
         # docker-related
@@ -78,8 +74,6 @@ workflow CiteSeq {
             umiCollapsingDistance = umiCollapsingDistance,
             maxTagError = maxTagError,
             numExpectedCells = numExpectedCells,
-            denseCountMatrix = denseCountMatrix,
-            runSeuratDemux = runSeuratDemux,
             resourceSpec = resourceSpec,
             dockerRegistry = dockerRegistry
     }

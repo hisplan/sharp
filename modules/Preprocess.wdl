@@ -53,10 +53,6 @@ workflow Preprocess {
 
         Map[String, Int] resourceSpec
 
-        File denseCountMatrix
-
-        Boolean runSeuratDemux = false
-
         # docker-related
         String dockerRegistry
     }
