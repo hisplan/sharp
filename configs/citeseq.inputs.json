@@ -24,7 +24,6 @@
     "CiteSeq.cbCollapsingDistance": 1,
     "CiteSeq.umiCollapsingDistance": 1,
     "CiteSeq.numExpectedCells": 0,
-    "CiteSeq.denseCountMatrix": "s3://dp-lab-data/SCRI_Projects/HTAN_CITEseq/CS1429a_T_1_CD45pos_citeseq_1/seqc-results/2090_CS1429a_T_1_CD45pos_citeseq_1_IGO_11244_17_dense.csv",
     "CiteSeq.resourceSpec": {
         "cpu": 4,
         "memory": 64

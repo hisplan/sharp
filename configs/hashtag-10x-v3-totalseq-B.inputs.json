@@ -1,33 +1,33 @@
 {
-    "Sharp.uriFastqR1": [
+    "Hashtag.uriFastqR1": [
         "s3://dp-lab-data/collaborators/hsuk/7xNK/HD1915_7xNK_FB_HTO/FASTQ/HD1915_7xNK_FB_IGO_10657_B_2_S2_L001_R1_001.fastq.gz",
         "s3://dp-lab-data/collaborators/hsuk/7xNK/HD1915_7xNK_FB_HTO/FASTQ/HD1915_7xNK_FB_IGO_10657_B_2_S2_L002_R1_001.fastq.gz"
     ],
-    "Sharp.uriFastqR2": [
+    "Hashtag.uriFastqR2": [
         "s3://dp-lab-data/collaborators/hsuk/7xNK/HD1915_7xNK_FB_HTO/FASTQ/HD1915_7xNK_FB_IGO_10657_B_2_S2_L001_R2_001.fastq.gz",
         "s3://dp-lab-data/collaborators/hsuk/7xNK/HD1915_7xNK_FB_HTO/FASTQ/HD1915_7xNK_FB_IGO_10657_B_2_S2_L002_R2_001.fastq.gz"
     ],
-    "Sharp.sampleName": "1973_HD1915_7xNK_FB_HTO",
-    "Sharp.scRnaSeqPlatform": "10x_v3",
-    "Sharp.lengthR1": 28,
-    "Sharp.lengthR2": 25,
-    "Sharp.cellBarcodeWhitelistUri": "s3://dp-lab-data/collaborators/hsuk/7xNK/HD1915_7xNK/seqc-results/1973_HD1915_7xNK_IGO_10657_2_dense.csv",
-    "Sharp.cellBarcodeWhiteListMethod": "SeqcDenseCountsMatrixCsv",
-    "Sharp.translate10XBarcodes": true,
-    "Sharp.hashTagList": "s3://dp-lab-data/collaborators/hsuk/7xNK/HD1915_7xNK_FB_HTO/Hashtag_results/tag-list.csv",
-    "Sharp.cbStartPos": 1,
-    "Sharp.cbEndPos": 16,
-    "Sharp.umiStartPos": 17,
-    "Sharp.umiEndPos": 28,
-    "Sharp.trimPos": 10,
-    "Sharp.slidingWindowSearch": false,
-    "Sharp.cbCollapsingDistance": 1,
-    "Sharp.umiCollapsingDistance": 1,
-    "Sharp.numExpectedCells": 0,
-    "Sharp.denseCountMatrix": "s3://dp-lab-data/collaborators/hsuk/7xNK/HD1915_7xNK/seqc-results/1973_HD1915_7xNK_IGO_10657_2_dense.csv",
-    "Sharp.resourceSpec": {
+    "Hashtag.sampleName": "1973_HD1915_7xNK_FB_HTO",
+    "Hashtag.scRnaSeqPlatform": "10x_v3",
+    "Hashtag.lengthR1": 28,
+    "Hashtag.lengthR2": 25,
+    "Hashtag.cellBarcodeWhitelistUri": "s3://dp-lab-data/collaborators/hsuk/7xNK/HD1915_7xNK/seqc-results/1973_HD1915_7xNK_IGO_10657_2_dense.csv",
+    "Hashtag.cellBarcodeWhiteListMethod": "SeqcDenseCountsMatrixCsv",
+    "Hashtag.translate10XBarcodes": true,
+    "Hashtag.hashTagList": "s3://dp-lab-data/collaborators/hsuk/7xNK/HD1915_7xNK_FB_HTO/Hashtag_results/tag-list.csv",
+    "Hashtag.cbStartPos": 1,
+    "Hashtag.cbEndPos": 16,
+    "Hashtag.umiStartPos": 17,
+    "Hashtag.umiEndPos": 28,
+    "Hashtag.trimPos": 10,
+    "Hashtag.slidingWindowSearch": false,
+    "Hashtag.cbCollapsingDistance": 1,
+    "Hashtag.umiCollapsingDistance": 1,
+    "Hashtag.numExpectedCells": 0,
+    "Hashtag.denseCountMatrix": "s3://dp-lab-data/collaborators/hsuk/7xNK/HD1915_7xNK/seqc-results/1973_HD1915_7xNK_IGO_10657_2_dense.csv",
+    "Hashtag.resourceSpec": {
         "cpu": 32,
         "memory": 64
     },
-    "Sharp.dockerRegistry": "583643567512.dkr.ecr.us-east-1.amazonaws.com"
+    "Hashtag.dockerRegistry": "583643567512.dkr.ecr.us-east-1.amazonaws.com"
 }
