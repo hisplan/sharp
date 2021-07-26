@@ -7,6 +7,7 @@ import "CutInDropSpacer.wdl" as CutInDropSpacer
 import "PrepCBWhitelist.wdl" as PrepCBWhitelist
 import "CountReads.wdl" as CountReads
 import "Count.wdl" as Count
+import "AnnData.wdl" as AnnData
 
 workflow Preprocess {
 
@@ -145,12 +146,15 @@ workflow Preprocess {
         }
     }
 
-    if (cellBarcodeWhiteListMethod == "BarcodeWhitelistCsv") {
-        # one barcode per line
-        call PrepCBWhitelist.NotImplemented
+    if (cellBarcodeWhiteListMethod == "10x") {
+        call PrepCBWhitelist.WhitelistFrom10x {
+            input:
+                filteredBarcodes = cellBarcodeWhitelistUri,
+                dockerRegistry = dockerRegistry
+        }
     }
 
-    File cbWhitelistTemp = select_first([WhitelistFromSeqcSparseBarcodes.out, WhitelistFromSeqcDenseMatrix.out])
+    File cbWhitelistTemp = select_first([WhitelistFromSeqcSparseBarcodes.out, WhitelistFromSeqcDenseMatrix.out, WhitelistFrom10x.outFilteredBarcodesACGT])
 
     if (translate10XBarcodes == true) {
         # do translation if necessary
@@ -203,6 +207,15 @@ workflow Preprocess {
             dockerRegistry = dockerRegistry
     }
 
+    call AnnData.ToAnnData {
+        input:
+            sampleName = sampleName,
+            tagList = tagList,
+            umiCountFiles = CiteSeqCount.outUmiCount,
+            readCountFiles = CiteSeqCount.outReadCount,
+            dockerRegistry = dockerRegistry
+    }
+
     output {
         File fastQCR1Html = FastQCR1.outHtml
         File fastQCR2Html = FastQCR2.outHtml
@@ -210,5 +223,6 @@ workflow Preprocess {
         File countReport = CiteSeqCount.outReport
         Array[File] umiCountMatrix = CiteSeqCount.outUmiCount
         Array[File] readCountMatrix = CiteSeqCount.outReadCount
+        File adata = ToAnnData.outAdata
     }
 }
