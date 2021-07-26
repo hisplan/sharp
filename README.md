@@ -1,8 +1,15 @@
 # sharp
 
-A hashtag & CITE-seq pipeline.
+A single-cell demultiplexing pipeline.
 
 the sharp (♯) from musical notation similar to the hash (#) in hashtag.
+
+Sharp supports the following:
+
+- Hashtag
+- CITE-seq
+- ASAP-seq
+- Cell Plex
 
 ## Outputs
 
@@ -30,7 +37,7 @@ Explanation about the output:
 ## Setup
 
 ```bash
-aws s3 cp s3://dp-lab-home/software/install-sharp-0.0.8.sh - | bash
+aws s3 cp s3://dp-lab-home/software/install-sharp-0.0.9.sh - | bash
 ```
 
 ```
@@ -61,9 +68,9 @@ Finally, submit your job:
 conda activate cromwell
 
 ./submit-hashtag.sh \
-    -k ~/secrets-aws.json \
-    -i configs/PBMC_v2_Meth_Hash_2_ADT.inputs.json \
-    -l configs/PBMC_v2_Meth_Hash_2_ADT.labels.json \
+    -k ~/keys/cromwell-secrets-aws-nvirginia.json \
+    -i configs/hashtag-10x-v3-tsb.inputs.json \
+    -l configs/hashtag-10x-v3-tsb.labels.json \
     -o Sharp.options.aws.json
 ```
 
@@ -73,10 +80,30 @@ conda activate cromwell
 conda activate cromwell
 
 ./submit-citeseq.sh \
-    -k ~/secrets-aws.json \
-    -i configs/PBMC_v2_Meth_Hash_2_ADT.inputs.json \
-    -l configs/PBMC_v2_Meth_Hash_2_ADT.labels.json \
+    -k ~/keys/cromwell-secrets-aws-nvirginia.json \
+    -i configs/citeseq.inputs.json \
+    -l configs/citeseq.labels.json \
     -o Sharp.options.aws.json
+```
+
+### ASAP-seq
+
+```bash
+./submit-asapseq.sh \
+    -k ~/keys/cromwell-secrets-aws-nvirginia.json \
+  -i configs/asapseq-tsa.inputs.json \
+  -l configs/asapseq-tsa.labels.json \
+  -o Sharp.options.aws.json
+```
+
+### Cell Plex
+
+```bash
+./submit-cellplex.sh \
+  -k ~/keys/cromwell-secrets-aws-nvirginia.json \
+  -i configs/cellplex.inputs.json \
+  -l configs/cellplex.labels.json \
+  -o Sharp.options.aws.json
 ```
 
 ## Manual Inspection
