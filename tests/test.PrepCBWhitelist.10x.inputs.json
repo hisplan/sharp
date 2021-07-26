@@ -1,0 +1,5 @@
+{
+    "PrepCBWhitelist.inputFile": "s3://dp-lab-data/collaborators/sunj/AsapseqTest/ASAPseq_test_ATAC/CR-results/count/outs/filtered_peak_bc_matrix/barcodes.tsv",
+    "PrepCBWhitelist.method": "10x",
+    "PrepCBWhitelist.dockerRegistry": "583643567512.dkr.ecr.us-east-1.amazonaws.com"
+}

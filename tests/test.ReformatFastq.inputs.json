@@ -1,0 +1,19 @@
+{
+    "ReformatFastq.fastqR1": [
+        "s3://dp-lab-data/collaborators/sunj/AsapseqTest/ASAPseq_test_ATAC_HTO/FASTQ/ASAPseq_test_HTO_IGO_11671_3_S3_L001_R1_001.fastq.gz",
+        "s3://dp-lab-data/collaborators/sunj/AsapseqTest/ASAPseq_test_ATAC_HTO/FASTQ/ASAPseq_test_HTO_IGO_11671_3_S3_L002_R1_001.fastq.gz"
+    ],
+    "ReformatFastq.fastqR2": [
+        "s3://dp-lab-data/collaborators/sunj/AsapseqTest/ASAPseq_test_ATAC_HTO/FASTQ/ASAPseq_test_HTO_IGO_11671_3_S3_L001_R2_001.fastq.gz",
+        "s3://dp-lab-data/collaborators/sunj/AsapseqTest/ASAPseq_test_ATAC_HTO/FASTQ/ASAPseq_test_HTO_IGO_11671_3_S3_L002_R2_001.fastq.gz"
+    ],
+    "ReformatFastq.fastqR3": [
+        "s3://dp-lab-data/collaborators/sunj/AsapseqTest/ASAPseq_test_ATAC_HTO/FASTQ/ASAPseq_test_HTO_IGO_11671_3_S3_L001_R3_001.fastq.gz",
+        "s3://dp-lab-data/collaborators/sunj/AsapseqTest/ASAPseq_test_ATAC_HTO/FASTQ/ASAPseq_test_HTO_IGO_11671_3_S3_L002_R3_001.fastq.gz"
+    ],
+    "ReformatFastq.sampleName": "ASAPseq_test_HTO_IGO_11671_3",
+    "ReformatFastq.conjugation": "TotalSeqA",
+    "ReformatFastq.noReverseComplementR2": false,
+    "ReformatFastq.numCores": 4,
+    "ReformatFastq.dockerRegistry": "583643567512.dkr.ecr.us-east-1.amazonaws.com"
+}

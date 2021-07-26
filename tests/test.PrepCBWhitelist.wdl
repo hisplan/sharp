@@ -31,11 +31,15 @@ workflow PrepCBWhitelist {
     }
 
     # one barcode per line
-    if (method == "BarcodeWhitelistCsv") {
-        call module.NotImplemented
+    if (method == "10x") {
+        call module.WhitelistFrom10x {
+            input:
+                filteredBarcodes = inputFile,
+                dockerRegistry = dockerRegistry
+        }
     }
 
-    File whitelist = select_first([WhitelistFromSeqcSparseBarcodes.out, WhitelistFromSeqcDenseMatrix.out])
+    File whitelist = select_first([WhitelistFromSeqcSparseBarcodes.out, WhitelistFromSeqcDenseMatrix.out, WhitelistFrom10x.outFilteredBarcodesACGT])
 
     call module.Translate10XBarcodes {
         input:
