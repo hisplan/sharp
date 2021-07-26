@@ -5,7 +5,7 @@
 ```bash
 $ docker run -it --rm \
     -v $(pwd)/tests/citeseq:/tests \
-    cromwell-hto-adt-postprocess:0.3.2
+    cromwell-hto-adt-postprocess:0.3.3
 ```
 
 ### combine.py
@@ -16,10 +16,10 @@ python3 combine.py \
     --hto-classification /data/final-classification.tsv.gz
 ```
 
-### citeseq_to_adata.py
+### to_adata.py
 
 ```bash
-python3 citeseq_to_adata.py \
+python3 to_adata.py \
     --sample test \
     --tag-list /tests/tag-list.csv \
     --umi-counts /tests/umi-counts/ \
