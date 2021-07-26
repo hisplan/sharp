@@ -4,6 +4,7 @@ import "modules/Preprocess.wdl" as Preprocess
 import "modules/HtoDemuxSeurat.wdl" as HtoDemuxSeurat
 import "modules/HtoDemuxKMeans.wdl" as HtoDemuxKMeans
 import "modules/Combine.wdl" as Combine
+import "modules/AnnData.wdl" as AnnData
 
 workflow Hashtag {
 
@@ -57,7 +58,7 @@ workflow Hashtag {
         Map[String, Int] resourceSpec
 
         # docker-related
-        String dockerRegistry        
+        String dockerRegistry
     }
 
     parameter_meta {
@@ -127,6 +128,15 @@ workflow Hashtag {
             dockerRegistry = dockerRegistry
     }
 
+    call AnnData.UpdateAnnData {
+        input:
+            sampleName = sampleName,
+            htoClassification = HtoDemuxKMeans.outClass,
+            translate10XBarcodes = translate10XBarcodes,
+            adata = Preprocess.adata,
+            dockerRegistry = dockerRegistry
+    }
+
     output {
         File fastQCR1Html = Preprocess.fastQCR1Html
         File fastQCR2Html = Preprocess.fastQCR2Html
@@ -150,5 +160,8 @@ workflow Hashtag {
         File combinedCountMatrix = HashedCountMatrix.outCountMatrix
         File combinedStats = HashedCountMatrix.outStats
         File combinedLog = HashedCountMatrix.outLog
+
+        File adataRaw = Preprocess.adata
+        File adataFinal = UpdateAnnData.outAdata
     }
 }

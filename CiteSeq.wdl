@@ -1,7 +1,6 @@
 version 1.0
 
 import "modules/Preprocess.wdl" as Preprocess
-import "modules/ToAnnData.wdl" as ToAnnData
 
 workflow CiteSeq {
 
@@ -78,15 +77,6 @@ workflow CiteSeq {
             dockerRegistry = dockerRegistry
     }
 
-    call ToAnnData.CiteSeqToAnnData {
-        input:
-            sampleName = sampleName,
-            tagList = tagList,
-            umiCountFiles = Preprocess.umiCountMatrix,
-            readCountFiles = Preprocess.readCountMatrix,
-            dockerRegistry = dockerRegistry
-    }
-
     output {
         File fastQCR1Html = Preprocess.fastQCR1Html
         File fastQCR2Html = Preprocess.fastQCR2Html
@@ -95,6 +85,6 @@ workflow CiteSeq {
         Array[File] umiCountMatrix = Preprocess.umiCountMatrix
         Array[File] readCountMatrix = Preprocess.readCountMatrix
 
-        File adata = CiteSeqToAnnData.outAdata
+        File adata = Preprocess.adata
     }
 }
