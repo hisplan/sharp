@@ -7,5 +7,6 @@ papermill
 sklearn
 scanpy
 leidenalg
+humanfriendly
 autopep8
 black

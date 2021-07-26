@@ -7,7 +7,7 @@ usage()
 cat << EOF
 USAGE: `basename $0` [options]
     -k  service account key (e.g. secrets.json)
-    -t  type ('hashtag' or 'citeseq')
+    -t  type ('hashtag', 'citeseq', 'asapseq', or 'cellplex')
     -w  workflow ID
     -s  skip download and use the pre-downloaded data
 EOF
@@ -31,7 +31,7 @@ then
     exit 1
 fi
 
-if [ "$type" != "hashtag" ] && [ "$type" != "citeseq" ]
+if [ "$type" != "hashtag" ] && [ "$type" != "citeseq" ] && [ "$type" != "asapseq" ] && [ "$type" != "cellplex" ]
 then
     usage
     exit 1
@@ -44,7 +44,8 @@ mkdir -p ${path_base_data}
 temp_file=`uuidgen`.ipynb
 
 # run download.ipynb to download necessary data
-papermill download-${type}.ipynb ${temp_file} \
+papermill download-v2.ipynb ${temp_file} \
+    --parameters workflow_name ${type} \
     --parameters workflow_id ${workflow_id} \
     --parameters path_secrets_file ${service_account_key} \
     --parameters path_base_data ${path_base_data} \
@@ -63,9 +64,24 @@ path_out="${path_base_data}/${sample_name}/${workflow_id}"
 # copy dependency to make the final notebook standalone
 cp dna3bit.py ${path_out}/
 
-# run inspect.ipynb to inspect data
-papermill inspect-${type}.ipynb ${path_out}/automated-inspection-outputs.ipynb \
+# asapseq and cellplex share the same hashtag inspection notebook
+if [ "$type" == "asapseq" ] || [ "$type" == "cellplex" ]
+then
+    type="hashtag"
+fi
+
+# run inspect-*-v2.ipynb to inspect data
+papermill inspect-${type}-v2.ipynb ${path_out}/automated-inspection.ipynb \
     --cwd ${path_out} \
     --parameters workflow_id ${workflow_id} \
     --parameters sample_name ${sample_name} \
     --parameters path_data .
+
+if [ ${type} == "hashtag" ]
+then
+    papermill hashtag-classify-negative.ipynb ${path_out}/negative-classified.ipynb \
+        --cwd ${path_out} \
+        --parameters workflow_id ${workflow_id} \
+        --parameters sample_name ${sample_name} \
+        --parameters path_data .
+fi
