@@ -26,10 +26,10 @@
             "console": "integratedTerminal",
             "cwd": "${workspaceFolder}/dockers/hto-adt-postprocess/",
             "args": [
-                "--dense-count-matrix", "/Users/chunj/Downloads/totalseq-b/1973_HD1915_7xNK_IGO_10657_2_dense.csv",
-                "--hto-classification", "/Users/chunj/Downloads/totalseq-b/final-classification.tsv.gz",
+                "--dense-count-matrix", "tests/hashtag/1973_HD1915_7xNK_IGO_10657_2_dense.csv",
+                "--hto-classification", "tests/hashtag/classification.tsv.gz",
                 "--10x-barcode-translation",
-                "--10x-whitelist", "${workspaceFolder}/dockers/hto-adt-postprocess/data/3M-february-2018.txt.gz"
+                "--hto-gex-mapper", "data/10x-hto-gex-mapper.pickle"
             ]
         },
         {
@@ -40,15 +40,15 @@
             "console": "integratedTerminal",
             "cwd": "${workspaceFolder}/dockers/hto-adt-postprocess/",
             "args": [
-                "--barcodes", "./tests/barcodes.tsv.gz",
-                "--10x-whitelist", "${workspaceFolder}/dockers/hto-adt-postprocess/data/3M-february-2018.txt.gz"
+                "--barcodes", "tests/barcodes.tsv.gz",
+                "--hto-gex-mapper", "data/10x-hto-gex-mapper.pickle"
             ]
         },
         {
-            "name": "Python: hto-adt-postprocess/citeseq_to_adata.py",
+            "name": "Python: hto-adt-postprocess/to_adata.py",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/dockers/hto-adt-postprocess/citeseq_to_adata.py",
+            "program": "${workspaceFolder}/dockers/hto-adt-postprocess/to_adata.py",
             "console": "integratedTerminal",
             "cwd": "${workspaceFolder}/dockers/hto-adt-postprocess/tests/citeseq/",
             "args": [
@@ -57,6 +57,29 @@
                 "--umi-counts", "umi-counts/",
                 "--read-counts", "read-counts/"
             ]
+        },
+        {
+            "name": "Python: hto-adt-postprocess/update_adata.py",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/dockers/hto-adt-postprocess/update_adata.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/dockers/hto-adt-postprocess/",
+            "args": [
+                "--adata-in", "tests/hashtag/1973_HD1915_7xNK_FB_HTO.h5ad",
+                "--adata-out", "tests/hashtag/1973_HD1915_7xNK_FB_HTO.out.h5ad",
+                "--class", "tests/hashtag/classification.tsv.gz",
+                "--10x-barcode-translation",
+                "--hto-gex-mapper", "data/10x-hto-gex-mapper.pickle"
+            ]
+        },
+        {
+            "name": "Python: hto-adt-postprocess/hto_gex_mapper.py",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/dockers/hto-adt-postprocess/hto_gex_mapper.py",
+            "cwd": "${workspaceFolder}/dockers/hto-adt-postprocess/",
+            "console": "integratedTerminal"
         }
     ]
 }
