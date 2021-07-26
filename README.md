@@ -68,10 +68,10 @@ Finally, submit your job:
 conda activate cromwell
 
 ./submit-hashtag.sh \
-    -k ~/keys/cromwell-secrets-aws-nvirginia.json \
-    -i configs/hashtag-10x-v3-tsb.inputs.json \
-    -l configs/hashtag-10x-v3-tsb.labels.json \
-    -o Sharp.options.aws.json
+  -k ~/keys/cromwell-secrets-aws-nvirginia.json \
+  -i configs/hashtag-10x-v3-tsb.inputs.json \
+  -l configs/hashtag-10x-v3-tsb.labels.json \
+  -o Sharp.options.aws.json
 ```
 
 ### CITE-SEQ
@@ -80,17 +80,19 @@ conda activate cromwell
 conda activate cromwell
 
 ./submit-citeseq.sh \
-    -k ~/keys/cromwell-secrets-aws-nvirginia.json \
-    -i configs/citeseq.inputs.json \
-    -l configs/citeseq.labels.json \
-    -o Sharp.options.aws.json
+  -k ~/keys/cromwell-secrets-aws-nvirginia.json \
+  -i configs/citeseq.inputs.json \
+  -l configs/citeseq.labels.json \
+  -o Sharp.options.aws.json
 ```
 
 ### ASAP-seq
 
 ```bash
+conda activate cromwell
+
 ./submit-asapseq.sh \
-    -k ~/keys/cromwell-secrets-aws-nvirginia.json \
+  -k ~/keys/cromwell-secrets-aws-nvirginia.json \
   -i configs/asapseq-tsa.inputs.json \
   -l configs/asapseq-tsa.labels.json \
   -o Sharp.options.aws.json
@@ -99,6 +101,8 @@ conda activate cromwell
 ### Cell Plex
 
 ```bash
+conda activate cromwell
+
 ./submit-cellplex.sh \
   -k ~/keys/cromwell-secrets-aws-nvirginia.json \
   -i configs/cellplex.inputs.json \
