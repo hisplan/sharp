@@ -10,6 +10,7 @@ import gzip
 import logging
 from dna3bit import DNA3Bit
 from tqdm import tqdm
+import hto_gex_mapper
 
 logger = logging.getLogger("combine")
 
@@ -20,20 +21,15 @@ logging.basicConfig(
 )
 
 
-def convert(df, path_10x_whitelist):
+def convert(df, path_hto_gex_mapper):
 
     encoder_decoder = DNA3Bit()
 
     # 1234 barcodes to acgt barcodes
     acgt_barcodes = df.index.map(lambda x: encoder_decoder.decode(x).decode())
 
-    # create a mapper (HTO <--> GEX)
-    mapper = dict()
-
-    with gzip.open(path_10x_whitelist, "rt") as csv_file:
-        csv_reader = csv.reader(csv_file, delimiter="\t")
-        for row in tqdm(csv_reader, disable=None):
-            mapper[row[0].strip()] = row[1].strip()
+    # load pre-built TotalSeq-B/C HTO <--> GEX mapper
+    mapper = hto_gex_mapper.load(path_hto_gex_mapper)
 
     # translate
     translated_acgt_barcodes = acgt_barcodes.map(lambda x: mapper[x])
@@ -52,7 +48,7 @@ def combine(
     path_dense_count_matrix,
     path_hto_classification,
     translate_10x_barcodes,
-    path_10x_whitelist,
+    path_hto_gex_mapper,
 ):
 
     df_gene = pd.read_csv(path_dense_count_matrix, index_col=0)
@@ -78,7 +74,7 @@ def combine(
     # translate HTO barcodes to GEX barcodes
     if translate_10x_barcodes:
         logger.info("Translating TotalSeq-B/C HTO barcodes to GEX barcodes...")
-        df_class = convert(df_class, path_10x_whitelist)
+        df_class = convert(df_class, path_hto_gex_mapper)
 
     df_merged = pd.merge(
         df_gene, df_class, left_index=True, right_index=True, how="inner"
@@ -115,8 +111,6 @@ def write_stats(df_class):
 
 def parse_arguments():
 
-    # python combine.py --dense-count-matrix 1187_IL10neg_P163_IGO_09902_8_dense.csv --hto-demux-matrix classification.csv
-
     parser = argparse.ArgumentParser()
 
     parser.add_argument(
@@ -144,11 +138,11 @@ def parse_arguments():
     )
 
     parser.add_argument(
-        "--10x-whitelist",
+        "--hto-gex-mapper",
         action="store",
-        dest="path_10x_whitelist",
-        help="path to the official 10x barcode whitelist (gzipped)",
-        default="data/3M-february-2018.txt.gz",
+        dest="path_hto_gex_mapper",
+        help="path to TotalSeq-B/C HTO <--> GEX mapper in pickle format",
+        default="data/10x-hto-gex-mapper.pickle",
     )
 
     # parse arguments
@@ -167,7 +161,7 @@ if __name__ == "__main__":
         path_dense_count_matrix=params.path_dense_count_matrix,
         path_hto_classification=params.path_hto_classification,
         translate_10x_barcodes=params.translate_10x_barcodes,
-        path_10x_whitelist=params.path_10x_whitelist,
+        path_hto_gex_mapper=params.path_hto_gex_mapper,
     )
 
     logger.info("Writing statistics...")
