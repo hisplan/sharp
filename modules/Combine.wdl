@@ -11,7 +11,7 @@ task HashedCountMatrix {
         String dockerRegistry
     }
 
-    String dockerImage = dockerRegistry + "/cromwell-hto-adt-postprocess:0.3.2"
+    String dockerImage = dockerRegistry + "/cromwell-hto-adt-postprocess:0.3.3"
     Int numCores = 1
     Float inputSize = size(denseCountMatrix, "GiB") + size(htoClassification, "GiB")
 
@@ -21,7 +21,7 @@ task HashedCountMatrix {
         python3 /opt/combine.py \
             --dense-count-matrix ~{denseCountMatrix} \
             --hto-classification ~{htoClassification} \
-            --10x-whitelist /opt/data/3M-february-2018.txt.gz ~{true="--10x-barcode-translation" false="" translate10XBarcodes}
+            --hto-gex-mapper /opt/data/10x-hto-gex-mapper.pickle ~{true="--10x-barcode-translation" false="" translate10XBarcodes}
 
     >>>
 

@@ -10,7 +10,7 @@ task Translate10XBarcodes {
         String dockerRegistry
     }
 
-    String dockerImage = dockerRegistry + "/cromwell-hto-adt-postprocess:0.3.2"
+    String dockerImage = dockerRegistry + "/cromwell-hto-adt-postprocess:0.3.3"
     Int numCores = 1
     Float inputSize = size(umiCountFiles, "GiB") + size(readCountFiles, "GiB")
 
@@ -25,13 +25,13 @@ task Translate10XBarcodes {
 
         python3 /opt/translate_barcodes.py \
             --barcodes ./umis/barcodes.tsv.gz \
-            --10x-whitelist /opt/data/3M-february-2018.txt.gz
+            --hto-gex-mapper /opt/data/10x-hto-gex-mapper.pickle
 
         mv barcodes-translated.tsv.gz ./umis/barcodes.tsv.gz
 
         python3 /opt/translate_barcodes.py \
             --barcodes ./reads/barcodes.tsv.gz \
-            --10x-whitelist /opt/data/3M-february-2018.txt.gz
+            --hto-gex-mapper /opt/data/10x-hto-gex-mapper.pickle
 
         mv barcodes-translated.tsv.gz ./reads/barcodes.tsv.gz
     >>>
