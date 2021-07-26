@@ -16,13 +16,13 @@ from dna3bit import DNA3Bit
 numba_logger = logging.getLogger("numba")
 numba_logger.setLevel(logging.WARNING)
 
-logger = logging.getLogger("citeseq_to_adata")
+logger = logging.getLogger("to_adata")
 
 logging.basicConfig(
     level=logging.DEBUG,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     handlers=[
-        logging.FileHandler("citeseq_to_adata.log"),
+        logging.FileHandler("to_adata.log"),
         logging.StreamHandler(sys.stdout),
     ],
 )
@@ -32,9 +32,9 @@ def to_adata(sample_name, path_tag_list, path_umi_counts, path_read_counts):
 
     sc.logging.print_header()
 
-    logger.info("Loading antibody tag list...")
+    logger.info("Loading tag list...")
     df_tags = pd.read_csv(
-        path_tag_list, header=None, names=["seq", "id", "antibody", "shift"]
+        path_tag_list, header=None, names=["seq", "id", "feature_name", "shift"]
     )
 
     df_tags.index = (df_tags.id + "-" + df_tags.seq).values
@@ -55,27 +55,32 @@ def to_adata(sample_name, path_tag_list, path_umi_counts, path_read_counts):
     logger.info("Generating AnnData...")
     # convert to AnnData
     # exclude `unmapped` column
-    adata = sc.AnnData(mtx_umi.T.tocsr()[:, :-1], obs=barcodes, var=features.iloc[:-1])
+    adata = sc.AnnData(
+        mtx_umi.T.tocsr()[:, :-1], dtype="int64", obs=barcodes, var=features.iloc[:-1]
+    )
 
+    # add unmapped to obs
     adata.obs["unmapped"] = mtx_umi.T.toarray()[:, -1]
 
-    antibody_names = adata.var.index.map(lambda x: df_tags.loc[x, "antibody"])
+    # add human-friendly feature name to var
+    # sample of origin in case of hashtag
+    # antibody name in case of CITE-seq)
+    feature_names = adata.var.index.map(lambda x: df_tags.loc[x, "feature_name"])
+    adata.var["feature_name"] = feature_names
 
     dna3bit = DNA3Bit()
-
     numerical_barcodes = adata.obs.index.map(lambda x: str(dna3bit.encode(x)))
-
-    # add barcode sequence
+    # add nucleotide barcode to obs
     adata.obs["barcode_sequence"] = adata.obs_names
 
-    # use numerical barcodes for the main obs names
+    # use numerical barcodes for obs index
     adata.obs_names = numerical_barcodes
 
     # sc.pp.calculate_qc_metrics(
     #     adata, percent_top=(5, 10, 15), var_type="antibodies", inplace=True
     # )
 
-    adata.write(sample_name + ".CITE-seq.h5ad")
+    adata.write(sample_name + ".h5ad")
 
 
 def parse_arguments():
@@ -94,7 +99,7 @@ def parse_arguments():
         "--tag-list",
         action="store",
         dest="path_tag_list",
-        help="path to tag list file (e.g. tag-list.csv0",
+        help="path to tag list file (e.g. tag-list.csv)",
         required=True,
     )
 
