@@ -8,7 +8,7 @@ manual-inspection/asapseq/*
 manual-inspection/cellplex/*
 configs/archive/*
 configs/sanity-check/*
-dockers/hto-adt-postprocess/*.log
+*.log
 dockers/hto-adt-postprocess/*classification.tsv.gz
 dockers/hto-adt-postprocess/stats.yml
 dockers/hto-adt-postprocess/tests/
