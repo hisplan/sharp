@@ -2,7 +2,6 @@ version="0.3.3"
 
 # docker related
 registry="583643567512.dkr.ecr.us-east-1.amazonaws.com"
-registry="hisplan"
 image_name="cromwell-hto-adt-postprocess"
 
 # set this to 1 if you want to create a repository in AWS ECR
