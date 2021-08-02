@@ -37,7 +37,7 @@ Explanation about the output:
 ## Setup
 
 ```bash
-aws s3 cp s3://dp-lab-home/software/install-sharp-0.0.9.sh - | bash
+aws s3 cp s3://dp-lab-home/software/install-sharp-0.0.10.sh - | bash
 ```
 
 ```
