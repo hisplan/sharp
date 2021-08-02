@@ -106,7 +106,7 @@ task WhitelistFrom10x {
         String dockerRegistry
     }
 
-    String dockerImage = dockerRegistry + "/seqc-utils:0.5.0"
+    String dockerImage = dockerRegistry + "/seqc-utils:0.5.1"
     Float inputSize = size(filteredBarcodes, "GiB")
 
     command <<<
@@ -142,7 +142,7 @@ task Translate10XBarcodes {
         String dockerRegistry
     }
 
-    String dockerImage = dockerRegistry + "/seqc-utils:0.5.0"
+    String dockerImage = dockerRegistry + "/seqc-utils:0.5.1"
     Int numCores = 1
     Float inputSize = size(barcodesFile, "GiB")
 
