@@ -3,13 +3,13 @@
 wf_name="sharp"
 version="0.0.10"
 files="submit-hashtag.sh submit-citeseq.sh submit-asapseq.sh Sharp.deps.zip Hashtag.wdl CiteSeq.wdl AsapSeq.wdl Sharp.options.aws.json"
-dest="$HOME/sing/bin"
+dest="$HOME/scing/bin"
 
 usage()
 {
 cat << EOF
 USAGE: `basename $0` [options]
-    -d  destination (e.g. $HOME/sing/bin/)
+    -d  destination (e.g. $HOME/scing/bin/)
     -s  AWS S3 destination; no trailing slash (e.g. s3://dp-lab-home/software)
 EOF
 }
