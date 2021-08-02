@@ -1,9 +1,9 @@
 #!/bin/bash
 
-source version.sh
+source config.sh
 
 docker run -it --rm \
-    cromwell-cite-seq-count:${version} CITE-seq-Count --help
+    cromwell-${image_name}:${version} CITE-seq-Count --help
 
 docker run -it --rm \
-    cromwell-cite-seq-count:${version} CITE-seq-Count --version
+    cromwell-${image_name}:${version} CITE-seq-Count --version

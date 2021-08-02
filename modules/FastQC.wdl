@@ -10,7 +10,7 @@ task FastQC {
     }
 
     Int numCores = 4
-    String dockerImage = dockerRegistry + "/cromwell-fastqc:0.11.8"
+    String dockerImage = dockerRegistry + "/cromwell-fastqc:0.11.9"
     Float inputSize = size(fastqFile, "GiB")
 
     command <<<

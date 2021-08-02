@@ -25,7 +25,7 @@ dockers/hto-adt-postprocess/test_modules.py::test_hto_gex_translation_2 PASSED  
 ```bash
 $ docker run -it --rm \
     -v $(pwd)/tests/citeseq:/tests \
-    cromwell-hto-adt-postprocess:0.3.3
+    hto-adt-postprocess:0.3.3
 ```
 
 ### combine.py

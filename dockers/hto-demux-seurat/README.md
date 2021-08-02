@@ -62,7 +62,7 @@ loaded via a namespace (and not attached):
 ```bash
 $ docker run -it --rm \
     -v /Users/chunj/projects/sharp/scratch:/data/ \
-    cromwell-hto-demux-seurat:0.6.0
+    hto-demux-seurat:0.6.0
 ```
 
 ```bash

@@ -16,5 +16,5 @@ COPY cut_indrop_spacer.py /opt/cut_indrop_spacer.py
 
 WORKDIR /opt
 
-ENTRYPOINT [ "python3", "cut_indrop_spacer.py" ]
-CMD [ "--help" ]
+# ENTRYPOINT [ "python3", "cut_indrop_spacer.py" ]
+# CMD [ "--help" ]

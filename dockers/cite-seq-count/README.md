@@ -2,6 +2,20 @@
 
 Dockerized CITE-seq-Count
 
+## Build Container Image
+
+```bash
+./build.sh
+```
+
+## Push to Docker Registry
+
+Either you can use the `docker push` command or run `push.sh` (requires [scing](https://github.com/hisplan/scing)):
+
+```bash
+./push.sh
+```
+
 ## 1.4.2-develop
 
 ```bash
