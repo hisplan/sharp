@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
 wf_name="sharp"
-version="0.0.10"
+version="0.0.11"
 files="submit-hashtag.sh submit-citeseq.sh submit-asapseq.sh Sharp.deps.zip Hashtag.wdl CiteSeq.wdl AsapSeq.wdl Sharp.options.aws.json"
 dest="$HOME/scing/bin"
 
