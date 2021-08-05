@@ -15,5 +15,5 @@
     "ReformatFastq.conjugation": "TotalSeqA",
     "ReformatFastq.noReverseComplementR2": false,
     "ReformatFastq.numCores": 4,
-    "ReformatFastq.dockerRegistry": "583643567512.dkr.ecr.us-east-1.amazonaws.com"
+    "ReformatFastq.dockerRegistry": "quay.io/hisplan"
 }

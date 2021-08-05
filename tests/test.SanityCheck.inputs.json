@@ -5,5 +5,5 @@
     "SanityCheck.cbBarcode1": "TCGACATC",
     "SanityCheck.cbSpacer": "CATG",
     "SanityCheck.cbBarcode2": "CTCAGCTA",
-    "SanityCheck.dockerRegistry": "583643567512.dkr.ecr.us-east-1.amazonaws.com"
+    "SanityCheck.dockerRegistry": "quay.io/hisplan"
 }

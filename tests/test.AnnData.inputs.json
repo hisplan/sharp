@@ -13,5 +13,5 @@
     ],
     "AnnData.htoClassification": "s3://dp-lab-gwf-core/cromwell-execution/Hashtag/fc3c840b-ddbf-48bb-b73c-b0d73d855acf/call-HtoDemuxKMeans/classification.tsv.gz",
     "AnnData.adata": "s3://dp-lab-gwf-core/cromwell-execution/Hashtag/fc3c840b-ddbf-48bb-b73c-b0d73d855acf/call-Preprocess/Preprocess/296d6973-1d1b-4767-a1ea-986b8991e685/call-ToAnnData/1973_HD1915_7xNK_FB_HTO.h5ad",
-    "AnnData.dockerRegistry": "583643567512.dkr.ecr.us-east-1.amazonaws.com"
+    "AnnData.dockerRegistry": "quay.io/hisplan"
 }

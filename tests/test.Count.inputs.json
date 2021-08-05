@@ -17,6 +17,6 @@
         "cpu": 16,
         "memory": 64
     },
-    "Count.dockerRegistry": "583643567512.dkr.ecr.us-east-1.amazonaws.com",
+    "Count.dockerRegistry": "quay.io/hisplan",
     "Count.version": "1.4.2-develop"
 }

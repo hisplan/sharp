@@ -26,5 +26,5 @@
         "cpu": 4,
         "memory": 64
     },
-    "Preprocess.dockerRegistry": "hisplan"
+    "Preprocess.dockerRegistry": "quay.io/hisplan"
 }

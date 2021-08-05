@@ -9,5 +9,5 @@
         "s3://dp-lab-batch/cromwell-execution/Sharp/b7fa5760-a2f1-4b3a-bbcd-eb2064165cd5/call-CiteSeqCount/glob-5b2373ebac80816456a7726e786fc4d4/features.tsv.gz",
         "s3://dp-lab-batch/cromwell-execution/Sharp/b7fa5760-a2f1-4b3a-bbcd-eb2064165cd5/call-CiteSeqCount/glob-5b2373ebac80816456a7726e786fc4d4/matrix.mtx.gz"
     ],
-    "TranslateBarcodes.dockerRegistry": "583643567512.dkr.ecr.us-east-1.amazonaws.com"
+    "TranslateBarcodes.dockerRegistry": "quay.io/hisplan"
 }

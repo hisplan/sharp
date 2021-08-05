@@ -2,5 +2,5 @@
     "Combine.denseCountMatrix": "s3://dp-lab-data/collaborators/hsuk/7xNK/HD1915_7xNK/seqc-results/1973_HD1915_7xNK_IGO_10657_2_dense.csv",
     "Combine.htoClassification": "s3://dp-lab-batch/cromwell-execution/Sharp/92b1d131-7106-4d3b-9797-c8277be8b31b/call-HtoDemuxKMeans/final-classification.tsv.gz",
     "Combine.translate10XBarcodes": false,
-    "Combine.dockerRegistry": "583643567512.dkr.ecr.us-east-1.amazonaws.com"
+    "Combine.dockerRegistry": "quay.io/hisplan"
 }
