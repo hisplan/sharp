@@ -49,7 +49,7 @@ workflow Hashtag {
 
         Int numExpectedCells
 
-        File denseCountMatrix
+        File? denseCountMatrix
 
         Boolean runSeuratDemux = false
         Int demuxMode = 1
@@ -119,13 +119,16 @@ workflow Hashtag {
         }
     }
 
-    # combine count matrix with hashtag
-    call Combine.HashedCountMatrix {
-        input:
-            denseCountMatrix = denseCountMatrix,
-            htoClassification = HtoDemuxKMeans.outClass,
-            translate10XBarcodes = translate10XBarcodes,
-            dockerRegistry = dockerRegistry
+    # combine count matrix with hashtag classification
+    # if SEQC dense count matrix is provided
+    if (defined(denseCountMatrix)) {
+        call Combine.HashedCountMatrix {
+            input:
+                denseCountMatrix = select_first([denseCountMatrix]),
+                htoClassification = HtoDemuxKMeans.outClass,
+                translate10XBarcodes = translate10XBarcodes,
+                dockerRegistry = dockerRegistry
+        }
     }
 
     call AnnData.UpdateAnnData {
@@ -156,10 +159,10 @@ workflow Hashtag {
         File logHtoDemux = HtoDemuxKMeans.outLog
         File? logHtoDemux_Suppl1 = CorrectFalsePositiveDoublets.outLog
 
-        File combinedClass = HashedCountMatrix.outClass
-        File combinedCountMatrix = HashedCountMatrix.outCountMatrix
-        File combinedStats = HashedCountMatrix.outStats
-        File combinedLog = HashedCountMatrix.outLog
+        File? combinedClass = HashedCountMatrix.outClass
+        File? combinedCountMatrix = HashedCountMatrix.outCountMatrix
+        File? combinedStats = HashedCountMatrix.outStats
+        File? combinedLog = HashedCountMatrix.outLog
 
         File adataRaw = Preprocess.adata
         File adataFinal = UpdateAnnData.outAdata

@@ -1,18 +1,18 @@
 #!/usr/bin/env bash
 
-echo ">> 10x v3 / TotalSeq-A"
+echo ">> Hashtag 10x v3 / TotalSeq-A"
 java -jar ~/Applications/womtool.jar \
     validate \
     Hashtag.wdl \
     --inputs ./configs/hashtag-10x-v3-tsa.inputs.json
 
-echo ">> 10x v3 / TotalSeq-B barcode translation"
+echo ">> Hashtag 10x v3 / TotalSeq-B barcode translation"
 java -jar ~/Applications/womtool.jar \
     validate \
     Hashtag.wdl \
     --inputs ./configs/hashtag-10x-v3-tsb.inputs.json
 
-echo ">> InDrop Methanol"
+echo ">> Hashtag InDrop Methanol"
 java -jar ~/Applications/womtool.jar \
     validate \
     Hashtag.wdl \
@@ -35,3 +35,9 @@ java -jar ~/Applications/womtool.jar \
     validate \
     AsapSeq.wdl \
     --inputs ./configs/asapseq-tsa.inputs.json
+
+echo ">> Hashtag 10x v2 / 5'"
+java -jar ~/Applications/womtool.jar \
+    validate \
+    Hashtag.wdl \
+    --inputs ./configs/hashtag-10x-v2-5p.inputs.json
