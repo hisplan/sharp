@@ -27,5 +27,5 @@
         "cpu": 32,
         "memory": 64
     },
-    "Hashtag.dockerRegistry": "583643567512.dkr.ecr.us-east-1.amazonaws.com"
+    "Hashtag.dockerRegistry": "quay.io/hisplan"
 }

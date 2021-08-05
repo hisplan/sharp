@@ -29,5 +29,5 @@
         "memory": 64
     },
     "Hashtag.demuxMode": 1,
-    "Hashtag.dockerRegistry": "hisplan"
+    "Hashtag.dockerRegistry": "quay.io/hisplan"
 }

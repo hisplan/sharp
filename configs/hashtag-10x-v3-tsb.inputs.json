@@ -29,5 +29,5 @@
         "cpu": 32,
         "memory": 64
     },
-    "Hashtag.dockerRegistry": "hisplan"
+    "Hashtag.dockerRegistry": "quay.io/hisplan"
 }

@@ -31,5 +31,5 @@
         "cpu": 4,
         "memory": -1
     },
-    "AsapSeq.dockerRegistry": "hisplan"
+    "AsapSeq.dockerRegistry": "quay.io/hisplan"
 }
