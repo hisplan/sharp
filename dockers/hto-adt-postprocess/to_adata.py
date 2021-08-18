@@ -63,22 +63,19 @@ def to_adata(sample_name, path_tag_list, path_umi_counts, path_read_counts):
     adata.obs["unmapped"] = mtx_umi.T.toarray()[:, -1]
 
     # add human-friendly feature name to var
-    # sample of origin in case of hashtag
-    # antibody name in case of CITE-seq)
-    feature_names = adata.var.index.map(lambda x: df_tags.loc[x, "feature_name"])
+    # sample of origin in case of hashtag, antibody name in case of CITE-seq
+    # stringify at the end (some antibody name is composed of just numbers)
+    feature_names = adata.var.index.map(lambda x: str(df_tags.loc[x, "feature_name"]))
     adata.var["feature_name"] = feature_names
 
     dna3bit = DNA3Bit()
+    # get numerical barcodes but stringify (not allowed to store numbers in obs.index)
     numerical_barcodes = adata.obs.index.map(lambda x: str(dna3bit.encode(x)))
     # add nucleotide barcode to obs
     adata.obs["barcode_sequence"] = adata.obs_names
 
     # use numerical barcodes for obs index
     adata.obs_names = numerical_barcodes
-
-    # sc.pp.calculate_qc_metrics(
-    #     adata, percent_top=(5, 10, 15), var_type="antibodies", inplace=True
-    # )
 
     adata.write(sample_name + ".h5ad")
 
