@@ -13,10 +13,6 @@ workflow AnnData {
         Array[File] umiCountFiles
         Array[File] readCountFiles
 
-        # UpdateAnnData
-        File htoClassification
-        File adata
-
         # docker-related
         String dockerRegistry
     }
@@ -27,15 +23,6 @@ workflow AnnData {
             tagList = tagList,
             umiCountFiles = umiCountFiles,
             readCountFiles = readCountFiles,
-            dockerRegistry = dockerRegistry
-    }
-
-    call module.UpdateAnnData {
-        input:
-            sampleName = sampleName,
-            htoClassification = htoClassification,
-            translate10XBarcodes = true,
-            adata = adata,
             dockerRegistry = dockerRegistry
     }
 
