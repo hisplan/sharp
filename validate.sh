@@ -12,6 +12,12 @@ java -jar ~/Applications/womtool.jar \
     Hashtag.wdl \
     --inputs ./configs/hashtag-10x-v3-tsb.inputs.json
 
+echo ">> Hashtag 10x / TotalSeq-C"
+java -jar ~/Applications/womtool.jar \
+    validate \
+    Hashtag.wdl \
+    --inputs ./configs/hashtag-10x-tsc.inputs.json
+
 echo ">> Hashtag InDrop Methanol"
 java -jar ~/Applications/womtool.jar \
     validate \
@@ -35,9 +41,3 @@ java -jar ~/Applications/womtool.jar \
     validate \
     AsapSeq.wdl \
     --inputs ./configs/asapseq-tsa.inputs.json
-
-echo ">> Hashtag 10x v2 / 5'"
-java -jar ~/Applications/womtool.jar \
-    validate \
-    Hashtag.wdl \
-    --inputs ./configs/hashtag-10x-v2-5p.inputs.json
