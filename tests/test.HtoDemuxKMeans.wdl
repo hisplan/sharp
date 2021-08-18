@@ -6,6 +6,8 @@ workflow HtoDemuxKMeans {
 
     input {
         Array[File] umiCountFiles
+        Int minCount=0
+        Int mode=1
 
         # docker-related
         String dockerRegistry
@@ -14,6 +16,8 @@ workflow HtoDemuxKMeans {
     call module.HtoDemuxKMeans {
         input:
             umiCountFiles = umiCountFiles,
+            minCount = minCount,
+            mode = mode,            
             dockerRegistry = dockerRegistry
     }
 
