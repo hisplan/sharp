@@ -13,7 +13,7 @@ Sharp supports the following:
 
 ## Outputs
 
-In addition to cell barcode/UMI correction and quantification, cells are demultiplexed to their sample-of-origin and cross-sample doublets are identified (except CITE-seq). More information about the outputs can be found [here](docs/understanding-outputs-2021-07-30.pdf)
+In addition to cell barcode/UMI correction and quantification, cells are demultiplexed to their sample-of-origin and cross-sample doublets are identified (except CITE-seq). More information about the outputs can be found [here](docs/understanding-outputs-2021-08-30.pdf)
 
 ## Setup
 
