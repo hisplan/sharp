@@ -13,62 +13,21 @@ Sharp supports the following:
 
 ## Outputs
 
-We do more than just CB/UMI correction/counting. Essentially, we demultiplex cells to their sample-of-origin and identify cross-sample doublets. And we combine with scRNA-seq data so that users can easily identify which cells belongs to which sample.
-
-Explanation about the output:
-
-- HashedCountMatrix
-  - `final-classification.tsv.gz`: tells you which cell belongs to which hashtag.
-  - `final-matrix.tsv.gz`: a cell x gene matrix from scRNA-seq + one additional column that tells you which hashtag a given cell belongs to.
-  - `stats.yml`: tells you how many cells belongs to each hashtag.
-- CiteSeqCount
-  - This may contain one or more files only for troubleshooting purpose.
-
-## Components
-
-- FASTQ merge (multiple lanes)
-- QC on raw FASTQ
-- FASTQ trimming
-- Reducing barcode whitelist (or get from scRNA-seq)
-- Creating cell-by-hashtag matrix
-- Demultiplexing
-- Combining with scRNA-seq matrix
+In addition to cell barcode/UMI correction and quantification, cells are demultiplexed to their sample-of-origin and cross-sample doublets are identified (except CITE-seq). More information about the outputs can be found [here](docs/understanding-outputs-2021-07-30.pdf)
 
 ## Setup
 
-```bash
-aws s3 cp s3://dp-lab-home/software/install-sharp-0.0.10.sh - | bash
-```
-
-```
-$ conda create -n cromwell python=3.7.7 pip
-$ conda activate cromwell
-$ conda install -c cyclus java-jre
-$ pip install cromwell-tools
-```
-
-Update `secrets.json` with the new Cromwell Server address:
-
-```bash
-$ cat ~/secrets.json
-{
-    "url": "http://ec2-100-26-170-43.compute-1.amazonaws.com",
-    "username": "****",
-    "password": "****"
-}
-```
+Sharp is a part of SCING (Single-Cell pIpeliNe Garden; pronounced as "sing" /siŋ/). For setup, please refer to [this page](https://github.com/hisplan/scing). All the instructions below is given under the assumption that you have already configured SCING in your environment.
 
 ## Running Workflow
-
-Finally, submit your job:
 
 ### Hashtag
 
 ```bash
-conda activate cromwell
+conda activate scing
 
 ./submit-hashtag.sh \
-  -k ~/keys/cromwell-secrets-aws-nvirginia.json \
+  -k ~/keys/cromwell-secrets.json \
   -i configs/hashtag-10x-v3-tsb.inputs.json \
   -l configs/hashtag-10x-v3-tsb.labels.json \
   -o Sharp.options.aws.json
@@ -77,10 +36,10 @@ conda activate cromwell
 ### CITE-SEQ
 
 ```bash
-conda activate cromwell
+conda activate scing
 
 ./submit-citeseq.sh \
-  -k ~/keys/cromwell-secrets-aws-nvirginia.json \
+  -k ~/keys/cromwell-secrets.json \
   -i configs/citeseq.inputs.json \
   -l configs/citeseq.labels.json \
   -o Sharp.options.aws.json
@@ -89,10 +48,10 @@ conda activate cromwell
 ### ASAP-seq
 
 ```bash
-conda activate cromwell
+conda activate scing
 
 ./submit-asapseq.sh \
-  -k ~/keys/cromwell-secrets-aws-nvirginia.json \
+  -k ~/keys/cromwell-secrets.json \
   -i configs/asapseq-tsa.inputs.json \
   -l configs/asapseq-tsa.labels.json \
   -o Sharp.options.aws.json
@@ -101,10 +60,10 @@ conda activate cromwell
 ### Cell Plex
 
 ```bash
-conda activate cromwell
+conda activate scing
 
 ./submit-cellplex.sh \
-  -k ~/keys/cromwell-secrets-aws-nvirginia.json \
+  -k ~/keys/cromwell-secrets.json \
   -i configs/cellplex.inputs.json \
   -l configs/cellplex.labels.json \
   -o Sharp.options.aws.json
@@ -114,33 +73,19 @@ conda activate cromwell
 
 Jupyter Notebook and Papermill are required.
 
-```
-$ conda activate dev
-
+```bash
+$ conda create -n sharp python=3.8 pip
+$ conda activate sharp
 $ cd manual-inspection
-$ ./run.sh -k ~/secrets-aws.json -t hashtag -w 47080814-0fe7-458d-9edb-5e3cb86bf870
+$ pip install -r requirements.txt
+$ ./run.sh
+USAGE: run.sh [options]
+    -k  service account key (e.g. secrets.json)
+    -t  type ('hashtag', 'citeseq', 'asapseq', or 'cellplex')
+    -w  workflow ID
+    -s  skip download and use the pre-downloaded data
 ```
 
-## Unit Test
-
-IL10neg
-
-```yaml
-Doublet: 1433
-HTO-301: 6615
-HTO-302: 1566
-HTO-303: 2049
-HTO-304: 1312
-Total: 12975
-```
-
-IL10pos
-
-```yaml
-Doublet: 367
-HTO-301: 6906
-HTO-302: 1441
-HTO-303: 157
-HTO-304: 90
-Total: 8961
+```bash
+$ ./run.sh -k ~/keys/cromwell-secrets.json -t hashtag -w 47080814-0fe7-458d-9edb-5e3cb86bf870
 ```
