@@ -23,8 +23,23 @@ Sharp is a part of SCING (Single-Cell pIpeliNe Garden; pronounced as "sing" /si�
 
 You need two files for processing a sample - one inputs file and one labels file. Use the following example files to help you create your job file:
 
-- `configs/*.inputs.json`
-- `configs/*.labels.json`
+```
+configs/
+├── asapseq-tsa.inputs.json
+├── asapseq-tsa.labels.json
+├── cellplex.inputs.json
+├── cellplex.labels.json
+├── citeseq.inputs.json
+├── citeseq.labels.json
+├── hashtag-10x-tsc.inputs.json
+├── hashtag-10x-tsc.labels.json
+├── hashtag-10x-v3-tsa.inputs.json
+├── hashtag-10x-v3-tsa.labels.json
+├── hashtag-10x-v3-tsb.inputs.json
+├── hashtag-10x-v3-tsb.labels.json
+├── hashtag-indrop-methanol.inputs.json
+└── hashtag-indrop-methanol.labels.json
+```
 
 ### Inputs
 
