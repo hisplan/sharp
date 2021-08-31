@@ -1,8 +1,8 @@
 #!/bin/bash -e
 
 wf_name="sharp"
-version="0.0.11"
-files="submit-hashtag.sh submit-citeseq.sh submit-asapseq.sh Sharp.deps.zip Hashtag.wdl CiteSeq.wdl AsapSeq.wdl Sharp.options.aws.json"
+version="0.0.12"
+files="submit-hashtag.sh submit-citeseq.sh submit-asapseq.sh Sharp.deps.zip Hashtag.wdl CiteSeq.wdl AsapSeq.wdl Sharp.options.aws.json configs/*.json"
 dest="$HOME/scing/bin"
 
 usage()
@@ -36,7 +36,7 @@ mkdir -p ${dest}
 # create a temporary directory and copy files
 path_workdir=`mktemp -d`
 mkdir -p ${path_workdir}/${wf_name}-${version}
-cp ${files} ${path_workdir}/${wf_name}-${version}/
+rsync -Rv ${files} ${path_workdir}/${wf_name}-${version}/
 
 # tar-gzip
 cd ${path_workdir}
