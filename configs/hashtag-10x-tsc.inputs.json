@@ -1,23 +1,23 @@
 {
     "Hashtag.uriFastqR1": [
-        "s3://dp-lab-data/collaborators/arudensky/Cd4CellDiffAf/Foxp3_minus_HTO/FASTQ/2676_Foxp3_minus_HTO_IGO_11963_39_S19_L001_R1_001.fastq.gz",
-        "s3://dp-lab-data/collaborators/arudensky/Cd4CellDiffAf/Foxp3_minus_HTO/FASTQ/2676_Foxp3_minus_HTO_IGO_11963_39_S19_L002_R1_001.fastq.gz",
-        "s3://dp-lab-data/collaborators/arudensky/Cd4CellDiffAf/Foxp3_minus_HTO/FASTQ/2676_Foxp3_minus_HTO_IGO_11963_39_S19_L003_R1_001.fastq.gz",
-        "s3://dp-lab-data/collaborators/arudensky/Cd4CellDiffAf/Foxp3_minus_HTO/FASTQ/2676_Foxp3_minus_HTO_IGO_11963_39_S19_L004_R1_001.fastq.gz"
+        "s3://.../sample1_L001_R1_001.fastq.gz",
+        "s3://.../sample1_L002_R1_001.fastq.gz",
+        "s3://.../sample1_L003_R1_001.fastq.gz",
+        "s3://.../sample1_L004_R1_001.fastq.gz"
     ],
     "Hashtag.uriFastqR2": [
-        "s3://dp-lab-data/collaborators/arudensky/Cd4CellDiffAf/Foxp3_minus_HTO/FASTQ/2676_Foxp3_minus_HTO_IGO_11963_39_S19_L001_R2_001.fastq.gz",
-        "s3://dp-lab-data/collaborators/arudensky/Cd4CellDiffAf/Foxp3_minus_HTO/FASTQ/2676_Foxp3_minus_HTO_IGO_11963_39_S19_L002_R2_001.fastq.gz",
-        "s3://dp-lab-data/collaborators/arudensky/Cd4CellDiffAf/Foxp3_minus_HTO/FASTQ/2676_Foxp3_minus_HTO_IGO_11963_39_S19_L003_R2_001.fastq.gz",
-        "s3://dp-lab-data/collaborators/arudensky/Cd4CellDiffAf/Foxp3_minus_HTO/FASTQ/2676_Foxp3_minus_HTO_IGO_11963_39_S19_L004_R2_001.fastq.gz"
+        "s3://.../sample1_L001_R2_001.fastq.gz",
+        "s3://.../sample1_L002_R2_001.fastq.gz",
+        "s3://.../sample1_L003_R2_001.fastq.gz",
+        "s3://.../sample1_L004_R2_001.fastq.gz"
     ],
-    "Hashtag.sampleName": "2676_Foxp3_minus_HTO",
+    "Hashtag.sampleName": "sample1",
     "Hashtag.scRnaSeqPlatform": "10x",
     "Hashtag.lengthR1": 26,
     "Hashtag.lengthR2": 25,
-    "Hashtag.cellBarcodeWhitelistUri": "s3://dp-lab-data/collaborators/arudensky/Cd4CellDiffAf/Foxp3_minus_HTO/minus_barcodes.csv.gz",
+    "Hashtag.cellBarcodeWhitelistUri": "s3://.../barcodes.csv.gz",
     "Hashtag.cellBarcodeWhiteListMethod": "10x",
-    "Hashtag.hashTagList": "s3://dp-lab-data/collaborators/arudensky/Cd4CellDiffAf/Foxp3_minus_HTO/Hashtag_results/tag-list.csv",
+    "Hashtag.hashTagList": "s3://.../tag-list.csv",
     "Hashtag.cbStartPos": 1,
     "Hashtag.cbEndPos": 16,
     "Hashtag.umiStartPos": 17,

@@ -1,9 +1,9 @@
 {
     "pipelineType": "Hashtag",
-    "project": "Project Dev",
-    "sample": "2537_CellLines",
-    "owner": "chunj",
-    "destination": "s3://dp-lab-test/sharp/cellplex/cell-lines/",
+    "project": "YOUR_PROJECT_NAME",
+    "sample": "YOUR_SAMPLE_NAME",
+    "owner": "YOUR_USER_ID",
+    "destination": "s3://.../cellplex/",
     "transfer": "-",
-    "comment": "CellPlex"
+    "comment": ""
 }

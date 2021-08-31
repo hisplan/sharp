@@ -1,9 +1,9 @@
 {
     "pipelineType": "ASAP-seq",
-    "project": "TechDev",
-    "sample": "ASAPseq_test_HTO_IGO_11671_3",
-    "owner": "chunj",
-    "destination": "s3://dp-lab-test/sharp/asap-seq/TSA/",
+    "project": "YOUR_PROJECT_NAME",
+    "sample": "YOUR_SAMPLE_NAME",
+    "owner": "YOUR_USER_ID",
+    "destination": "s3://.../asap-seq/tsa/",
     "transfer": "-",
-    "comment": "ASAP-seq TSA"    
+    "comment": ""
 }

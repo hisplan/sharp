@@ -1,19 +1,19 @@
 {
     "Hashtag.uriFastqR1": [
-        "s3://dp-lab-data/collaborators/arudensky/Il10_scRNAseq/IL10pos_HTO/FASTQ/1186_IL10pos_HTO_IGO_10034_22_S1_L001_R1_001.fastq.gz",
-        "s3://dp-lab-data/collaborators/arudensky/Il10_scRNAseq/IL10pos_HTO/FASTQ/1186_IL10pos_HTO_IGO_10034_22_S1_L002_R1_001.fastq.gz"
+        "s3://.../sample1_L001_R1_001.fastq.gz",
+        "s3://.../sample1_L002_R1_001.fastq.gz"
     ],
     "Hashtag.uriFastqR2": [
-        "s3://dp-lab-data/collaborators/arudensky/Il10_scRNAseq/IL10pos_HTO/FASTQ/1186_IL10pos_HTO_IGO_10034_22_S1_L001_R2_001.fastq.gz",
-        "s3://dp-lab-data/collaborators/arudensky/Il10_scRNAseq/IL10pos_HTO/FASTQ/1186_IL10pos_HTO_IGO_10034_22_S1_L002_R2_001.fastq.gz"
+        "s3://.../sample1_L001_R2_001.fastq.gz",
+        "s3://.../sample1_L002_R2_001.fastq.gz"
     ],
-    "Hashtag.sampleName": "IL10pos_HTO_IGO_10034_22_S1",
+    "Hashtag.sampleName": "sample1",
     "Hashtag.lengthR1": 28,
     "Hashtag.lengthR2": 15,
-    "Hashtag.cellBarcodeWhitelistUri": "s3://dp-lab-data/collaborators/arudensky/Il10_scRNAseq/IL10pos/seqc-results/1186_IL10pos_P163_IGO_09902_7_dense.csv",
+    "Hashtag.cellBarcodeWhitelistUri": "s3://.../seqc-results/sample1_dense.csv",
     "Hashtag.cellBarcodeWhiteListMethod": "SeqcDenseCountsMatrixCsv",
     "Hashtag.translate10XBarcodes": false,
-    "Hashtag.hashTagList": "s3://dp-lab-data/collaborators/arudensky/Il10_scRNAseq/IL10pos_HTO/Hashtag_results/tag-list.csv",
+    "Hashtag.hashTagList": "s3://.../tag-list.csv",
     "Hashtag.cbStartPos": 1,
     "Hashtag.cbEndPos": 16,
     "Hashtag.umiStartPos": 17,
@@ -22,10 +22,10 @@
     "Hashtag.umiCollapsingDistance": 1,
     "Hashtag.numExpectedCells": 0,
     "Hashtag.minCount": 10,
-    "Hashtag.denseCountMatrix": "s3://dp-lab-data/collaborators/arudensky/Il10_scRNAseq/IL10pos/seqc-results/1186_IL10pos_P163_IGO_09902_7_dense.csv",
+    "Hashtag.denseCountMatrix": "s3://.../seqc-results/sample1_dense.csv",
     "Hashtag.resourceSpec": {
         "cpu": 4,
-        "memory": 64
+        "memory": -1
     },
     "Hashtag.dockerRegistry": "quay.io/hisplan"
 }

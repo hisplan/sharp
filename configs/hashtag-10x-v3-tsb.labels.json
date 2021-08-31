@@ -1,9 +1,9 @@
 {
     "pipelineType": "Hashtag",
-    "project": "Project 226",
-    "sample": "1973_HD1915_7xNK_FB_HTO",
-    "owner": "chunj",
-    "destination": "s3://dp-lab-test/sharp/hashtag/10x-v3-totalseq-B/",
+    "project": "YOUR_PROJECT_NAME",
+    "sample": "YOUR_SAMPLE_NAME",
+    "owner": "YOUR_USER_ID",
+    "destination": "s3://.../10x-tsb/",
     "transfer": "-",
-    "comment": "10x v3 TotalSeq-B"
+    "comment": ""    
 }

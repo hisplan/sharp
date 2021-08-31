@@ -1,9 +1,9 @@
 {
     "pipelineType": "CITE-seq",
-    "project": "HTAN CITE-seq",
-    "sample": "2090_CS1429a_T_1_CD45pos_citeseq_1_CITE",
-    "owner": "chunj",
-    "destination": "s3://dp-lab-test/sharp/citeseq/",
+    "project": "YOUR_PROJECT_NAME",
+    "sample": "YOUR_SAMPLE_NAME",
+    "owner": "YOUR_USER_ID",
+    "destination": "s3://.../citeseq/",
     "transfer": "-",
-    "comment": "CITE-seq"
+    "comment": ""
 }

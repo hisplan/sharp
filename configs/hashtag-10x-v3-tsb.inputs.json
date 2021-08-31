@@ -1,20 +1,20 @@
 {
     "Hashtag.uriFastqR1": [
-        "s3://dp-lab-data/collaborators/hsuk/7xNK/HD1915_7xNK_FB_HTO/FASTQ/HD1915_7xNK_FB_IGO_10657_B_2_S2_L001_R1_001.fastq.gz",
-        "s3://dp-lab-data/collaborators/hsuk/7xNK/HD1915_7xNK_FB_HTO/FASTQ/HD1915_7xNK_FB_IGO_10657_B_2_S2_L002_R1_001.fastq.gz"
+        "s3://.../sample1_L001_R1_001.fastq.gz",
+        "s3://.../sample1_L002_R1_001.fastq.gz"
     ],
     "Hashtag.uriFastqR2": [
-        "s3://dp-lab-data/collaborators/hsuk/7xNK/HD1915_7xNK_FB_HTO/FASTQ/HD1915_7xNK_FB_IGO_10657_B_2_S2_L001_R2_001.fastq.gz",
-        "s3://dp-lab-data/collaborators/hsuk/7xNK/HD1915_7xNK_FB_HTO/FASTQ/HD1915_7xNK_FB_IGO_10657_B_2_S2_L002_R2_001.fastq.gz"
+        "s3://.../sample1_L001_R2_001.fastq.gz",
+        "s3://.../sample1_L002_R2_001.fastq.gz"
     ],
     "Hashtag.sampleName": "1973_HD1915_7xNK_FB_HTO",
     "Hashtag.scRnaSeqPlatform": "10x_v3",
     "Hashtag.lengthR1": 28,
     "Hashtag.lengthR2": 25,
-    "Hashtag.cellBarcodeWhitelistUri": "s3://dp-lab-data/collaborators/hsuk/7xNK/HD1915_7xNK/seqc-results/1973_HD1915_7xNK_IGO_10657_2_dense.csv",
+    "Hashtag.cellBarcodeWhitelistUri": "s3://.../seqc-results/sample1_dense.csv",
     "Hashtag.cellBarcodeWhiteListMethod": "SeqcDenseCountsMatrixCsv",
     "Hashtag.translate10XBarcodes": true,
-    "Hashtag.hashTagList": "s3://dp-lab-data/collaborators/hsuk/7xNK/HD1915_7xNK_FB_HTO/Hashtag_results/tag-list.csv",
+    "Hashtag.hashTagList": "s3://.../tag-list.csv",
     "Hashtag.cbStartPos": 1,
     "Hashtag.cbEndPos": 16,
     "Hashtag.umiStartPos": 17,
@@ -25,10 +25,10 @@
     "Hashtag.umiCollapsingDistance": 1,
     "Hashtag.numExpectedCells": 0,
     "Hashtag.minCount": 10,
-    "Hashtag.denseCountMatrix": "s3://dp-lab-data/collaborators/hsuk/7xNK/HD1915_7xNK/seqc-results/1973_HD1915_7xNK_IGO_10657_2_dense.csv",
+    "Hashtag.denseCountMatrix": "s3://.../seqc-results/sample1_dense.csv",
     "Hashtag.resourceSpec": {
         "cpu": 32,
-        "memory": 64
+        "memory": -1
     },
     "Hashtag.dockerRegistry": "quay.io/hisplan"
 }

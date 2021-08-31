@@ -1,9 +1,9 @@
 {
     "pipelineType": "Hashtag",
-    "project": "Project 275",
-    "sample": "2676_Foxp3_minus_HTO",
-    "owner": "chunj",
-    "destination": "s3://dp-lab-test/sharp/hashtag/10x-v2-5p/",
+    "project": "YOUR_PROJECT_NAME",
+    "sample": "YOUR_SAMPLE_NAME",
+    "owner": "YOUR_USER_ID",
+    "destination": "s3://.../10x-tsc/",
     "transfer": "-",
-    "comment": "10x TotalSeq-C"
+    "comment": ""
 }

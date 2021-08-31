@@ -1,25 +1,25 @@
 {
     "AsapSeq.fastqR1": [
-        "s3://dp-lab-data/collaborators/sunj/AsapseqTest/ASAPseq_test_ATAC_HTO/FASTQ/ASAPseq_test_HTO_IGO_11671_3_S3_L001_R1_001.fastq.gz",
-        "s3://dp-lab-data/collaborators/sunj/AsapseqTest/ASAPseq_test_ATAC_HTO/FASTQ/ASAPseq_test_HTO_IGO_11671_3_S3_L002_R1_001.fastq.gz"
+        "s3://.../sample1_L001_R1_001.fastq.gz",
+        "s3://.../sample1_L002_R1_001.fastq.gz"
     ],
     "AsapSeq.fastqR2": [
-        "s3://dp-lab-data/collaborators/sunj/AsapseqTest/ASAPseq_test_ATAC_HTO/FASTQ/ASAPseq_test_HTO_IGO_11671_3_S3_L001_R2_001.fastq.gz",
-        "s3://dp-lab-data/collaborators/sunj/AsapseqTest/ASAPseq_test_ATAC_HTO/FASTQ/ASAPseq_test_HTO_IGO_11671_3_S3_L002_R2_001.fastq.gz"
+        "s3://.../sample1_L001_R2_001.fastq.gz",
+        "s3://.../sample1_L002_R2_001.fastq.gz"
     ],
     "AsapSeq.fastqR3": [
-        "s3://dp-lab-data/collaborators/sunj/AsapseqTest/ASAPseq_test_ATAC_HTO/FASTQ/ASAPseq_test_HTO_IGO_11671_3_S3_L001_R3_001.fastq.gz",
-        "s3://dp-lab-data/collaborators/sunj/AsapseqTest/ASAPseq_test_ATAC_HTO/FASTQ/ASAPseq_test_HTO_IGO_11671_3_S3_L002_R3_001.fastq.gz"
+        "s3://.../sample1_L001_R3_001.fastq.gz",
+        "s3://.../sample1_L002_R3_001.fastq.gz"
     ],
-    "AsapSeq.sampleName": "ASAPseq_test_HTO_IGO_11671_3",
+    "AsapSeq.sampleName": "sample1",
     "AsapSeq.conjugation": "TotalSeqA",
     "AsapSeq.noReverseComplementR2": false,
     "AsapSeq.lengthR1": 26,
     "AsapSeq.lengthR2": 15,
-    "AsapSeq.cellBarcodeWhitelistUri": "s3://dp-lab-data/collaborators/sunj/AsapseqTest/ASAPseq_test_ATAC/CR-results/count/outs/filtered_peak_bc_matrix/barcodes.tsv",
+    "AsapSeq.cellBarcodeWhitelistUri": "s3://.../filtered_peak_bc_matrix/barcodes.tsv",
     "AsapSeq.cellBarcodeWhiteListMethod": "10x",
     "AsapSeq.translate10XBarcodes": false,
-    "AsapSeq.hashTagList": "s3://dp-lab-data/collaborators/sunj/AsapseqTest/ASAPseq_test_ATAC_HTO/Hashtag_results/tag-list.csv",
+    "AsapSeq.hashTagList": "s3://.../tag-list.csv",
     "AsapSeq.cbStartPos": 1,
     "AsapSeq.cbEndPos": 16,
     "AsapSeq.umiStartPos": 17,
