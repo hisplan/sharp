@@ -5,5 +5,5 @@
     "owner": "chunj",
     "destination": "s3://dp-lab-test/sharp/hashtag/10x-v2-5p/",
     "transfer": "-",
-    "comment": "10x v2 / 5'"
+    "comment": "10x TotalSeq-C"
 }
