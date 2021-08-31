@@ -9,7 +9,7 @@ Sharp supports the following:
 - Hashtag
 - CITE-seq
 - ASAP-seq
-- Cell Plex
+- CellPlex
 
 ## Outputs
 
@@ -57,7 +57,7 @@ conda activate scing
   -o Sharp.options.aws.json
 ```
 
-### Cell Plex
+### CellPlex
 
 ```bash
 conda activate scing
