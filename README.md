@@ -19,7 +19,25 @@ In addition to cell barcode/UMI correction and quantification, cells are demulti
 
 Sharp is a part of SCING (Single-Cell pIpeliNe Garden; pronounced as "sing" /siŋ/). For setup, please refer to [this page](https://github.com/hisplan/scing). All the instructions below is given under the assumption that you have already configured SCING in your environment.
 
-## Running Workflow
+## Create Job Files
+
+You need two files for processing a sample - one inputs file and one labels file. Use the following example files to help you create your job file:
+
+- `configs/*.inputs.json`
+- `configs/*.labels.json`
+
+### Inputs
+
+```json
+"Hashtag.resourceSpec": {
+    "cpu": 4,
+    "memory": -1
+},
+```
+
+Setting `memory` to `-1` will tell Sharp to estimate the amount of memory required, but sometimes you might end up needing more. Change it to `256`, for example, if you want to tell Sharp to allocate 256 GB memory.
+
+## Submit Your Job
 
 ### Hashtag
 
