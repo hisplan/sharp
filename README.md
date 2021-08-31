@@ -104,13 +104,20 @@ conda activate scing
 
 ## Manual Inspection
 
+### Setup
+
 Jupyter Notebook and Papermill are required.
 
 ```bash
 $ conda create -n sharp python=3.8 pip
 $ conda activate sharp
-$ cd manual-inspection
 $ pip install -r requirements.txt
+```
+
+### How to Generate QC Notebook
+
+```bash
+$ cd manual-inspection
 $ ./run.sh
 USAGE: run.sh [options]
     -k  service account key (e.g. secrets.json)
