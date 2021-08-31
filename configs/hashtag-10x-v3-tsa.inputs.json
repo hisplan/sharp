@@ -21,6 +21,7 @@
     "Hashtag.cbCollapsingDistance": 1,
     "Hashtag.umiCollapsingDistance": 1,
     "Hashtag.numExpectedCells": 0,
+    "Hashtag.minCount": 10,
     "Hashtag.denseCountMatrix": "s3://dp-lab-data/collaborators/arudensky/Il10_scRNAseq/IL10pos/seqc-results/1186_IL10pos_P163_IGO_09902_7_dense.csv",
     "Hashtag.resourceSpec": {
         "cpu": 4,

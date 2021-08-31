@@ -24,6 +24,7 @@
     "Hashtag.cbCollapsingDistance": 1,
     "Hashtag.umiCollapsingDistance": 1,
     "Hashtag.numExpectedCells": 0,
+    "Hashtag.minCount": 10,
     "Hashtag.denseCountMatrix": "s3://dp-lab-data/collaborators/hsuk/7xNK/HD1915_7xNK/seqc-results/1973_HD1915_7xNK_IGO_10657_2_dense.csv",
     "Hashtag.resourceSpec": {
         "cpu": 32,

@@ -22,6 +22,7 @@
     "Hashtag.cbCollapsingDistance": 1,
     "Hashtag.umiCollapsingDistance": 1,
     "Hashtag.numExpectedCells": 0,
+    "Hashtag.minCount": 10,
     "Hashtag.denseCountMatrix": "s3://dp-lab-data/SCRI_Projects/Preservation/LX33_1_4_1/seqc-results/1687_LX33_1_4_1_IGO_10298_B_32_dense.csv",
     "Hashtag.resourceSpec": {
         "cpu": 32,

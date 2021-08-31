@@ -27,6 +27,7 @@
     "AsapSeq.cbCollapsingDistance": 1,
     "AsapSeq.umiCollapsingDistance": 1,
     "AsapSeq.numExpectedCells": 0,
+    "AsapSeq.minCount": 10,
     "AsapSeq.resourceSpec": {
         "cpu": 4,
         "memory": -1
