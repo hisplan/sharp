@@ -6,6 +6,7 @@ manual-inspection/hashtag/*
 manual-inspection/citeseq/*
 manual-inspection/asapseq/*
 manual-inspection/cellplex/*
+tutorial/*.h5ad
 configs/archive/*
 configs/sanity-check/*
 configs/devtest/*
