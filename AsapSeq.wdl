@@ -24,8 +24,6 @@ workflow AsapSeq {
         File cellBarcodeWhitelistUri
         String cellBarcodeWhiteListMethod
 
-        # set to false if TotalSeq-A is used
-        # set to true if TotalSeq-B or C is used
         Boolean translate10XBarcodes
 
         String scRnaSeqPlatform = "10x_v3"
