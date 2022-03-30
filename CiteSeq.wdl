@@ -1,6 +1,7 @@
 version 1.0
 
 import "modules/Preprocess.wdl" as Preprocess
+import "modules/BasicQC.wdl" as BasicQC
 
 workflow CiteSeq {
 
@@ -76,6 +77,16 @@ workflow CiteSeq {
             resourceSpec = resourceSpec,
             dockerRegistry = dockerRegistry
     }
+    
+    call BasicQC.BasicQC {
+        input:
+            sampleName = sampleName,
+            h5ad = Preprocess.adata,
+            readsCount = Preprocess.readCountMatrix,
+            runReport = Preprocess.countReport,
+            templateNotebook = "inspect-citeseq-v3.ipynb",
+            dockerRegistry = dockerRegistry
+    }
 
     output {
         File fastQCR1Html = Preprocess.fastQCR1Html
@@ -86,5 +97,9 @@ workflow CiteSeq {
         Array[File] readCountMatrix = Preprocess.readCountMatrix
 
         File adata = Preprocess.adata
+
+        File notebookQC = BasicQC.notebook
+        File htmlQC = BasicQC.htmlReport
+        File adataQC = BasicQC.adata        
     }
 }

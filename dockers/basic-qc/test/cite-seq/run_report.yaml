@@ -1,0 +1,24 @@
+Date: 2022-03-30
+Running time: 17.0 minutes, 2.219 seconds
+CITE-seq-Count Version: 1.4.3
+Reads processed: 42687903
+Percentage mapped: 96
+Percentage unmapped: 4
+Uncorrected cells: 0
+Correction:
+	Cell barcodes collapsing threshold: 1
+	Cell barcodes corrected: 37951
+	UMI collapsing threshold: 1
+	UMIs corrected: 40927
+Run parameters:
+	Read1_filename: /tmp/scratch/dp-lab-gwf-core2/cromwell-execution/CiteSeq/346371c9-ca2d-4de7-a0a5-c320a46e1fe1/call-Preprocess/Preprocess/01ab219c-1d2a-4164-b6b5-b790d3ed0816/call-TrimR1/R1.fastq.gz
+	Read2_filename: /tmp/scratch/dp-lab-gwf-core2/cromwell-execution/CiteSeq/346371c9-ca2d-4de7-a0a5-c320a46e1fe1/call-Preprocess/Preprocess/01ab219c-1d2a-4164-b6b5-b790d3ed0816/call-TrimR2/R2.fastq.gz
+	Cell barcode:
+		First position: 1
+		Last position: 16
+	UMI barcode:
+		First position: 17
+		Last position: 28
+	Expected cells: 0
+	Tags max errors: 2
+	Start trim: 0

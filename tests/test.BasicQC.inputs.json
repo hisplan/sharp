@@ -1,0 +1,11 @@
+{
+    "BasicQC.sampleName": "3656_ES-1543_WTvIRF4_TimeCourse_HTO",
+    "BasicQC.h5ad": "s3://dp-lab-gwf-core/cromwell-execution/Hashtag/dfafd128-3aa2-4189-a0f0-3afde62e597f/call-UpdateAnnData/3656_ES-1543_WTvIRF4_TimeCourse_HTO.h5ad",
+    "BasicQC.readsCount": [
+        "s3://dp-lab-gwf-core/cromwell-execution/Hashtag/dfafd128-3aa2-4189-a0f0-3afde62e597f/call-Preprocess/Preprocess/147178cb-5574-416a-a1b7-f335ec979b4e/call-CiteSeqCount/glob-8e7f6a2dd9fb1323e5ebc5c1c063f6df/barcodes.tsv.gz",
+        "s3://dp-lab-gwf-core/cromwell-execution/Hashtag/dfafd128-3aa2-4189-a0f0-3afde62e597f/call-Preprocess/Preprocess/147178cb-5574-416a-a1b7-f335ec979b4e/call-CiteSeqCount/glob-8e7f6a2dd9fb1323e5ebc5c1c063f6df/features.tsv.gz",
+        "s3://dp-lab-gwf-core/cromwell-execution/Hashtag/dfafd128-3aa2-4189-a0f0-3afde62e597f/call-Preprocess/Preprocess/147178cb-5574-416a-a1b7-f335ec979b4e/call-CiteSeqCount/glob-8e7f6a2dd9fb1323e5ebc5c1c063f6df/matrix.mtx.gz"
+    ],
+    "BasicQC.runReport": "s3://dp-lab-gwf-core/cromwell-execution/Hashtag/dfafd128-3aa2-4189-a0f0-3afde62e597f/call-Preprocess/Preprocess/147178cb-5574-416a-a1b7-f335ec979b4e/call-CiteSeqCount/results/run_report.yaml",
+    "BasicQC.dockerRegistry": "quay.io/hisplan"
+}

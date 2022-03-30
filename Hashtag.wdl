@@ -5,6 +5,7 @@ import "modules/HtoDemuxSeurat.wdl" as HtoDemuxSeurat
 import "modules/HtoDemuxKMeans.wdl" as HtoDemuxKMeans
 import "modules/Combine.wdl" as Combine
 import "modules/AnnData.wdl" as AnnData
+import "modules/BasicQC.wdl" as BasicQC
 
 workflow Hashtag {
 
@@ -140,6 +141,16 @@ workflow Hashtag {
             dockerRegistry = dockerRegistry
     }
 
+    call BasicQC.BasicQC {
+        input:
+            sampleName = sampleName,
+            h5ad = UpdateAnnData.outAdata,
+            readsCount = Preprocess.readCountMatrix,
+            runReport = Preprocess.countReport,
+            templateNotebook = "inspect-hashtag-v3.ipynb",
+            dockerRegistry = dockerRegistry
+    }
+
     output {
         File fastQCR1Html = Preprocess.fastQCR1Html
         File fastQCR2Html = Preprocess.fastQCR2Html
@@ -166,5 +177,9 @@ workflow Hashtag {
 
         File adataRaw = Preprocess.adata
         File adataFinal = UpdateAnnData.outAdata
+
+        File notebookQC = BasicQC.notebook
+        File htmlQC = BasicQC.htmlReport
+        File adataQC = BasicQC.adata
     }
 }

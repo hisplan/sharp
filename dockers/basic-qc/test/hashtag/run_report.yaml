@@ -1,0 +1,24 @@
+Date: 2021-07-26
+Running time: 5.0 minutes, 29.7 seconds
+CITE-seq-Count Version: 1.4.3
+Reads processed: 10711133
+Percentage mapped: 95
+Percentage unmapped: 5
+Uncorrected cells: 1
+Correction:
+	Cell barcodes collapsing threshold: 1
+	Cell barcodes corrected: 57585
+	UMI collapsing threshold: 1
+	UMIs corrected: 21000
+Run parameters:
+	Read1_filename: /tmp/scratch/dp-lab-gwf-core/cromwell-execution/Hashtag/e310f49b-44df-4ed0-a723-738a4ff06480/call-Preprocess/Preprocess/95c18bc7-7aca-4ba0-ab18-7cb3f2c8f0db/call-TrimR1/cacheCopy/R1.fastq.gz
+	Read2_filename: /tmp/scratch/dp-lab-gwf-core/cromwell-execution/Hashtag/e310f49b-44df-4ed0-a723-738a4ff06480/call-Preprocess/Preprocess/95c18bc7-7aca-4ba0-ab18-7cb3f2c8f0db/call-TrimR2/cacheCopy/R2.fastq.gz
+	Cell barcode:
+		First position: 1
+		Last position: 16
+	UMI barcode:
+		First position: 17
+		Last position: 28
+	Expected cells: 0
+	Tags max errors: 2
+	Start trim: 10
