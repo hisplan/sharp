@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+if [ -z $SCING_HOME ]
+then
+    echo "Environment variable 'SCING_HOME' not defined."
+    exit 1
+fi
+
 #hack: get dependency set up
 ln -s ../modules/ modules
 
@@ -10,11 +16,10 @@ do
 
     echo "Validating ${module_name}..."
 
-    java -jar ~/Applications/womtool.jar \
+    java -jar ${SCING_HOME}/devtools/womtool.jar \
         validate \
         test.${module_name}.wdl \
         --inputs test.${module_name}.inputs.json
-
 
 done
 
