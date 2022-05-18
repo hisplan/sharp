@@ -14,7 +14,7 @@ task BasicQC {
         String dockerRegistry
     }
 
-    String dockerImage = dockerRegistry + "/sharp-basic-qc:0.2.0"
+    String dockerImage = dockerRegistry + "/sharp-basic-qc:0.2.1"
     Float inputSize = size(h5ad, "GiB") + size(readsCount, "GiB") + size(runReport, "GiB")
 
     String path_outdir = "outputs"
